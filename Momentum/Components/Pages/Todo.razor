@@ -1,0 +1,49 @@
+﻿@page "/todo"
+@rendermode InteractiveServer
+@inject TodoService TodoService
+
+<h3>Todo List</h3>
+
+<input placeholder="New Task" @bind="newTodo" />
+<button type="button" class="btn btn-secondary btn-sm" @onclick="AddTodo">Add Task</button>
+
+<ul>
+    @foreach (var todo in todos)
+    {
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+            <input @bind="todo.Title" />
+            <button type="button" class="btn btn-danger btn-sm" @onclick="() => RemoveTodo(todo)">Remove</button>
+        </li>
+    }
+</ul>
+
+
+
+@code {
+    private List<TodoItem> todos = [];
+    private string? newTodo;
+
+    // This handles UI updates and calls the service
+    protected override async Task OnInitializedAsync()
+    {
+        todos = await TodoService.GetTodosAsync();
+    }
+
+    private async Task AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            var todo = new TodoItem { Title = newTodo };
+            await TodoService.AddTodoAsync(todo);  // Calls the service
+            todos = await TodoService.GetTodosAsync();  // Refresh UI data
+            newTodo = string.Empty;  // Clear the input
+        }
+    }
+
+    private async Task RemoveTodo(TodoItem todo)
+    {
+        await TodoService.RemoveTodoAsync(todo);  // Calls the service
+        todos = await TodoService.GetTodosAsync();  // Refresh UI data
+    }
+}
