@@ -1,0 +1,18 @@
+/* wwwroot/css/app.css */
+.main-content {
+  padding-top: 80px; /* Adjust based on the height of your app bar */
+}
+
+.sidebar {
+  position: fixed;
+  top: 64px; /* Match the height of your app bar */
+  bottom: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+  overflow-y: auto; /* Add scroll if content overflows */
+}
+
+.submit-btn
+{
+  width: 5rem;
+}
