@@ -1,0 +1,36 @@
+﻿@page "/"
+
+@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
+
+<MudStack>
+<MudGrid Justify="Justify.Center">
+  <MudItem xs="12" sm="7">
+    <MudPaper Elevation="10" Class="pa-3 border-2">
+      <MudForm>
+        <MudText Typo="Typo.h4">Run Workout</MudText>
+        <MudIcon Icon="@Icons.Material.Filled.DirectionsRun" Title="Run" />
+        <MudDatePicker Label="Date of Workout" @bind-Date="run.Date" Color="Color.Warning" HelperTextOnFocus="true" Variant="Variant.Outlined" Margin="Margin.Dense" />
+        <MudTextField Immediate="true" T="double?" Label="Distance" @bind-Value="run.Distance" HelperTextOnFocus="true" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentText="mi" Margin="Margin.Dense" />
+        <MudTimePicker Label="Duration" @bind-Time="run.Duration" PickerVariant="PickerVariant.Dialog" Color="Color.Warning" Variant="Variant.Outlined" OpenTo="OpenTo.Minutes" Margin="Margin.Dense" />
+        <MudTextField Immediate="true" T="int?" Label="Average HR" @bind-Value="run.AvgHr" HelperTextOnFocus="true" Variant="Variant.Outlined" Margin="Margin.Dense" />
+        <MudTextField Label="Pace" Value="@run.Pace?.ToString(@"hh\:mm\:ss")" Variant="Variant.Outlined" ReadOnly="true" Margin="Margin.Dense"/>
+        <MudTextField T="string" Label="Notes" @bind-Value="run.Notes" Variant="Variant.Outlined" AutoGrow Lines="3" />
+        <MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Medium" Color="Color.Warning" OnClick="HandleSubmit">SUBMIT</MudButton>
+
+      </MudForm>
+    </MudPaper>
+  </MudItem>
+</MudGrid>
+
+<Stats />
+</MudStack>
+@code {
+    private Run run = new Run(null, null, null, null, null);
+
+  private async Task HandleSubmit()
+    {
+        // Process the workout data (e.g., save to database or display)
+        Console.WriteLine($"Run logged on {run.Date?.ToString("D")}: Distance = {run.Distance} mi, Duration = {run.Duration}, Avg HR = {run.AvgHr}, Pace = {run.Pace}, Notes = {run.Notes}");
+    }
+}

@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "/Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/scopedcss/projectbundle/Momentum.bundle.scp.css",
+      "PackagePath": "staticwebassets/Momentum.bundle.scp.css"
+    },
+    {
       "Id": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/app.css",
       "PackagePath": "staticwebassets/app.css"
     },

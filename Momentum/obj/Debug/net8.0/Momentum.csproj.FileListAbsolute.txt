@@ -9,11 +9,6 @@
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Azure.Core.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Azure.Identity.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Humanizer.dll
-/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
-/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Components.dll
-/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Components.Forms.dll
-/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Components.Web.dll
-/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Metadata.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Build.Locator.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
@@ -34,8 +29,6 @@
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
-/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Localization.dll
-/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Localization.Abstractions.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
@@ -48,7 +41,6 @@
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
-/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.JSInterop.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.SqlServer.Server.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Win32.SystemEvents.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Mono.TextTemplating.dll
@@ -165,7 +157,9 @@
 /Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Momentum.props
 /Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Momentum.props
 /Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/staticwebassets.pack.json
+/Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/scopedcss/Components/Layout/MainLayout.razor.rz.scp.css
 /Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/scopedcss/bundle/Momentum.styles.css
+/Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/scopedcss/projectbundle/Momentum.bundle.scp.css
 /Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/Momentum.csproj.Up2Date
 /Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/Momentum.dll
 /Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/refint/Momentum.dll

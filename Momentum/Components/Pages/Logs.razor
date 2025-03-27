@@ -1,19 +1,53 @@
 ﻿@page "/logs"
 @rendermode InteractiveServer
 
-<PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
-
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<MudTabs>
+    <MudTabPanel Text="Runs">
+        @if (isLoading)
+        {
+            <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+        }
+        else if (errorMessage != null)
+        {
+            <MudAlert Severity="Severity.Error">@errorMessage</MudAlert>
+        }
+        else
+        {
+            <MudTable Items="runs" Hover="true" Dense="true" Striped="true">
+                <HeaderContent>
+                    <MudTh>Date</MudTh>
+                    <MudTh>Distance (mi)</MudTh>
+                    <MudTh>Duration</MudTh>
+                    <MudTh>Avg HR</MudTh>
+                    <MudTh>Pace</MudTh>
+                    <MudTh>Notes</MudTh>
+                </HeaderContent>
+                <RowTemplate Context="run">
+                    <MudTd>@run.Date?.ToString("MM/dd/yyyy")</MudTd>
+                    <MudTd>@run.Distance?.ToString("F2")</MudTd>
+                    <MudTd>@FormatTimeSpan(run.Duration)</MudTd>
+                    <MudTd>@run.AvgHr</MudTd>
+                    <MudTd>@FormatTimeSpan(run.Pace)</MudTd>
+                    <MudTd>@run.Notes</MudTd>
+                </RowTemplate>
+            </MudTable>
+        }
+    </MudTabPanel>
+</MudTabs>
 
 @code {
-    private int currentCount = 0;
+    private List<Run> runs = new List<Run>();
+    private bool isLoading = true;
+    private string? errorMessage;
 
-    private void IncrementCount()
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+      
+    }
+
+    private string FormatTimeSpan(TimeSpan? timeSpan)
+    {
+        return timeSpan.HasValue ? timeSpan.Value.ToString(@"hh\:mm\:ss") : "N/A";
     }
 }
