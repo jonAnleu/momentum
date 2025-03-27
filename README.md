@@ -1,4 +1,4 @@
-# momentum
+# Momentum
 
 🏃 Run Log Tracker 
 
