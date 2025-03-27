@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FB6L8AumcYuza5ASSg7sPDZtUBPfJ92OlQGqyBQqjC8=",
+  "Hash": "uRIxV47uk77fBrodEDvTHaBsuBGhppY+eznVZ+SOFks=",
   "Source": "Momentum",
   "BasePath": "_content/Momentum",
   "Mode": "Default",
@@ -17,10 +17,10 @@
   ],
   "Assets": [
     {
-      "Identity": "/Users/jonanleu/.nuget/packages/mudblazor/6.11.0/staticwebassets/MudBlazor.min.css",
+      "Identity": "/Users/jonanleu/.nuget/packages/mudblazor/8.3.0/staticwebassets/MudBlazor.min.css",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "/Users/jonanleu/.nuget/packages/mudblazor/6.11.0/staticwebassets/",
+      "ContentRoot": "/Users/jonanleu/.nuget/packages/mudblazor/8.3.0/staticwebassets/",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/jonanleu/.nuget/packages/mudblazor/6.11.0/staticwebassets/MudBlazor.min.css"
+      "OriginalItemSpec": "/Users/jonanleu/.nuget/packages/mudblazor/8.3.0/staticwebassets/MudBlazor.min.css"
     },
     {
-      "Identity": "/Users/jonanleu/.nuget/packages/mudblazor/6.11.0/staticwebassets/MudBlazor.min.js",
+      "Identity": "/Users/jonanleu/.nuget/packages/mudblazor/8.3.0/staticwebassets/MudBlazor.min.js",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "/Users/jonanleu/.nuget/packages/mudblazor/6.11.0/staticwebassets/",
+      "ContentRoot": "/Users/jonanleu/.nuget/packages/mudblazor/8.3.0/staticwebassets/",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.js",
       "AssetKind": "All",
@@ -52,7 +52,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/Users/jonanleu/.nuget/packages/mudblazor/6.11.0/staticwebassets/MudBlazor.min.js"
+      "OriginalItemSpec": "/Users/jonanleu/.nuget/packages/mudblazor/8.3.0/staticwebassets/MudBlazor.min.js"
     },
     {
       "Identity": "/Users/jonanleu/repos/momentum/Momentum/obj/Debug/net8.0/scopedcss/bundle/Momentum.styles.css",

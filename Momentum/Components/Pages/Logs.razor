@@ -1,12 +1,14 @@
 ﻿@page "/logs"
 @rendermode InteractiveServer
+@inject MomentumDbContext DbContext
+
 
 
 <MudTabs>
     <MudTabPanel Text="Runs">
         @if (isLoading)
         {
-            <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+            <MudProgressCircular Color="Color.Warning" Indeterminate="true" />
         }
         else if (errorMessage != null)
         {
@@ -42,9 +44,22 @@
     private string? errorMessage;
 
     protected override async Task OnInitializedAsync()
+{
+    try
     {
-      
+        isLoading = true;
+        runs = await DbContext.Run.ToListAsync();
     }
+    catch (Exception ex)
+    {
+        errorMessage = $"Error loading data: {ex.Message}";
+    }
+    finally
+    {
+        isLoading = false;
+    }
+}
+
 
     private string FormatTimeSpan(TimeSpan? timeSpan)
     {

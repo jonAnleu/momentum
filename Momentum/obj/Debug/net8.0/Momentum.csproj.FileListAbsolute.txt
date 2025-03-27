@@ -9,6 +9,11 @@
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Azure.Core.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Azure.Identity.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Humanizer.dll
+/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
+/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Components.dll
+/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Components.Forms.dll
+/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Components.Web.dll
+/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.AspNetCore.Metadata.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Build.Locator.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.CodeAnalysis.dll
@@ -29,6 +34,8 @@
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
+/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Localization.dll
+/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Localization.Abstractions.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
@@ -41,6 +48,7 @@
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.JSInterop.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.SqlServer.Server.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Microsoft.Win32.SystemEvents.dll
 /Users/jonanleu/repos/momentum/Momentum/bin/Debug/net8.0/Mono.TextTemplating.dll

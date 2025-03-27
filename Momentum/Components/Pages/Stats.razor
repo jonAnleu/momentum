@@ -1,36 +1,81 @@
 ﻿@page "/stats"
 @rendermode InteractiveServer
 @using MudBlazor.Charts
+@inject MomentumDbContext DbContext
+@using System.Globalization
 
-    <MudChart 
-        ChartType="ChartType.Line" 
-        ChartSeries="@_series" 
-        XAxisLabels="@_xAxisLabels" 
-        Width="@_width" 
-        Height="@_height" 
-        ChartOptions="@_chartOptions" />
+<MudChart 
+    ChartType="ChartType.Line" 
+    ChartSeries="@_series" 
+    XAxisLabels="@_xAxisLabels" 
+    Width="@_width" 
+    Height="@_height" 
+    ChartOptions="@_chartOptions" />
 
 @code {
-    private ChartOptions _chartOptions = new ChartOptions()
+    private ChartOptions _chartOptions = new ChartOptions
     {
         LineStrokeWidth = 3,
         ChartPalette = new[] { Colors.Orange.Accent2 },
-        DisableLegend = false,
-    
+        YAxisLines = true,
+        ShowLegend = true
     };
 
     private string _width = "800px";
     private string _height = "400px";
+    private List<ChartSeries> _series = new();
+    private string[] _xAxisLabels = Array.Empty<string>();
 
-    private List<ChartSeries> _series = new List<ChartSeries>()
+    protected override async Task OnInitializedAsync()
     {
-        new ChartSeries() { 
-            Name = "Miles Run", 
-            Data = new double[] { 10, 41, 35, 51, 49, 62, 69, 91, 148, 120, 95, 80 },
-           
-        },
-    };
+        try
+        {
+            var runs = await DbContext.Run
+                .Where(r => r.Date.HasValue && r.Distance.HasValue)
+                .OrderBy(r => r.Date)
+                .ToListAsync();
 
-    private string[] _xAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-                                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            if (runs.Any())
+            {
+                double maxDistance = Math.Ceiling(runs.Max(r => r.Distance!.Value));
+                double step = maxDistance <= 5 ? 1 : 5;
+
+
+
+
+                var culture = CultureInfo.CurrentCulture;
+                var calendar = culture.Calendar;
+
+                var weeklyData = runs
+                    .GroupBy(r =>
+                    {
+                        var weekNum = calendar.GetWeekOfYear(r.Date!.Value, culture.DateTimeFormat.CalendarWeekRule, culture.DateTimeFormat.FirstDayOfWeek);
+                        return $"{r.Date!.Value:MMM} - Week {weekNum}";
+                    })
+                    .OrderBy(g => g.First().Date)
+                    .Select(g => new
+                    {
+                        WeekLabel = g.Key,
+                        TotalDistance = g.Sum(r => r.Distance!.Value)
+                    })
+                    .ToList();
+
+                _xAxisLabels = weeklyData.Select(w => w.WeekLabel).ToArray();
+                _series.Add(new ChartSeries
+                {
+                    Name = "Miles Run",
+                    Data = weeklyData.Select(w => w.TotalDistance).ToArray()
+                });
+            }
+            else
+            {
+                _xAxisLabels = new[] { "No Data" };
+                _series.Add(new ChartSeries { Name = "Miles Run", Data = new double[] { 0 } });
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading data: {ex.Message}");
+        }
+    }
 }

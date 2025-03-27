@@ -22,19 +22,8 @@
     private bool _drawerOpen = true;
     private bool _isDarkMode = true;
     
-    private MudTheme _theme = new MudTheme()
-    {
-        Palette = new PaletteLight()
-        {
-            Primary = Colors.Blue.Default,
-            Secondary = Colors.Green.Accent4
-        },
-        PaletteDark = new PaletteDark()
-        {
-            Primary = Colors.Blue.Lighten1,
-            Background = "#1a1a1a"
-        }
-    };
+    private MudTheme _theme = new MudTheme();
+   
 
     void DrawerToggle() => _drawerOpen = !_drawerOpen;
 }

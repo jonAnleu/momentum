@@ -21,7 +21,7 @@ namespace Momentum.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Workout", b =>
+            modelBuilder.Entity("Run", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,27 +29,24 @@ namespace Momentum.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AvgHr")
+                    b.Property<int?>("AvgHr")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
 
-                    b.Property<double>("Distance")
+                    b.Property<double?>("Distance")
                         .HasColumnType("float");
 
-                    b.Property<TimeOnly>("Duration")
+                    b.Property<TimeSpan?>("Duration")
                         .HasColumnType("time");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeOnly>("Pace")
-                        .HasColumnType("time");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Workout");
+                    b.ToTable("Run");
                 });
 #pragma warning restore 612, 618
         }
