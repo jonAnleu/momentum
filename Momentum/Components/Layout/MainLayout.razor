@@ -7,13 +7,8 @@
 <MudSnackbarProvider/>
 
 <MudLayout>
-    <MudAppBar Color="Color.Warning" Elevation="2">
-        <MudText Typo="Typo.h5">MOMENTUM</MudText>
-        <MudSpacer/>
-        <NavMenu/>
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="DrawerToggle"/>
-    </MudAppBar>
-    <MudContainer MaxWidth="MaxWidth.Medium" Class="main-content">
+   <Navbar />
+    <MudContainer MaxWidth="MaxWidth.Small" Class="main-content">
         @Body
     </MudContainer>
 </MudLayout>

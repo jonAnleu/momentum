@@ -33,8 +33,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Layout/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
+[/Users/jonanleu/repos/momentum/Momentum/Components/Layout/Navbar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2YmFyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Pages/Logs.razor]
