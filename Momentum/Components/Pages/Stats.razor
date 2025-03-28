@@ -4,31 +4,25 @@
 @inject MomentumDbContext DbContext
 @using System.Globalization
 
+        <MudText Typo="Typo.h5" Align="Align.Center"><strong>Run Progression</strong></MudText>
+        <MudChart ChartType="ChartType.Line" ChartSeries="@_series" XAxisLabels="@_xAxisLabels" Width="@_width"
+            Height="@_height" ChartOptions="@_chartOptions" />
 
-<MudText Typo="Typo.h5" Align="Align.Right" Class="mr-20 "><strong>Run Progression</strong></MudText>
 
-<MudChart 
 
-    ChartType="ChartType.Line" 
-    ChartSeries="@_series" 
-    XAxisLabels="@_xAxisLabels" 
-    Width="@_width" 
-    Height="@_height" 
-    ChartOptions="@_chartOptions" />
-    
-    
+
 
 @code {
-  private ChartOptions _chartOptions = new ChartOptions
-{
-    LineStrokeWidth = 3,
-    ChartPalette = new[] { Colors.Orange.Accent2 },
-    YAxisLines = true,
-    YAxisTicks = 2,
-    XAxisLines = true,
-    ShowLegend = true,
-   
-};
+    private ChartOptions _chartOptions = new ChartOptions
+    {
+        LineStrokeWidth = 3,
+        ChartPalette = new[] { Colors.Orange.Accent2 },
+        YAxisLines = true,
+        YAxisTicks = 2,
+        XAxisLines = true,
+        ShowLegend = true,
+
+    };
 
     private string _width = "800px";
     private string _height = "400px";
@@ -40,9 +34,9 @@
         try
         {
             var runs = await DbContext.Run
-                .Where(r => r.Date.HasValue && r.Distance.HasValue)
-                .OrderBy(r => r.Date)
-                .ToListAsync();
+            .Where(r => r.Date.HasValue && r.Distance.HasValue)
+            .OrderBy(r => r.Date)
+            .ToListAsync();
 
             if (runs.Any())
             {
@@ -56,18 +50,19 @@
                 var calendar = culture.Calendar;
 
                 var weeklyData = runs
-                    .GroupBy(r =>
-                    {
-                        var weekNum = calendar.GetWeekOfYear(r.Date!.Value, culture.DateTimeFormat.CalendarWeekRule, culture.DateTimeFormat.FirstDayOfWeek);
-                        return $"{r.Date!.Value:MMM} - Week {weekNum}";
-                    })
-                    .OrderBy(g => g.First().Date)
-                    .Select(g => new
-                    {
-                        WeekLabel = g.Key,
-                        TotalDistance = g.Sum(r => r.Distance!.Value)
-                    })
-                    .ToList();
+                .GroupBy(r =>
+                {
+                    var weekNum = calendar.GetWeekOfYear(r.Date!.Value, culture.DateTimeFormat.CalendarWeekRule,
+    culture.DateTimeFormat.FirstDayOfWeek);
+                    return $"{r.Date!.Value:MMM} - Week {weekNum}";
+                })
+                .OrderBy(g => g.First().Date)
+                .Select(g => new
+                {
+                    WeekLabel = g.Key,
+                    TotalDistance = g.Sum(r => r.Distance!.Value)
+                })
+                .ToList();
 
                 _xAxisLabels = weeklyData.Select(w => w.WeekLabel).ToArray();
                 _series.Add(new ChartSeries

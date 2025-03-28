@@ -4,8 +4,8 @@
 
 
 
-<MudTabs>
-    <MudTabPanel Text="Runs">
+<MudTabs Centered HideSlider  Color="Color.Warning" MinimumTabWidth="200px">
+    <MudTabPanel  Text="Completed Runs">
         @if (isLoading)
         {
             <MudProgressCircular Color="Color.Warning" Indeterminate="true" />
@@ -16,16 +16,16 @@
         }
         else
         {
-            <MudTable Items="runs" Hover="true" Dense="true" Striped="true">
+            <MudTable Items="runs" Hover Dense  Bordered  >
                 <HeaderContent>
                     <MudTh>Date</MudTh>
-                    <MudTh>Distance (mi)</MudTh>
+                    <MudTh>Distance</MudTh>
                     <MudTh>Duration</MudTh>
                     <MudTh>Pace</MudTh>
                     <MudTh>Notes</MudTh>
                 </HeaderContent>
                 <RowTemplate Context="run">
-                    <MudTd>@run.Date?.ToString("MM/dd/yyyy")</MudTd>
+                    <MudTd>@run.Date?.ToString("MMMM dd, yyyy")</MudTd>
                     <MudTd>@run.Distance?.ToString("F2")</MudTd>
                     <MudTd>@FormatTimeSpan(run.Duration)</MudTd>
                     <MudTd>@FormatTimeSpan(run.Pace)</MudTd>
@@ -61,6 +61,6 @@
 
     private string FormatTimeSpan(TimeSpan? timeSpan)
     {
-        return timeSpan.HasValue ? timeSpan.Value.ToString(@"hh\:mm\:ss") : "N/A";
+        return timeSpan.HasValue ? timeSpan.Value.ToString(@"mm\:ss") : "N/A";
     }
 }
