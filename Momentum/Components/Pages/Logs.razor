@@ -21,7 +21,6 @@
                     <MudTh>Date</MudTh>
                     <MudTh>Distance (mi)</MudTh>
                     <MudTh>Duration</MudTh>
-                    <MudTh>Avg HR</MudTh>
                     <MudTh>Pace</MudTh>
                     <MudTh>Notes</MudTh>
                 </HeaderContent>
@@ -29,7 +28,6 @@
                     <MudTd>@run.Date?.ToString("MM/dd/yyyy")</MudTd>
                     <MudTd>@run.Distance?.ToString("F2")</MudTd>
                     <MudTd>@FormatTimeSpan(run.Duration)</MudTd>
-                    <MudTd>@run.AvgHr</MudTd>
                     <MudTd>@FormatTimeSpan(run.Pace)</MudTd>
                     <MudTd>@run.Notes</MudTd>
                 </RowTemplate>

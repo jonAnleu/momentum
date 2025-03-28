@@ -12,7 +12,6 @@
         <MudDatePicker Label="Date of Workout" @bind-Date="run.Date" Color="Color.Warning" HelperTextOnFocus="true" Variant="Variant.Outlined" Margin="Margin.Dense" />
         <MudTextField Immediate="true" T="double?" Label="Distance" @bind-Value="run.Distance" HelperTextOnFocus="true" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentText="mi" Margin="Margin.Dense" />
         <MudTimePicker Label="Duration" @bind-Time="run.Duration" PickerVariant="PickerVariant.Dialog" Color="Color.Warning" Variant="Variant.Outlined" OpenTo="OpenTo.Minutes" Margin="Margin.Dense" />
-        <MudTextField Immediate="true" T="int?" Label="Average HR" @bind-Value="run.AvgHr" HelperTextOnFocus="true" Variant="Variant.Outlined" Margin="Margin.Dense" />
         <MudTextField Label="Pace" Value="@run.Pace?.ToString(@"hh\:mm\:ss")" Variant="Variant.Outlined" ReadOnly="true" Margin="Margin.Dense"/>
         <MudTextField T="string" Label="Notes" @bind-Value="run.Notes" Variant="Variant.Outlined" AutoGrow Lines="3" />
         <MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Medium" Color="Color.Warning" OnClick="HandleSubmit">SUBMIT</MudButton>
@@ -21,7 +20,7 @@
   </MudItem>
 </MudGrid>
 @code {
-    private Run run = new Run(null, null, null, null, null);
+    private Run run = new Run(null, null, null, null);
 
  private async Task HandleSubmit()
 {
@@ -34,7 +33,7 @@
         Console.WriteLine("Run successfully saved to the database.");
         
         // Optionally clear the form
-        run = new Run(null, null, null, null, null);
+        run = new Run(null, null, null, null);
     }
     catch (Exception ex)
     {

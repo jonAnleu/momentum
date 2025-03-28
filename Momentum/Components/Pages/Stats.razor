@@ -4,22 +4,31 @@
 @inject MomentumDbContext DbContext
 @using System.Globalization
 
+
+<MudText Typo="Typo.h5" Align="Align.Right" Class="mr-20 "><strong>Run Progression</strong></MudText>
+
 <MudChart 
+
     ChartType="ChartType.Line" 
     ChartSeries="@_series" 
     XAxisLabels="@_xAxisLabels" 
     Width="@_width" 
     Height="@_height" 
     ChartOptions="@_chartOptions" />
+    
+    
 
 @code {
-    private ChartOptions _chartOptions = new ChartOptions
-    {
-        LineStrokeWidth = 3,
-        ChartPalette = new[] { Colors.Orange.Accent2 },
-        YAxisLines = true,
-        ShowLegend = true
-    };
+  private ChartOptions _chartOptions = new ChartOptions
+{
+    LineStrokeWidth = 3,
+    ChartPalette = new[] { Colors.Orange.Accent2 },
+    YAxisLines = true,
+    YAxisTicks = 2,
+    XAxisLines = true,
+    ShowLegend = true,
+   
+};
 
     private string _width = "800px";
     private string _height = "400px";
