@@ -4,28 +4,44 @@
 @inject MomentumDbContext DbContext
 @using System.Globalization
 
-        <MudText Typo="Typo.h5" Align="Align.Center"><strong>Run Progression</strong></MudText>
-        <MudChart ChartType="ChartType.Line" ChartSeries="@_series" XAxisLabels="@_xAxisLabels" Width="@_width"
-            Height="@_height" ChartOptions="@_chartOptions" />
+        <MudText Typo="Typo.h5" Align="Align.Center"><strong>Run Progress
 
-
-
+        </strong></MudText>
+        <MudChart ChartType="ChartType.Line" ChartSeries="@_series" XAxisLabels="@_xAxisLabels"  @bind-SelectedIndex="_selectedIndex" Width="@_width"
+            Height="@_height" ChartOptions="@_chartOptions"  />
+       
 
 
 @code {
-    private ChartOptions _chartOptions = new ChartOptions
+    private ChartOptions _chartOptions = new ChartOptions 
     {
-        LineStrokeWidth = 3,
         ChartPalette = new[] { Colors.Orange.Accent2 },
+        YAxisRequireZeroPoint = true,
         YAxisLines = true,
         YAxisTicks = 2,
         XAxisLines = true,
         ShowLegend = true,
-
+        InterpolationOption = InterpolationOption.Straight,
+        ShowToolTips = true, 
+        
     };
 
-    private string _width = "800px";
-    private string _height = "400px";
+    private int _selectedIndex = -1;  
+
+    private void OnIndexChanged(int newIndex)
+    {
+        // Custom logic when selection changes
+        _selectedIndex = newIndex;
+        
+        if (newIndex != -1)
+        {
+            var value = _series[0].Data[newIndex];
+            Console.WriteLine($"Selected index {newIndex} with value {value}");
+        }
+    }
+
+    private string _width = "50rem";
+    private string _height = "30rem";
     private List<ChartSeries> _series = new();
     private string[] _xAxisLabels = Array.Empty<string>();
 
@@ -34,14 +50,13 @@
         try
         {
             var runs = await DbContext.Run
-            .Where(r => r.Date.HasValue && r.Distance.HasValue)
-            .OrderBy(r => r.Date)
+            .Where(run => run.Date.HasValue && run.Distance.HasValue)
+            .OrderBy(run => run.Date)
             .ToListAsync();
 
             if (runs.Any())
             {
                 double maxDistance = Math.Ceiling(runs.Max(r => r.Distance!.Value));
-                double step = maxDistance <= 5 ? 1 : 5;
 
 
 

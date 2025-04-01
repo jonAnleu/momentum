@@ -4,7 +4,7 @@ public class Run
   public DateTime? Date { get; set; } = null;
   public double? Distance { get; set; } = null;
   public TimeSpan? Duration { get; set; } = null;
-  public string? Notes { get; set; } = null;
+  public string? Notes { get; set; } = "No Note";
 
   public TimeSpan? Pace
   {

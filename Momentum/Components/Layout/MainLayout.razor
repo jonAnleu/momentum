@@ -1,24 +1,20 @@
 ﻿@inherits LayoutComponentBase
 @using MudBlazor
 
-<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme"/>
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" />
 <MudPopoverProvider/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 
 <MudLayout>
    <Navbar />
-    <MudContainer MaxWidth="MaxWidth.Small" Class="main-content">
+    <MudContainer MaxWidth="MaxWidth.Medium" Class="main-content">
         @Body
     </MudContainer>
 </MudLayout>
 
 @code {
-    private bool _drawerOpen = true;
     private bool _isDarkMode = true;
     
-    private MudTheme _theme = new MudTheme();
-   
 
-    void DrawerToggle() => _drawerOpen = !_drawerOpen;
 }

@@ -12,7 +12,3 @@
   overflow-y: auto; /* Add scroll if content overflows */
 }
 
-.submit-btn
-{
-  width: 5rem;
-}
