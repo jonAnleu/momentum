@@ -1,7 +1,5 @@
 /* wwwroot/css/app.css */
-.main-content {
-  padding-top: 80px; /* Adjust based on the height of your app bar */
-}
+
 
 .sidebar {
   position: fixed;

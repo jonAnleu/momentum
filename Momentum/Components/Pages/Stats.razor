@@ -3,36 +3,30 @@
 @using MudBlazor.Charts
 @inject MomentumDbContext DbContext
 @using System.Globalization
-
-        <MudText Typo="Typo.h5" Align="Align.Center"><strong>Run Progress
-
-        </strong></MudText>
-        <MudChart ChartType="ChartType.Line" ChartSeries="@_series" XAxisLabels="@_xAxisLabels"  @bind-SelectedIndex="_selectedIndex" Width="@_width"
-            Height="@_height" ChartOptions="@_chartOptions"  />
-       
+<MudPaper Class="border-2">
+    <MudText Typo="Typo.h5" Align="Align.Center"><strong>Run Progress</strong></MudText>
+    <MudChart ChartType="ChartType.Line" ChartSeries="@_series" XAxisLabels="@_xAxisLabels"
+        @bind-SelectedIndex="_selectedIndex" Width="@_width" Height="@_height"  ChartOptions="@_chartOptions" />
+</MudPaper>
 
 
 @code {
-    private ChartOptions _chartOptions = new ChartOptions 
+    private ChartOptions _chartOptions = new ChartOptions
     {
         ChartPalette = new[] { Colors.Orange.Accent2 },
         YAxisRequireZeroPoint = true,
         YAxisLines = true,
         YAxisTicks = 2,
         XAxisLines = true,
-        ShowLegend = true,
-        InterpolationOption = InterpolationOption.Straight,
-        ShowToolTips = true, 
-        
     };
 
-    private int _selectedIndex = -1;  
+    private int _selectedIndex = -1;
 
     private void OnIndexChanged(int newIndex)
     {
         // Custom logic when selection changes
         _selectedIndex = newIndex;
-        
+
         if (newIndex != -1)
         {
             var value = _series[0].Data[newIndex];
@@ -40,8 +34,8 @@
         }
     }
 
-    private string _width = "50rem";
-    private string _height = "30rem";
+    private string _width = "fit-content";
+    private string _height = "20rem";
     private List<ChartSeries> _series = new();
     private string[] _xAxisLabels = Array.Empty<string>();
 

@@ -3,8 +3,8 @@
 @inject MomentumDbContext DbContext
 
 
-
-<MudTabs Centered HideSlider  Color="Color.Warning" MinimumTabWidth="200px">
+<MudPaper Class=" border-2">
+<MudTabs Centered HideSlider  Color="Color.Warning"  >
     <MudTabPanel  Text="Completed Runs">
         @if (isLoading)
         {
@@ -18,11 +18,11 @@
         {
             <MudTable Items="runs" Hover Dense  Bordered  >
                 <HeaderContent>
-                    <MudTh>Date</MudTh>
-                    <MudTh>Distance</MudTh>
-                    <MudTh>Duration</MudTh>
-                    <MudTh>Pace</MudTh>
-                    <MudTh>Notes</MudTh>
+                    <MudTh>DATE</MudTh>
+                    <MudTh>DISTANCE</MudTh>
+                    <MudTh>DURATION</MudTh>
+                    <MudTh>PACE</MudTh>
+                    <MudTh>NOTES</MudTh>
                 </HeaderContent>
                 <RowTemplate Context="run">
                     <MudTd>@run.Date?.ToString("MMMM dd, yyyy")</MudTd>
@@ -35,6 +35,7 @@
         }
     </MudTabPanel>
 </MudTabs>
+</MudPaper>
 
 @code {
     private List<Run> runs = new List<Run>();
