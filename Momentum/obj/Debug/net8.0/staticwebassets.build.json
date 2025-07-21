@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "WjmJhh6VV8ogAchaSL3khvVVer1fDZfh0F3nL489vLk=",
+  "Source": "Momentum",
+  "BasePath": "_content/Momentum",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Momentum/wwwroot",
+      "Source": "Momentum",
+      "ContentRoot": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/",
+      "BasePath": "_content/Momentum",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/jonanleu/.nuget/packages/mudblazor/8.10.0/staticwebassets/MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/jonanleu/.nuget/packages/mudblazor/8.10.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/jonanleu/.nuget/packages/mudblazor/8.10.0/staticwebassets/MudBlazor.min.css"
+    },
+    {
+      "Identity": "/Users/jonanleu/.nuget/packages/mudblazor/8.10.0/staticwebassets/MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/jonanleu/.nuget/packages/mudblazor/8.10.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/jonanleu/.nuget/packages/mudblazor/8.10.0/staticwebassets/MudBlazor.min.js"
+    }
+  ]
+}
