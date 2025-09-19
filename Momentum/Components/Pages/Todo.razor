@@ -1,146 +1,65 @@
 @page "/todo"
-<MudText Class="pa-4" Typo="Typo.h4">Task Manager</MudText>
-<MudDropContainer T="KanbanTaskItem" @ref="_dropContainer" Items="@_tasks"
-  ItemsSelector="@((item,column) => item.Status == column)" ItemDropped="TaskUpdated" Class="d-flex flex-row">
-  <ChildContent>
-    @foreach (var item in _sections)
-    {
-      <MudPaper Elevation="10" Width="240px" MinHeight="400px"
-        Class="pa-4 ma-4 d-flex flex-column mud-background-gray rounded-lg">
-        <MudToolBar Gutters="false">
-          <MudText Typo="Typo.button">@item.Name</MudText>
-          <MudSpacer />
-          <MudMenu Icon="@Icons.Material.Rounded.MoreHoriz" AnchorOrigin="Origin.BottomRight"
-            TransformOrigin="Origin.TopRight" ListClass="pa-2 d-flex flex-column" PopoverClass="mud-elevation-15">
-            <MudButton Color="Color.Default" StartIcon="@Icons.Material.Filled.Edit" IconSize="Size.Small">rename section</MudButton>
-            <MudButton Color="Color.Error" StartIcon="@Icons.Material.Outlined.Delete"
-              IconSize="Size.Small" OnClick="@( () => DeleteSection(item))">delete section</MudButton>
-          </MudMenu>
-        </MudToolBar>
-        <MudDropZone Class="mud-height-full" T="KanbanTaskItem" Identifier="@item.Name" AllowReorder />
-        @if (item.NewTaskOpen)
+<MudText  Typo="Typo.h4">Task Manager</MudText>
+
+@attribute [StreamRendering]
+
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in forecasts)
         {
-          <MudPaper Elevation="5" Class="pa-2 rounded-lg">
-            <MudTextField @bind-Value="item.NewTaskName" Placeholder="New Task" Underline="false" Class="pa-2 mt-n2"/>
-            <MudButton OnClick="@(() => AddTask(item))" Size="Size.Small" Color="Color.Warning" Variant="Variant.Filled" FullWidth="true">add task</MudButton>
-          </MudPaper>
+            <tr>
+                <td>@forecast.Date.ToShortDateString()</td>
+                <td>@forecast.TemperatureC</td>
+                <td>@forecast.TemperatureF</td>
+                <td>@forecast.Summary</td>
+            </tr>
         }
-        else
-        {
-          <MudButton OnClick="@(() => item.NewTaskOpen = !item.NewTaskOpen)" FullWidth="true" Class="rounded-lg pa-2" Color="Color.Warning" Variant="Variant.Outlined">create task</MudButton>
-        }
-      </MudPaper>
-    }
-  </ChildContent>
-  <ItemRenderer>
-    <MudPaper Elevation="5" Class="pa-2 rounded-lg my-3">
-      <MudText Typo="Typo.button">@context.Name</MudText>
-      </MudPaper>
-  </ItemRenderer>
-</MudDropContainer>
+        </tbody>
+    </table>
+}
 
 @code {
-  private MudDropContainer<KanbanTaskItem> _dropContainer;
+    private WeatherForecast[]? forecasts;
 
-  private bool _addSectionOpen;
-  /* handling board events */
-  private void TaskUpdated(MudItemDropInfo<KanbanTaskItem> info)
-  {
-    info.Item.Status = info.DropzoneIdentifier;
-  }
-
-  /* Setup for board */
-  private List<KanBanSections> _sections = new()
-{
-new KanBanSections("Project", false, String.Empty),
-new KanBanSections("To Do", false, String.Empty),
-new KanBanSections("In Process", false, String.Empty),
-new KanBanSections("Done", false, String.Empty),
-};
-
-  public class KanBanSections
-  {
-    public string Name { get; init; }
-    public bool NewTaskOpen { get; set; }
-    public string NewTaskName { get; set; }
-
-    public KanBanSections(string name, bool newTaskOpen, string newTaskName)
+    protected override async Task OnInitializedAsync()
     {
-      Name = name;
-      NewTaskOpen = newTaskOpen;
-      NewTaskName = newTaskName;
-    }
-  }
-  public class KanbanTaskItem
-  {
-    public string Name { get; init; }
-    public string Status { get; set; }
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
 
-    public KanbanTaskItem(string name, string status)
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = startDate.AddDays(index),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = summaries[Random.Shared.Next(summaries.Length)]
+        }).ToArray();
+    }
+
+    private class WeatherForecast
     {
-      Name = name;
-      Status = status;
+        public DateOnly Date { get; set; }
+        public int TemperatureC { get; set; }
+        public string? Summary { get; set; }
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
-  }
-
-  private List<KanbanTaskItem> _tasks = new()
-{
-new KanbanTaskItem("Write unit test", "To Do"),
-new KanbanTaskItem("Some docu stuff", "To Do"),
-new KanbanTaskItem("Walking the dog", "To Do"),
-};
-
-  KanBanNewForm newSectionModel = new KanBanNewForm();
-
-  public class KanBanNewForm
-  {
-    [Required]
-    [StringLength(10, ErrorMessage = "Name length can't be more than 10.")]
-    public string Name { get; set; }
-  }
-
-  private void OnValidSectionSubmit(EditContext context)
-  {
-    _sections.Add(new KanBanSections(newSectionModel.Name, false, String.Empty));
-    newSectionModel.Name = string.Empty;
-    _addSectionOpen = false;
-  }
-
-  private void OpenAddNewSection()
-  {
-    _addSectionOpen = true;
-  }
-
-  private void AddTask(KanBanSections section)
-  {
-    _tasks.Add(new KanbanTaskItem(section.NewTaskName, section.Name));
-    section.NewTaskName = string.Empty;
-    section.NewTaskOpen = false;
-    _dropContainer.Refresh();
-  }
-
-  private void DeleteSection(KanBanSections section)
-  {
-    if (_sections.Count == 1)
-    {
-      _tasks.Clear();
-      _sections.Clear();
-    }
-    else
-    {
-      int newIndex = _sections.IndexOf(section) - 1;
-      if (newIndex < 0)
-      {
-        newIndex = 0;
-      }
-
-      _sections.Remove(section);
-
-      var tasks = _tasks.Where(x => x.Status == section.Name);
-      foreach (var item in tasks)
-      {
-        item.Status = _sections[newIndex].Name;
-      }
-    }
-  }
 }

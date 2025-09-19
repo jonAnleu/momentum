@@ -1,25 +1,23 @@
   <MudAppBar Color="Color.Dark" Elevation="0">
-
-            <MudText Class="px-4" Typo="Typo.h4" Color="Color.Warning"><strong>Momentum</strong></MudText>
+            <MudIcon Icon="@Icons.Material.Filled.DoubleArrow" Size="Size.Large" Color="Color.Warning"/>
+            <MudText Class="px-1" Typo="Typo.h4" Color="Color.Warning"><b>Momentum</b></MudText>
             <MudSpacer />
+            <MudButton Href="/todo" StartIcon="@Icons.Material.Filled.Checklist" Color="Color.Warning">Todo</MudButton>
+            <MudButton Href="/log" StartIcon="@Icons.Material.Filled.EditNote" Color="Color.Warning" >Log</MudButton>
             <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Inherit" />
             <MudIconButton Icon="@Icons.Material.Filled.Notifications" Color="Color.Inherit" />
             <MudIconButton Class="rounded-circle" Icon="@Icons.Material.Filled.Person" Variant="Variant.Filled"
                 Color="Color.Warning" />
         </MudAppBar>
-  <MudDrawer Open Color="Color.Dark" ClipMode="DrawerClipMode.Always"
-            Variant=" DrawerVariant.Responsive" Width="150px">
-            <MudNavMenu Color="Color.Warning" Bordered Margin="Margin.Dense">
-                <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home"
+  <MudStack Row="true">
+                <MudLink Href="/"  Underline="Underline.None" Icon="@Icons.Material.Filled.Home"
                     IconColor="Color.Inherit">
-                    Home</MudNavLink>
-                <MudNavLink Href="/todo" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Checklist"
+                    Home</MudLink>
+                <MudLink Href="/todo" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Checklist"
                     IconColor="Color.Inherit">
-                    Todo</MudNavLink>
-                <MudNavLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Outlined.AreaChart"
-                    IconColor="Color.Inherit">Dashboard</MudNavLink>
-                <MudNavLink Href="/log" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.EditNote"
-                    IconColor="Color.Inherit">Log</MudNavLink>
-            </MudNavMenu>
-        </MudDrawer>
+                    Todo</MudLink>
+                <MudLink Href="/dashboard" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Outlined.AreaChart"
+                    IconColor="Color.Inherit">Dashboard</MudLink>
+              
+        </MudStack>
         
