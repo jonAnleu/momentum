@@ -1,4 +1,5 @@
 using Momentum.Components;
+using Momentum.Data.Services;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddMudServices();
+builder.Services.AddScoped<IArticleService, FileArticleService>();
 
 
 var app = builder.Build();
