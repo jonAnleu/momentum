@@ -1,6 +1,35 @@
 @page "/todo"
-@using Momentum.Components.Todo
-<MudText  Typo="Typo.h4">Todo</MudText>
 
+<MudText Class="mb-10" Typo="Typo.h4"><b>Task list</b></MudText>
 
-<TestButton/>
+<MudStack  AlignItems="AlignItems.Start">
+    @foreach (var todo in _todos)
+    {
+        <MudText Class="pa-2"><b>@todo.Title</b></MudText> 
+    }
+    <MudTextField T="string" 
+                  Variant="Variant.Outlined" 
+                  Placeholder="Add task" 
+                  @bind-Value="_newTodo" />
+
+    <MudButton EndIcon="@Icons.Material.Filled.AddCircle" 
+               IconSize="Size.Small"
+               Color="Color.Warning" 
+               OnClick="AddTodo">Add Task
+    </MudButton>
+</MudStack>
+
+@code {
+    private List<TodoItem> _todos = new();
+    private string _newTodo = "";
+
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(_newTodo))
+        {
+            _todos.Add(new TodoItem { Title = _newTodo });
+            _newTodo = string.Empty;
+        }
+    }
+    
+}
