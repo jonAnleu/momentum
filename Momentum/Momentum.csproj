@@ -10,9 +10,4 @@
     <PackageReference Include="MudBlazor" Version="8.10.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Components\Todo\" />
-    <Folder Include="Data\Articles\" />
-  </ItemGroup>
-
 </Project>
