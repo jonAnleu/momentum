@@ -1,0 +1,37 @@
+@page "/Todo"
+<MudPaper Class="pa-2" Outlined="true" Width="fit-content">
+    <MudText Typo="Typo.h5">Current Todo List</MudText>
+
+    <MudList T="string" Class="py-2" Gutters="false">
+        @foreach (var task in Tasks)
+        {
+            <MudListItem>@task</MudListItem>
+        }
+    </MudList>
+
+    <MudTextField T="string" 
+                  @bind-Value="NewTask"
+                  Variant="Variant.Outlined"
+                  Margin="Margin.Dense"
+                  Placeholder="New Task"
+                  Adornment="Adornment.End"
+                  AdornmentIcon="@Icons.Material.Filled.AddTask"
+                  AdornmentColor="Color.Warning"
+                  OnAdornmentClick="AddTask"/>
+</MudPaper>
+
+
+@code {
+       private string NewTask { get; set; } = String.Empty;
+       private List<string> Tasks = new();
+
+       private void AddTask()
+       {
+           if (!string.IsNullOrWhiteSpace(NewTask))
+           {
+               Tasks.Add(NewTask.Trim());
+               NewTask = string.Empty;
+           }
+       }
+  
+}

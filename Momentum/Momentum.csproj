@@ -10,4 +10,15 @@
     <PackageReference Include="MudBlazor" Version="8.10.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Shared\CollectionListItem.razor" />
+    <_ContentIncludedByDefault Remove="Shared\CollectionsNavigationSideBar.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Shared\" />
+    <Folder Include="Data\Services\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

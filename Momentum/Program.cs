@@ -1,6 +1,5 @@
 using Momentum.Components;
 using MudBlazor.Services;
-using Momentum.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +7,6 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddMudServices();
-builder.Services.AddSingleton<CollectionService>();
 
 
 var app = builder.Build();

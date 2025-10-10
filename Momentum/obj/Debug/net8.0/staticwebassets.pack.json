@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/images/chuck.jpg",
+      "PackagePath": "staticwebassets/images/chuck.jpg"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Momentum.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.Momentum.props",
+      "PackagePath": "build\\Momentum.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Momentum.props",
+      "PackagePath": "buildMultiTargeting\\Momentum.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Momentum.props",
+      "PackagePath": "buildTransitive\\Momentum.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
