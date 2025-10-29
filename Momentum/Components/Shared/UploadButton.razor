@@ -1,0 +1,31 @@
+@inject FileUploadStateService FileState
+@inject NavigationManager NavManager
+
+<MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+    <ActivatorContent>
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.FileUpload"
+                   Color="Color.Error">
+            <b>Upload media</b>
+        </MudButton>
+    </ActivatorContent>
+</MudFileUpload>
+
+@code {
+    private async Task UploadFiles(IBrowserFile file)
+    {
+        using var stream = file.OpenReadStream(maxAllowedSize: 20_000_000);
+        using var ms = new MemoryStream();
+        await stream.CopyToAsync(ms);
+
+        var uploaded = new UploadedFile
+        {
+            Name = file.Name,
+            ContentType = file.ContentType,
+            Data = ms.ToArray()
+        };
+
+        FileState.SetFiles(new List<UploadedFile> { uploaded });
+        NavManager.NavigateTo("/UploadView");
+    }
+}
