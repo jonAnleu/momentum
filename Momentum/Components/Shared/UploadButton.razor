@@ -12,6 +12,8 @@
 </MudFileUpload>
 
 @code {
+    
+    
     private async Task UploadFiles(IBrowserFile file)
     {
         using var stream = file.OpenReadStream(maxAllowedSize: 20_000_000);
@@ -26,6 +28,6 @@
         };
 
         FileState.SetFiles(new List<UploadedFile> { uploaded });
-        NavManager.NavigateTo("/UploadView");
+        NavManager.NavigateTo("/Upload");
     }
 }

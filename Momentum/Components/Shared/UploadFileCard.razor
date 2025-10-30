@@ -9,16 +9,16 @@
 <MudCard Class="@($"cursor-pointer  {(IsSelected ? "border-red" : "")} {(Hovered ? "border-red" : "")}")"
          Outlined="true"  
          Style="width: 221px; height: fit-content;" 
-         @onclick="() => IsSelected = !IsSelected"
          @onmouseenter="() => Hovered = true"
          @onmouseleave="() => Hovered = false">
-    <div style="position: relative; height: 140px;">
-        <MudCardMedia Class="rounded-t-sm" Image="@_imageDataUrl" Height="140" Style="width: 100%; object-fit: cover;"/>
+    <div style="position: relative; height: 140px;" @onclick="ToggleSelection" >
+        <MudCardMedia Class="rounded-t-sm" Image="@_imageDataUrl" Height="140" Style="width: 100%; object-fit: cover;" />
         <MudIconButton Href="/" Class="position-absolute"
                        Icon="@Icons.Material.Rounded.Close"
                        Variant="Variant.Filled"
                        Size="Size.Small"
-                       Style="bottom: 130px; left: 10px; background-color: white; color: black;">
+                       Style="bottom: 130px; left: 10px; background-color: white; color: black;"
+                       @onclick:stopPropagation="true">
         </MudIconButton>
 
         <MudChip Class="position-absolute" T="string" 
@@ -30,14 +30,16 @@
         @if (Hovered || IsSelected)
         {
             <MudToggleIconButton Class="pa-0 position-absolute z-10 "
-                                 ToggledChanged="ToggleSelection"
                                  Icon="@Icons.Material.Filled.RadioButtonUnchecked"
+                                 Toggled="IsSelected"
+                                 ToggledChanged="ToggleSelection"
                                  Style="color: white; bottom: 130px; left: 85px;"
                                  ToggledIcon=@Icons.Material.Filled.CheckCircle
                                  ToggledColor="@Color.Error"
                                  Ripple="false" 
                                  Size="Size.Large"
-                                 ToggledSize="Size.Large"/>
+                                 ToggledSize="Size.Large"
+                                 @onclick:stopPropagation="true"/>
         }
 
     </div>
@@ -52,7 +54,8 @@
 </MudCard>
 
 @code {
-    [Parameter] public UploadedFile? File { get; set; }
+    [Parameter] public UploadedFile? File { get; set; } 
+    [Parameter] public EventCallback<UploadedFile> OnSelected { get; set; }
     
     private bool Hovered { get; set; }
     private bool IsSelected { get; set; }

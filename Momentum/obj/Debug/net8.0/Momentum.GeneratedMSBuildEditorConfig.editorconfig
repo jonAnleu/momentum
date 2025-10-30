@@ -41,8 +41,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Pages/UploadView.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9VcGxvYWRWaWV3LnJhem9y
+[/Users/jonanleu/repos/momentum/Momentum/Components/Pages/Upload.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9VcGxvYWQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Routes.razor]
@@ -79,6 +79,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UploadBrowser.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVXBsb2FkQnJvd3Nlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UploadBrowserToolbar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVXBsb2FkQnJvd3NlclRvb2xiYXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UploadButton.razor]
