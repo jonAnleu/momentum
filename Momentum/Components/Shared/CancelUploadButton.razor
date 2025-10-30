@@ -1,0 +1,13 @@
+@inject IDialogService DialogService
+
+<MudButton Variant="Variant.Outlined" OnClick="OpenDialogAsync" Size="Size.Small"
+           Color="Color.Dark" Style="background-color: white;">
+    <MudText>Cancel</MudText>
+</MudButton>
+
+@code {
+    private Task OpenDialogAsync()
+    {
+        return DialogService.ShowAsync<CancelUploadDialog>("Cancel Upload Dialog");
+    }
+}

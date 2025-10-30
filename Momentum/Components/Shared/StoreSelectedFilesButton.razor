@@ -1,0 +1,52 @@
+@inject FileUploadStateService FileState
+@inject AssetService AssetService
+@inject IWebHostEnvironment Env
+@inject ISnackbar Snackbar
+@inject NavigationManager Nav
+
+<MudButton Class="ma-4 py-4"
+           Variant="Variant.Filled"
+           Color="Color.Error"
+           Size="Size.Large"
+           OnClick="StoreFiles">
+    <MudText Typo="Typo.subtitle2">
+        <b>Store selected files (@FileState.PendingFiles.Count)</b>
+    </MudText>
+</MudButton>
+
+@code {
+    private async Task StoreFiles()
+    {
+        if (FileState.PendingFiles.Count == 0)
+        {
+            Snackbar.Add("No files selected.", Severity.Warning);
+            return;
+        }
+
+        foreach (var uploaded in FileState.PendingFiles)
+        {
+            var ext = Path.GetExtension(uploaded.Name).TrimStart('.').ToLower();
+            var uniqueName = $"{Guid.NewGuid()}.{ext}";
+
+            var uploadsDir = Path.Combine(Env.WebRootPath, "uploads");
+            Directory.CreateDirectory(uploadsDir);
+
+            var filePath = Path.Combine(uploadsDir, uniqueName);
+
+            //  Save file from your byte[] Data
+            await File.WriteAllBytesAsync(filePath, uploaded.Data);
+
+            //  Create Asset entry
+            var asset = AssetService.AddAsset(
+                title: Path.GetFileNameWithoutExtension(uploaded.Name),
+                filePath: $"/uploads/{uniqueName}",
+                fileType: ext
+            );
+
+        }
+
+        FileState.ClearFiles();
+
+        Nav.NavigateTo("/"); 
+    }
+}

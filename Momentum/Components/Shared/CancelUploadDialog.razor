@@ -1,0 +1,17 @@
+<MudDialog Class="rounded-lg pa-2"  >
+    <TitleContent>
+        <MudText Class="pb-4" Typo="Typo.h6">Are you sure you want to cancel the upload?</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudStack Row="true" Justify="Justify.FlexEnd">
+            <MudButton Variant="Variant.Outlined" OnClick="Cancel">No</MudButton>
+            <MudButton Href="/" Variant="Variant.Filled" Color="Color.Error">Yes</MudButton>
+        </MudStack>
+    </DialogContent>
+</MudDialog>
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; }
+    
+    private void Cancel() => MudDialog.Cancel();
+}

@@ -1,5 +1,40 @@
-<h3>UploadBrowser</h3>
+@inject FileUploadStateService FileState
+
+<MudStack Style="width: 100%;">
+    <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+        <MudChip T="string" Class="pa-4" Label="true" Variant="Variant.Outlined" Size="Size.Small" Color="Color.Dark" Style="background-color: white;">
+            <MudText><b>1</b> Result</MudText>
+        </MudChip>
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudButtonGroup Variant="Variant.Outlined" Size="Size.Small">
+                <MudToggleIconButton Icon="@Icons.Material.Filled.CheckBoxOutlineBlank" 
+                                     ToggledIcon="@Icons.Material.Outlined.CheckBox" 
+                                     Size="Size.Small" />
+                <MudMenu ActivationEvent="MouseEvent.MouseOver" AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight">
+                    <ActivatorContent>
+                        <MudIconButton Icon="@Icons.Material.Filled.ArrowDropDown"
+                                       Size="Size.Small"/>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <MudMenuItem>Select All</MudMenuItem>
+                        <MudMenuItem>Select None</MudMenuItem>
+                    </ChildContent>
+                </MudMenu>
+            </MudButtonGroup>
+            <CancelUploadButton/>
+        </MudStack>
+    </MudStack>
+
+    @if (File != null)
+    {
+        <UploadFileCard File="@File"/>
+    }
+    else
+    {
+        <MudText>No file selected</MudText>
+    }
+</MudStack>
 
 @code {
-    
+    [Parameter] public UploadedFile? File { get; set; }
 }

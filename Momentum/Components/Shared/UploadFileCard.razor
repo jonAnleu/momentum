@@ -1,0 +1,86 @@
+@inject FileUploadStateService FileState
+@inject AssetService AssetService
+
+<style>
+    .border-red {
+        border: solid 3px #A6192e;
+    }
+</style>
+<MudCard Class="@($"cursor-pointer  {(IsSelected ? "border-red" : "")} {(Hovered ? "border-red" : "")}")"
+         Outlined="true"  
+         Style="width: 221px; height: fit-content;" 
+         @onclick="() => IsSelected = !IsSelected"
+         @onmouseenter="() => Hovered = true"
+         @onmouseleave="() => Hovered = false">
+    <div style="position: relative; height: 140px;">
+        <MudCardMedia Class="rounded-t-sm" Image="@_imageDataUrl" Height="140" Style="width: 100%; object-fit: cover;"/>
+        <MudIconButton Href="/" Class="position-absolute"
+                       Icon="@Icons.Material.Rounded.Close"
+                       Variant="Variant.Filled"
+                       Size="Size.Small"
+                       Style="bottom: 130px; left: 10px; background-color: white; color: black;">
+        </MudIconButton>
+
+        <MudChip Class="position-absolute" T="string" 
+                 Label="true" Size="Size.Small"
+                 Style="color: white; background: rgba(0, 0, 0, .5); bottom: 50px; left: 120px;">
+            <b>@_fileExtension</b>
+        </MudChip>
+
+        @if (Hovered || IsSelected)
+        {
+            <MudToggleIconButton Class="pa-0 position-absolute z-10 "
+                                 ToggledChanged="ToggleSelection"
+                                 Icon="@Icons.Material.Filled.RadioButtonUnchecked"
+                                 Style="color: white; bottom: 130px; left: 85px;"
+                                 ToggledIcon=@Icons.Material.Filled.CheckCircle
+                                 ToggledColor="@Color.Error"
+                                 Ripple="false" 
+                                 Size="Size.Large"
+                                 ToggledSize="Size.Large"/>
+        }
+
+    </div>
+    <MudCardContent Class="pa-2">
+        <MudText Typo="Typo.subtitle2"><b>Required fields</b></MudText>
+        <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="@_fileName" Margin="Margin.Dense" />
+        <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Asset Type" Margin="Margin.Dense"/>
+        <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Usage Rights" Margin="Margin.Dense"/>
+        <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Goal" Margin="Margin.Dense"/>
+
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter] public UploadedFile? File { get; set; }
+    
+    private bool Hovered { get; set; }
+    private bool IsSelected { get; set; }
+    private string _imageDataUrl = string.Empty;
+    private string _fileName = string.Empty;
+    private string _fileExtension = string.Empty;
+
+    private void ToggleSelection()
+    {
+        IsSelected = !IsSelected;
+    }
+    
+    protected override void OnParametersSet()
+    {
+        if (File == null)
+            return;
+
+        _fileName = File.Name;
+        _fileExtension = Path.GetExtension(File.Name).ToUpper().TrimStart('.');
+
+        if (File.ContentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
+        {
+            _imageDataUrl = $"data:{File.ContentType};base64,{Convert.ToBase64String(File.Data)}";
+        }
+        else
+        {
+            _imageDataUrl = "images/file-icon.png"; 
+        }
+    }
+
+}

@@ -1,5 +1,24 @@
 @page "/UploadView"
+@inject FileUploadStateService FileState 
+@inject NavigationManager NavManager
+
+<PageTitle>Upload View</PageTitle>
+
+<MudText>Upload page</MudText>
+
+<MudStack Class="mx-10 my-14" Row="true" Spacing="5">
+    <UploadMetadataDrawer/>
+    <UploadBrowser File="@_currentFile"/>
+</MudStack>
 
 @code {
-    
+    private UploadedFile? _currentFile;
+
+    protected override void OnInitialized()
+    {
+        if (FileState.PendingFiles.Any())
+            _currentFile = FileState.PendingFiles.First();
+        else
+            NavManager.NavigateTo("/UploadView");
+    }
 }

@@ -1,0 +1,58 @@
+<MudPaper Class="d-flex flex-column" Outlined="true" Width="330px" style="height: 640px;">
+    <MudStack Class="pa-4" Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+        <MudText><b>Upload Files</b></MudText>
+        <VisibilityToggleButton/>
+    </MudStack>
+    <MudStack Class="flex-grow-1 overflow-auto pa-4">
+        <MudTextField T="string" Margin="Margin.Dense" 
+                      Variant="Variant.Outlined" AdornmentColor="Color.Primary" 
+                      Underline="false" Placeholder="Update title"/>
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+            <MudSwitch T="bool" Color="Color.Error" Size="Size.Small" Label="Use filenames as title"/>
+        </MudStack>
+        <MudStack Spacing="2">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                    <MudIcon Icon="@Icons.Custom.FileFormats.FileDocument" Size="Size.Small"/>
+                    <MudText Typo="Typo.subtitle2">Description</MudText>
+                </MudStack>
+                <VisibilityToggleButton/>
+            </MudStack>
+            <MudTextField T="string" Placeholder="Replace description(s)" Variant="Variant.Outlined"/>
+        </MudStack>
+        <MudStack Spacing="2">
+            <MudText><b>Preset</b></MudText>
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudSelect @bind-Value="_stringValue" Margin="Margin.Dense" Variant="Variant.Outlined" Underline="false" Placeholder="No preset selected">
+                </MudSelect>
+                <MudIconButton Class="pa-3" Icon="@Icons.Material.Filled.Settings" Variant="Variant.Filled" Size="Size.Small" Disabled="true"/>
+            </MudStack>
+        </MudStack>
+        <MudExpansionPanels Elevation="0" Gutters="false" Dense="true">
+            <AssetType/>
+            <UsageRights/>
+            <Goal/>
+            <TargetPersona/>
+            <Channel/>
+            <Launch/>
+            <Year/>
+            <Theme/>
+            <Campaign/>
+            <Markets/>
+            <RelatedAssets/>
+            <AddPublicationDate/>
+            <Tags/>
+            <Copyright/>
+            <AdvancedRights/>
+            <CustomFields/>
+            <Collections/>
+        </MudExpansionPanels>
+    </MudStack>
+
+    <StoreSelectedFilesButton/>
+</MudPaper>
+
+
+@code {
+    private string _stringValue { get; set; }
+}

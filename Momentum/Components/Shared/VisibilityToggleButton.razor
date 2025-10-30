@@ -1,0 +1,10 @@
+<MudToggleIconButton Class="rounded" @bind-Toggled="VisibilityOn"
+                     Variant="Variant.Filled"
+                     Icon="@Icons.Material.Filled.VisibilityOff"
+                     Size="Size.Small"
+                     ToggledIcon="@Icons.Material.Filled.Visibility"
+                     ToggledColor="Color.Error"/>
+
+@code {
+    public bool VisibilityOn { get; set; }
+}

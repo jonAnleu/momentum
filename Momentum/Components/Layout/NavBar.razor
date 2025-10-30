@@ -1,14 +1,10 @@
-<MudAppBar Color="Color.Dark" Elevation="0">
+<MudAppBar Elevation="0">
     <MudButton Href="/" Color="Color.Warning">
         <MudIcon Icon="@Icons.Material.Filled.DoubleArrow" Size="Size.Large" Color="Color.Warning"/>
         <MudText Class="px-1" Typo="Typo.h5" Color="Color.Warning"><b>MOMENTUM</b></MudText>
     </MudButton>
     <MudSpacer/>
-    <MudButton Href="/Todo" 
-               Size="Size.Small" 
-               StartIcon="@Icons.Material.Filled.Checklist"  
-               Color="Color.Warning"
-                >todo</MudButton>
+    <UploadButton/>
     <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Inherit"/>
     <MudIconButton Icon="@Icons.Material.Filled.Notifications" Color="Color.Inherit"/>
     <MudIconButton Class="rounded-circle" Icon="@Icons.Material.Filled.Person" Variant="Variant.Filled"

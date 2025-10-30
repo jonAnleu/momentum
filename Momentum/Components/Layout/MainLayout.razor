@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider IsDarkMode />
+<MudThemeProvider Theme="DamCustomTheme" IsDarkMode />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -12,3 +12,28 @@
     </MudMainContent>
 </MudLayout>
 
+@code {
+
+    MudTheme DamCustomTheme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = Colors.Shades.Black,
+            Secondary = Colors.Shades.White,
+            Error = Colors.Red.Darken4,
+        },
+        PaletteDark = new PaletteDark()
+        {
+            Primary = Colors.Shades.White,
+            Secondary = Colors.Shades.Black,
+            Error = Colors.Red.Darken4,
+        },
+
+        LayoutProperties = new LayoutProperties()
+        {
+            DrawerWidthLeft = "260px",
+            DrawerWidthRight = "300px"
+        }
+    };
+
+}
