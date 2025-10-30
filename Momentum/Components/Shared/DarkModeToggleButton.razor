@@ -1,0 +1,40 @@
+<MudThemeProvider IsDarkMode="@_isDarkMode" Theme="_damTheme"/>
+<MudTooltip Color="Color.Dark" Placement="Placement.Bottom" Delay="750">
+    <ChildContent>
+        <MudIconButton Icon="@(_isDarkMode ? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode)"
+                       OnClick="ToggleDarkMode"  Color="Color.Primary"/>
+    </ChildContent>
+    <TooltipContent>
+        <MudText class="pa-1" Typo="Typo.body2"><b>@(_isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode")</b></MudText>
+    </TooltipContent>
+</MudTooltip>
+<MudText Class="ma-3">John Stockton</MudText>
+@code{
+    private bool _isDarkMode;
+    private void ToggleDarkMode()
+    {
+        _isDarkMode = !_isDarkMode;
+    }
+    
+   private MudTheme _damTheme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = Colors.Shades.White,
+            Secondary = Colors.Gray.Darken1,
+            Error = Colors.Red.Darken4,
+        },
+        PaletteDark = new PaletteDark()
+        {
+            Primary = Colors.Shades.White,
+            Secondary = Colors.Gray.Darken1,
+            Error = Colors.Red.Darken4,
+        },
+
+        LayoutProperties = new LayoutProperties()
+        {
+            DrawerWidthLeft = "260px",
+            DrawerWidthRight = "300px"
+        }
+    };
+}
