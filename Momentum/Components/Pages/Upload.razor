@@ -6,13 +6,22 @@
 <MudStack Class="mx-10 my-14" Row="true" StretchItems="StretchItems.End" Spacing="9">
     <UploadMetadataDrawer/>
     <MudStack>
-        <UploadBrowserToolbar/>
-        <UploadBrowser File="@_currentFile"/>
+        <UploadBrowserToolbar TotalCount= "1"
+                              SelectedCount="@SelectedFiles.Count" />
+        <UploadBrowser File="@_currentFile" OnSelectionChanged="HandleSelectionChanged"/>
     </MudStack>
 </MudStack>
 
 @code {
     private UploadedFile? _currentFile;
+    private List<UploadedFile> SelectedFiles = new(); // selected files only
+
+    private void HandleSelectionChanged(List<UploadedFile> selected)
+    {
+        SelectedFiles = selected;
+        StateHasChanged();
+    }
+    
     protected override void OnInitialized()
     {
         if (FileState.PendingFiles.Any())

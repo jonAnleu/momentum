@@ -4,7 +4,9 @@
 
     @if (File != null)
     {
-        <UploadFileCard File="@File"/>
+        <UploadFileCard File="@File"
+                        IsSelected="@SelectedFiles.Contains(File)"
+                        OnToggleSelected="ToggleSelection"/>
     }
     else
     {
@@ -14,10 +16,17 @@
 
 @code {
     [Parameter] public UploadedFile? File { get; set; }
-    [Parameter] public EventCallback<UploadedFile> OnFileSelected { get; set; }
+    [Parameter] public EventCallback<List<UploadedFile>> OnSelectionChanged { get; set; }
 
-    private async Task HandleCardSelected(UploadedFile file)
+    private List<UploadedFile> SelectedFiles = new();
+
+    private async Task ToggleSelection(UploadedFile file)
     {
-        await OnFileSelected.InvokeAsync(file);
+        if (SelectedFiles.Contains(file))
+            SelectedFiles.Remove(file);
+        else
+            SelectedFiles.Add(file);
+
+        await OnSelectionChanged.InvokeAsync(SelectedFiles);
     }
 }

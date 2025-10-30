@@ -1,10 +1,12 @@
 <MudStack Row="true"  Justify="Justify.SpaceBetween">
-    <CardSelectedResultChip/>
+    <CardSelectedResultChip TotalCount="@TotalCount" SelectedCount="@SelectedCount" />
     <MudStack Row="true" AlignItems="AlignItems.Center">
         <SelectAllButtonGroup/>
         <CancelUploadButton/>
     </MudStack>
 </MudStack>
+
 @code {
-    
+    [Parameter] public int SelectedCount { get; set; }
+    [Parameter] public int TotalCount { get; set; }
 }

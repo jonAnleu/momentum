@@ -11,7 +11,7 @@
          Style="width: 221px; height: fit-content;" 
          @onmouseenter="() => Hovered = true"
          @onmouseleave="() => Hovered = false">
-    <div style="position: relative; height: 140px;" @onclick="ToggleSelection" >
+    <div style="position: relative; height: 140px;" @onclick="Toggle" >
         <MudCardMedia Class="rounded-t-sm" Image="@_imageDataUrl" Height="140" Style="width: 100%; object-fit: cover;" />
         <MudIconButton Href="/" Class="position-absolute"
                        Icon="@Icons.Material.Rounded.Close"
@@ -32,7 +32,7 @@
             <MudToggleIconButton Class="pa-0 position-absolute z-10 "
                                  Icon="@Icons.Material.Filled.RadioButtonUnchecked"
                                  Toggled="IsSelected"
-                                 ToggledChanged="ToggleSelection"
+                                 ToggledChanged="Toggle"
                                  Style="color: white; bottom: 130px; left: 85px;"
                                  ToggledIcon=@Icons.Material.Filled.CheckCircle
                                  ToggledColor="@Color.Error"
@@ -49,23 +49,22 @@
         <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Asset Type" Margin="Margin.Dense"/>
         <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Usage Rights" Margin="Margin.Dense"/>
         <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Goal" Margin="Margin.Dense"/>
-
     </MudCardContent>
 </MudCard>
 
 @code {
     [Parameter] public UploadedFile? File { get; set; } 
-    [Parameter] public EventCallback<UploadedFile> OnSelected { get; set; }
+    [Parameter] public bool IsSelected { get; set; }
+    [Parameter] public EventCallback<UploadedFile> OnToggleSelected { get; set; }
     
     private bool Hovered { get; set; }
-    private bool IsSelected { get; set; }
     private string _imageDataUrl = string.Empty;
     private string _fileName = string.Empty;
     private string _fileExtension = string.Empty;
 
-    private void ToggleSelection()
+    private async Task Toggle()
     {
-        IsSelected = !IsSelected;
+        await OnToggleSelected.InvokeAsync(File);
     }
     
     protected override void OnParametersSet()

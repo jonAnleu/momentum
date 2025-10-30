@@ -1,19 +1,32 @@
-<MudStack Row="true" AlignItems="AlignItems.Center" Spacing="0">
-    <MudChip T="string" Class="px-2 py-3 ma-0 border border-solid mud-border-secondary rounded-l rounded-r-0" 
-             Variant="Variant.Filled"
-             Size="Size.Small"
-             Color="Color.Secondary" >
-        <MudText Color="Color.Primary" Typo="Typo.body2"><b>1</b></MudText>
-    </MudChip>
-    <MudChip T="string" Class="px-2 py-3 ma-0 rounded-l-0 rounded-r" 
-             Variant="Variant.Outlined" 
-             Size="Size.Small" 
-             Color="Color.Secondary" 
-             Style="background-color: white;">
-        <MudText Color="Color.Dark" Typo="Typo.body2"><b>1</b> Results</MudText>
-    </MudChip>  
-</MudStack>
+    @if (SelectedCount > 0)
+    {
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="0">
+            <MudChip T="string" Class=" ma-0 border border-solid mud-border-secondary rounded-l rounded-r-0"
+                     Variant="Variant.Filled"
+                     Color="Color.Secondary">
+                <MudText Color="Color.Primary" Typo="Typo.body2"><b>@SelectedCount</b></MudText>
+            </MudChip>
+            <MudChip T="string" Class=" ma-0 rounded-l-0 rounded-r"
+                     Variant="Variant.Outlined"
+                     Color="Color.Secondary"
+                     Style="background-color: white;">
+                <MudText Color="Color.Dark" Typo="Typo.body2"><b>@TotalCount</b> @(TotalCount == 1 ? "Result" : "Results")</MudText>
+            </MudChip>
+        </MudStack>
+    }
+    else
+    {
+        <MudChip T="string" Class="px-2 py-3 ma-0"
+                 Variant="Variant.Outlined"
+                 Label="true"
+                 Color="Color.Secondary"
+                 Style="background-color: white;">
+            <MudText Color="Color.Dark" Typo="Typo.body2"><b>@TotalCount</b> @(TotalCount == 1 ? "Result" : "Results")</MudText>
+        </MudChip>
+    }
+
 
 @code {
-    
+    [Parameter] public int SelectedCount { get; set; }
+    [Parameter] public int TotalCount { get; set; }
 }
