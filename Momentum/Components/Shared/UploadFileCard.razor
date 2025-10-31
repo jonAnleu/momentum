@@ -1,14 +1,13 @@
-@inject FileUploadStateService FileState
-@inject AssetService AssetService
 
 <style>
     .border-red {
-        border: solid 3px #A6192e;
+        outline: solid 2px #A6192e;
     }
 </style>
+
 <MudCard Class="@($"cursor-pointer  {(IsSelected ? "border-red" : "")} {(Hovered ? "border-red" : "")}")"
          Outlined="true"  
-         Style="width: 221px; height: fit-content;" 
+         Style="width: 231px; height: fit-content;" 
          @onmouseenter="() => Hovered = true"
          @onmouseleave="() => Hovered = false">
     <div style="position: relative; height: 140px;" @onclick="Toggle" >
@@ -33,7 +32,7 @@
                                  Icon="@Icons.Material.Filled.RadioButtonUnchecked"
                                  Toggled="IsSelected"
                                  ToggledChanged="Toggle"
-                                 Style="color: white; bottom: 130px; left: 85px;"
+                                 Style="color: white; bottom: 130px; left: 95px;"
                                  ToggledIcon=@Icons.Material.Filled.CheckCircle
                                  ToggledColor="@Color.Error"
                                  Ripple="false" 

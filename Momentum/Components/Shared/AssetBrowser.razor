@@ -1,0 +1,25 @@
+
+<MudStack Class="pa-1" Row="true" Wrap="Wrap.Wrap" >
+
+    @foreach (var card in Cards)
+    {
+        <AssetCard Card="card" OnSelected="HandleCardSelected"/>
+    }
+</MudStack>
+
+
+@code {
+
+
+    [Parameter] public List<Asset> Cards { get; set; } = new();
+    [Parameter] public EventCallback<Asset> OnCardSelected { get; set; }
+        
+
+
+    private async Task HandleCardSelected(Asset card)
+    {
+        await OnCardSelected.InvokeAsync(card);
+    }
+  
+
+}

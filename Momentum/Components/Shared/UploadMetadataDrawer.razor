@@ -48,11 +48,14 @@
             <Collections/>
         </MudExpansionPanels>
     </MudStack>
-
-    <StoreSelectedFilesButton/>
+@if (SelectedCount > 0)
+    {
+    <StoreSelectedFilesButton SelectedCount="SelectedCount"/>
+    }
 </MudPaper>
 
 
 @code {
+    [Parameter] public int SelectedCount { get; set; }
     private string _stringValue { get; set; }
 }

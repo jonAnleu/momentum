@@ -4,17 +4,19 @@
 @inject ISnackbar Snackbar
 @inject NavigationManager Nav
 
-<MudButton Class="ma-4 py-4"
+<MudButton Class="ma-4 py-3"
            Variant="Variant.Filled"
            Color="Color.Error"
            Size="Size.Large"
            OnClick="StoreFiles">
     <MudText Typo="Typo.subtitle2">
-        <b>Store selected files (@FileState.PendingFiles.Count)</b>
+        <b>Store selected files (@SelectedCount)</b>
     </MudText>
 </MudButton>
 
 @code {
+    [Parameter] public int SelectedCount { get; set; }
+    
     private async Task StoreFiles()
     {
         if (FileState.PendingFiles.Count == 0)
@@ -33,10 +35,8 @@
 
             var filePath = Path.Combine(uploadsDir, uniqueName);
 
-            //  Save file from your byte[] Data
             await File.WriteAllBytesAsync(filePath, uploaded.Data);
 
-            //  Create Asset entry
             var asset = AssetService.AddAsset(
                 title: Path.GetFileNameWithoutExtension(uploaded.Name),
                 filePath: $"/uploads/{uniqueName}",

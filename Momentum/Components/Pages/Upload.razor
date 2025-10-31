@@ -4,21 +4,32 @@
 
 
 <MudStack Class="mx-10 my-14" Row="true" StretchItems="StretchItems.End" Spacing="9">
-    <UploadMetadataDrawer/>
-    <MudStack>
-        <UploadBrowserToolbar TotalCount= "1"
-                              SelectedCount="@SelectedFiles.Count" />
-        <UploadBrowser File="@_currentFile" OnSelectionChanged="HandleSelectionChanged"/>
+    <UploadMetadataDrawer SelectedCount="@(IsSelected ? 1 : 0)" />
+    <MudStack Spacing="4">
+        <UploadBrowserToolbar TotalCount="1"
+                              SelectedCount="@(IsSelected ? 1 : 0)"
+                              OnSelectAllChanged="HandleSelectAllChanged"/>
+        <UploadBrowser File="@_currentFile"
+                       IsSelected="@IsSelected"
+                       OnSelectionChanged="HandleSelectionChanged"/>
     </MudStack>
 </MudStack>
 
 @code {
     private UploadedFile? _currentFile;
-    private List<UploadedFile> SelectedFiles = new(); // selected files only
 
-    private void HandleSelectionChanged(List<UploadedFile> selected)
+    private bool IsSelected = false;
+
+    private void HandleSelectionChanged(bool selected)
     {
-        SelectedFiles = selected;
+        IsSelected = selected;
+        StateHasChanged();
+    }
+
+   
+    private void HandleSelectAllChanged(bool selectAll)
+    {
+        IsSelected = selectAll;
         StateHasChanged();
     }
     
@@ -29,5 +40,6 @@
         else
             NavManager.NavigateTo("/Upload");
     }
+    
     
 }

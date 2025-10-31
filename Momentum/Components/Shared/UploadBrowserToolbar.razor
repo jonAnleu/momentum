@@ -1,7 +1,7 @@
 <MudStack Row="true"  Justify="Justify.SpaceBetween">
     <CardSelectedResultChip TotalCount="@TotalCount" SelectedCount="@SelectedCount" />
     <MudStack Row="true" AlignItems="AlignItems.Center">
-        <SelectAllButtonGroup/>
+        <SelectAllButtonGroup OnSelectAllChanged="OnSelectAllChanged" />
         <CancelUploadButton/>
     </MudStack>
 </MudStack>
@@ -9,4 +9,5 @@
 @code {
     [Parameter] public int SelectedCount { get; set; }
     [Parameter] public int TotalCount { get; set; }
+    [Parameter] public EventCallback<bool> OnSelectAllChanged { get; set; }
 }

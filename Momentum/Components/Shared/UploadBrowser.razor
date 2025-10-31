@@ -1,32 +1,20 @@
 @inject FileUploadStateService FileState
 
-<MudStack>
 
-    @if (File != null)
-    {
+  
         <UploadFileCard File="@File"
-                        IsSelected="@SelectedFiles.Contains(File)"
+                        IsSelected="@IsSelected"
                         OnToggleSelected="ToggleSelection"/>
-    }
-    else
-    {
-        <MudText>No file selected</MudText>
-    }
-</MudStack>
+    
+  
 
 @code {
     [Parameter] public UploadedFile? File { get; set; }
-    [Parameter] public EventCallback<List<UploadedFile>> OnSelectionChanged { get; set; }
-
-    private List<UploadedFile> SelectedFiles = new();
-
-    private async Task ToggleSelection(UploadedFile file)
+    [Parameter] public bool IsSelected { get; set; }
+    [Parameter] public EventCallback<bool> OnSelectionChanged { get; set; }
+    
+    private async Task ToggleSelection()
     {
-        if (SelectedFiles.Contains(file))
-            SelectedFiles.Remove(file);
-        else
-            SelectedFiles.Add(file);
-
-        await OnSelectionChanged.InvokeAsync(SelectedFiles);
+        await OnSelectionChanged.InvokeAsync(!IsSelected);
     }
 }

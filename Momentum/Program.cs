@@ -9,8 +9,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddMudServices();
 builder.Services.AddScoped<FileUploadStateService>();
-builder.Services.AddScoped<AssetService>();
 builder.Services.AddScoped<InMemoryDataStore>();
+builder.Services.AddScoped<AssetService>();
 
 
 

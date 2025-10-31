@@ -49,6 +49,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/AssetBrowser.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvQXNzZXRCcm93c2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/AssetCard.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvQXNzZXRDYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

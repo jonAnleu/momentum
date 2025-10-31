@@ -5,6 +5,30 @@
       "PackagePath": "staticwebassets/images/chuck.jpg"
     },
     {
+      "Id": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/uploads/1d631aea-0960-4a11-9bb1-684e75dd92f8.jpeg",
+      "PackagePath": "staticwebassets/uploads/1d631aea-0960-4a11-9bb1-684e75dd92f8.jpeg"
+    },
+    {
+      "Id": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/uploads/71a8765e-11e1-4997-82ee-2de9cbaf1008.jpeg",
+      "PackagePath": "staticwebassets/uploads/71a8765e-11e1-4997-82ee-2de9cbaf1008.jpeg"
+    },
+    {
+      "Id": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/uploads/9d360df5-af7c-4adf-a80a-1ae5492fdf36.jpeg",
+      "PackagePath": "staticwebassets/uploads/9d360df5-af7c-4adf-a80a-1ae5492fdf36.jpeg"
+    },
+    {
+      "Id": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/uploads/aea93269-fbd6-46aa-ba68-7fcc8c972e5c.jpeg",
+      "PackagePath": "staticwebassets/uploads/aea93269-fbd6-46aa-ba68-7fcc8c972e5c.jpeg"
+    },
+    {
+      "Id": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/uploads/da03b6f9-1b76-4d42-a6a5-d20006f367dd.jpg",
+      "PackagePath": "staticwebassets/uploads/da03b6f9-1b76-4d42-a6a5-d20006f367dd.jpg"
+    },
+    {
+      "Id": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/uploads/ebb3ad2d-74cf-4c9e-9f27-8c78869934f2.jpeg",
+      "PackagePath": "staticwebassets/uploads/ebb3ad2d-74cf-4c9e-9f27-8c78869934f2.jpeg"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Momentum.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
