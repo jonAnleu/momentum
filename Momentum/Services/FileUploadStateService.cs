@@ -22,5 +22,6 @@ namespace Momentum.Services
         public string Name { get; set; } = string.Empty;
         public string ContentType { get; set; } = string.Empty;
         public byte[] Data { get; set; } = Array.Empty<byte>();
+        public bool IsSelected { get; set; } = true;
     }
 }

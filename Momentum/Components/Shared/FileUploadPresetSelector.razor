@@ -1,0 +1,15 @@
+<MudStack Spacing="2">
+    <MudText><b>Preset</b></MudText>
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudSelect @bind-Value="_stringValue" Margin="Margin.Dense" Variant="Variant.Outlined" Underline="false"
+                   Placeholder="No preset selected">
+        </MudSelect>
+        <MudIconButton Class="pa-3" Icon="@Icons.Material.Filled.Settings" Variant="Variant.Filled"
+                       Size="Size.Small" Disabled="true"/>
+    </MudStack>
+</MudStack>
+
+@code {
+private string _stringValue { get; set; }
+    
+}

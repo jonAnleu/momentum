@@ -1,0 +1,17 @@
+<MudPaper Class="d-flex flex-column" Outlined="true" Width="320px" style="height: 640px;">
+    <FileUploadHeader/>
+    <MudStack Class="overflow-auto px-4" Spacing="5">
+        <FileUploadBasicFields/>
+        <FileUploadPresetSelector/>
+        <FileUploadMetadataExpansionPanels/>
+    </MudStack>
+    @if (SelectedCount > 0)
+    {
+        <StoreSelectedFilesButton SelectedCount="SelectedCount"/>
+    }
+</MudPaper>
+
+
+@code {
+    [Parameter] public int SelectedCount { get; set; }
+}

@@ -1,0 +1,17 @@
+<MudTextField T="string" Margin="Margin.Dense"
+              Variant="Variant.Outlined"
+              Underline="false" Placeholder="Update title"/>
+<MudSwitch T="bool" Color="Color.Error" Size="Size.Small" Label="Use filenames as title"/>
+<MudStack Spacing="2">
+    <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+            <MudIcon Icon="@Icons.Custom.FileFormats.FileDocument" Size="Size.Small"/>
+            <MudText Typo="Typo.subtitle2">Description</MudText>
+        </MudStack>
+        <VisibilityToggleButton/>
+    </MudStack>
+    <MudTextField T="string" Placeholder="Replace description(s)" Variant="Variant.Outlined"/>
+</MudStack>
+@code {
+    
+}
