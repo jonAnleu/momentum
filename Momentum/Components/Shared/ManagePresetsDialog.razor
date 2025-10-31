@@ -1,0 +1,43 @@
+<MudDialog Class="rounded-lg pa-2"  >
+    <TitleContent>
+        <MudText Class="pb-4" Typo="Typo.h6">Manage presets</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudStack>
+            <MudText>My presets</MudText>
+            <MudList T="string" Class="mb-5" Dense="true">
+                <MudListItem Gutters="false" Ripple="false" Style="background-color: white;"
+                             @onmouseenter="() => Hovered = true"
+                             @onmouseleave="() => Hovered = false">
+                    <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                        <MudStack Row="true" AlignItems="AlignItems.Center">
+                            <MudPaper Class="pa-2" Elevation="0" Outlined="true">
+                                <MudIcon Color="Color.Dark" Icon="@Icons.Material.Filled.List"/>
+                            </MudPaper>
+                            <MudStack Spacing="0">
+                                <MudText>Preset Title</MudText>
+                                <MudText Typo="Typo.body2">Created by author</MudText>
+                            </MudStack>
+                        </MudStack>
+                        @if (Hovered)
+                        {
+                            <MudIconButton Variant="Variant.Outlined" Icon="@Icons.Material.Outlined.MoreHoriz"/>
+                        }
+                    </MudStack>
+                </MudListItem>
+            </MudList>
+        </MudStack>
+        <MudStack Row="true" Justify="Justify.FlexEnd">
+            <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="Cancel">Done</MudButton>
+        </MudStack>
+    </DialogContent>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; }
+    
+    private void Cancel() => MudDialog.Cancel();
+    private bool Hovered { get; set; }
+
+}

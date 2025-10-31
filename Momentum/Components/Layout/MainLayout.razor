@@ -1,8 +1,13 @@
 ﻿@inherits LayoutComponentBase
 
 <MudThemeProvider Theme="DamCustomTheme" IsDarkMode />
+<MudDialogProvider FullWidth="true" 
+                   MaxWidth="MaxWidth.Small"
+                   CloseButton="true"
+                   BackdropClick="false"
+                   Position="DialogPosition.Center"
+                   CloseOnEscapeKey="true"/>
 <MudPopoverProvider />
-<MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>

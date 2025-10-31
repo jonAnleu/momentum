@@ -1,0 +1,14 @@
+@inject IDialogService DialogService
+
+<MudIconButton Class="pa-3" 
+               Icon="@Icons.Material.Filled.Settings" 
+               Variant="Variant.Filled"
+               Size="Size.Small" 
+               OnClick="OpenDialogAsync"/>
+
+@code {
+    private Task OpenDialogAsync()
+    {
+        return DialogService.ShowAsync<ManagePresetsDialog>("Manage Presets Dialog");
+    }
+}
