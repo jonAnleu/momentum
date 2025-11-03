@@ -1,0 +1,17 @@
+@inject IDialogService DialogService
+
+<MudListItem T="string" OnClick="OpenDialogAsync">
+    <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudIcon Icon="@Icons.Material.Filled.Add"/>
+        <MudText>Create new preset</MudText>
+    </MudStack>
+</MudListItem>
+@code {
+    
+    private Task OpenDialogAsync()
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        return DialogService.ShowAsync<CreateNewPresetDialog>("Create new preset dialog");
+    }
+}

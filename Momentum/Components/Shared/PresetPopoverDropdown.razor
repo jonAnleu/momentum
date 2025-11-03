@@ -1,0 +1,33 @@
+
+<MudButton Class="px-5 py-2"
+           Variant="Variant.Outlined"
+           EndIcon="@Icons.Material.Filled.KeyboardArrowDown"
+           OnClick="ToggleOpen">
+    <MudText>No preset selected</MudText>
+</MudButton>
+
+<MudPopover Class="mt-1 py-2" Open="@_open" 
+            AnchorOrigin="Origin.BottomLeft" 
+            OverflowBehavior="OverflowBehavior.FlipNever">
+    <MudList T="string">
+        <MudListItem Text="Update current preset">
+            <MudStack Row="true" AlignItems="AlignItems.Center">
+                <MudIcon Icon="@Icons.Material.Filled.Refresh"/>
+                <MudText>Update current preset</MudText>
+            </MudStack>
+        </MudListItem>
+        <CreateNewPresetListItem/>
+        <MudDivider/>
+        <MudText Class="px-4 py-2">My presets</MudText>
+        <MudListItem>
+            <MudText>Test preset</MudText>
+        </MudListItem>
+    </MudList>
+</MudPopover>
+
+@code {
+    private bool _open;
+
+    private void ToggleOpen() => _open = !_open;
+
+}

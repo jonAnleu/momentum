@@ -14,10 +14,19 @@
                    Variant="Variant.Filled"
                    Placeholder="Enter Asset Type"
                    Underline="false">
-          
+            @foreach (var goal in _goals)
+            {
+                <MudSelectItem Value="goal">@goal</MudSelectItem>
+            }
+
         </MudSelect>
     </ChildContent>
 </MudExpansionPanel>
-@code {
-    
+
+@code
+{
+    private readonly string[] _goals =
+    {
+        "Brand Awareness", "Customer Loyalty", "New Customers", "Product Launch"
+    };
 }

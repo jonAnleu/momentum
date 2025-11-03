@@ -1,5 +1,30 @@
-<h3>CreateNewPresetDialog</h3>
+<MudDialog Style="width: 520px;">
+    <TitleContent>
+       <MudText Typo="Typo.h6">Create new preset</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudStack Class="py-5" Spacing="1">
+            <MudText>Preset name</MudText>
+            <MudTextField T="string"
+                          Variant="Variant.Outlined"
+                          Margin="Margin.Dense"
+                          Clearable="true"
+                          ClearIcon="@Icons.Material.Filled.Cancel"
+                          Immediate="true"
+                          Placeholder="Type a preset name"/>
+        </MudStack>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="Submit">
+            <MudText><b>Create preset</b></MudText>
+        </MudButton>
+    </DialogActions>
+</MudDialog>
 
 @code {
-    
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; }
+
+    private void Submit() => MudDialog.Close(DialogResult.Ok(true));
+
 }

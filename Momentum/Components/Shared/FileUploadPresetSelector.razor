@@ -1,14 +1,11 @@
 <MudStack Spacing="2">
     <MudText><b>Preset</b></MudText>
-    <MudStack Row="true" AlignItems="AlignItems.Center">
-        <MudSelect @bind-Value="_stringValue" Margin="Margin.Dense" Variant="Variant.Outlined" Underline="false"
-                   Placeholder="No preset selected">
-        </MudSelect>
+    <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+        <PresetPopoverDropdown/>
         <ManagePresetsButton/>
     </MudStack>
 </MudStack>
 
 @code {
-private string _stringValue { get; set; }
     
 }
