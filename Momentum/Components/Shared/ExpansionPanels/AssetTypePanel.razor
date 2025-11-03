@@ -1,4 +1,6 @@
-<MudExpansionPanel HeaderClass="pa-0" Class="pa-0" Gutters="false" Dense="true" HideIcon="true">
+<MudExpansionPanel HeaderClass="pa-0" Class="pa-0" 
+                   Gutters="false" Dense="true" 
+                   HideIcon="true">
     <TitleContent>
         <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
             <MudIcon Size="Size.Small">
@@ -19,7 +21,6 @@
                    @bind-Value="SelectedAssetType"
                    Margin="Margin.Dense" 
                    CloseIcon="false"
-                   Variant="Variant.Outlined"
                    Placeholder="Enter Asset Type"
                    Underline="false">
             @foreach (var assetType in _assetTypes)
@@ -34,7 +35,7 @@
     private string? SelectedAssetType { get; set; }
 
     void Closed(MudChip<string> chip) {
-        SelectedAssetType = null; // Clear the selection when chip is closed
+        SelectedAssetType = null; 
     }
 
     private readonly string[] _assetTypes =

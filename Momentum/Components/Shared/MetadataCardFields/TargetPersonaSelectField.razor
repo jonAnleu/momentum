@@ -1,0 +1,25 @@
+<MudTooltip Text="Add description" Color="Color.Dark">
+    <MudButton Variant="Variant.Outlined"
+               OnClick="ToggleOpen">
+        <MudText Typo="Typo.body2">Add Target Persona</MudText>
+    </MudButton>
+</MudTooltip>
+
+<MudPopover Open="@_open" Fixed="true" Class="pa-2">
+    <MudStack Spacing="2">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
+            <MudText Class="justify-start" Typo="Typo.subtitle2">Add target persona</MudText>
+            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
+        </MudStack>
+        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
+        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
+            <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
+        </MudStack>
+    </MudStack>
+</MudPopover>
+
+@code{
+    private bool _open;
+
+    private void ToggleOpen() => _open = !_open;
+}

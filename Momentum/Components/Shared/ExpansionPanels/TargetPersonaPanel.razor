@@ -1,0 +1,54 @@
+<MudExpansionPanel HeaderClass="pa-0" Gutters="false" Dense="true" HideIcon="true">
+    <TitleContent>
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                <MudIcon Size="Size.Small">
+                    <i class="fa-solid fa-sitemap fa-2xs"></i>
+                </MudIcon>
+                <MudText Typo="Typo.subtitle2">Target Persona</MudText>
+            </MudStack>
+            <VisibilityToggleButton />
+        </MudStack>
+    </TitleContent>
+    <ChildContent>
+        @if (!string.IsNullOrEmpty(SelectedTargetPersona))
+        {
+            <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
+                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTargetPersona</MudText> 
+            </MudChip>
+        }
+        <MudSelect T="string"
+                   @bind-Value="SelectedTargetPersona"
+                   Margin="Margin.Dense"
+                   CloseIcon="false"
+                   Placeholder="Enter target persona"
+                   Underline="false">
+            @foreach (var targetPersona in _targetPersonas)
+            {
+                <MudSelectItem Value="targetPersona">@targetPersona</MudSelectItem>
+            }
+        </MudSelect>
+       
+    </ChildContent>
+</MudExpansionPanel>
+
+@code {
+    [Parameter] public bool ShowOptional { get; set; }
+    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
+    
+    private void ToggleVisibility()
+    {
+        OnVisibilityChanged.InvokeAsync(!ShowOptional);
+    }
+
+        private string? SelectedTargetPersona { get; set; }
+
+        void Closed(MudChip<string> chip) {
+            SelectedTargetPersona = null; 
+        }
+
+        private readonly string[] _targetPersonas =
+        {
+            "Adults", "Kids", "Teenagers", "Young Adults"
+        };
+}

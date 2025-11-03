@@ -93,16 +93,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZEJhc2ljRmllbGRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/FileUploadDrawer.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZERyYXdlci5yYXpvcg==
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/FileUploadExpansionPanels.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZEV4cGFuc2lvblBhbmVscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/FileUploadHeader.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZEhlYWRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/FileUploadMetadataExpansionPanels.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZE1ldGFkYXRhRXhwYW5zaW9uUGFuZWxzLnJhem9y
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/FileUploadPanel.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZFBhbmVsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/FileUploadPresetSelector.razor]
@@ -133,6 +133,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvU3RvcmVTZWxlY3RlZEZpbGVzQnV0dG9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/TargetPersonaPanel.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVGFyZ2V0UGVyc29uYVBhbmVsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/TargetPersonaSelectField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVGFyZ2V0UGVyc29uYVNlbGVjdEZpZWxkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UploadBrowser.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVXBsb2FkQnJvd3Nlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -147,10 +155,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UploadFileCard.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVXBsb2FkRmlsZUNhcmQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UploadPreviewCard.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVXBsb2FkUHJldmlld0NhcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UsageRightsPanel.razor]
