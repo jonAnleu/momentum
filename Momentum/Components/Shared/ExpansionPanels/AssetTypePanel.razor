@@ -19,8 +19,10 @@
         }
         <MudSelect T="string"
                    @bind-Value="SelectedAssetType"
+                   Variant="Variant.Outlined"
                    Margin="Margin.Dense" 
                    CloseIcon="false"
+                   OpenIcon=""
                    Placeholder="Enter Asset Type"
                    Underline="false">
             @foreach (var assetType in _assetTypes)

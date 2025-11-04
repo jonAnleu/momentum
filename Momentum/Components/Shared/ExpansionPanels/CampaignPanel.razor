@@ -5,29 +5,29 @@
                 <MudIcon Size="Size.Small">
                     <i class="fa-solid fa-sitemap fa-2xs"></i>
                 </MudIcon>
-                <MudText Typo="Typo.subtitle2">Target Persona</MudText>
+                <MudText Typo="Typo.subtitle2">Campaign</MudText>
             </MudStack>
             <VisibilityToggleButton />
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedTargetPersona))
+        @if (!string.IsNullOrEmpty(SelectedCampaign))
         {
             <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTargetPersona</MudText> 
+                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedCampaign</MudText> 
             </MudChip>
         }
         <MudSelect T="string"
-                   @bind-Value="SelectedTargetPersona"
+                   @bind-Value="SelectedCampaign"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   CloseIcon="false"
                    OpenIcon=""
-                   Placeholder="Enter target persona"
+                   CloseIcon="false"
+                   Placeholder="Enter campaign"
                    Underline="false">
-            @foreach (var targetPersona in _targetPersonas)
+            @foreach (var campaign in _campaigns)
             {
-                <MudSelectItem Value="targetPersona">@targetPersona</MudSelectItem>
+                <MudSelectItem Value="campaign">@campaign</MudSelectItem>
             }
         </MudSelect>
        
@@ -43,14 +43,17 @@
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
 
-        private string? SelectedTargetPersona { get; set; }
+    private string? SelectedCampaign{ get; set; }
 
-        void Closed(MudChip<string> chip) {
-            SelectedTargetPersona = null; 
-        }
+    void Closed(MudChip<string> chip) {
+        SelectedCampaign = null; 
+    }
 
-        private readonly string[] _targetPersonas =
-        {
-            "Adults", "Kids", "Teenagers", "Young Adults"
-        };
+    private readonly string[] _campaigns =
+    {
+        "ConferenceCon 2025",
+        "Feel the beat",
+        "City Festival",
+        "Snow Season"
+    };
 }

@@ -11,8 +11,10 @@
     <ChildContent>
         <MudSelect T="string"
                    CloseIcon="false"
-                   Variant="Variant.Filled"
-                   Placeholder="Enter Asset Type"
+                   OpenIcon=""
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense"
+                   Placeholder="Enter Goal"
                    Underline="false">
             @foreach (var goal in _goals)
             {

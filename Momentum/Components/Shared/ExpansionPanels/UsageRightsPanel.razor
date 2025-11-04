@@ -9,15 +9,28 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        <MudSelect T="string"
-                   CloseIcon="false"
-                   Variant="Variant.Filled"
-                   Placeholder="Enter Asset Type"
-                   Underline="false">
-          
-        </MudSelect>
+        <MudForm>
+            <MudStack Class="mb-6" Row="true" AlignItems="AlignItems.Center" Spacing="0" >
+                <MudIconButton Icon="@Icons.Material.Filled.RadioButtonUnchecked" Size="Size.Small" OnClick="Reset"/>
+                <MudText Typo="Typo.body2">Clear Selection</MudText>
+            </MudStack>
+            <MudRadioGroup @bind-Value="SelectedOption">
+                <MudStack Spacing="0">
+                    <MudRadio Value="@("Available")" Size="Size.Small" Dense="true">Available</MudRadio>
+                    <MudRadio Value="@("Confidential")" Size="Size.Small" Dense="true">Confidential</MudRadio>
+                    <MudRadio Value="@("On request")" Size="Size.Small" Dense="true">On request</MudRadio>
+                    <MudRadio Value="@("Special usage rights")" Size="Size.Small" Dense="true">Special usage rights</MudRadio>
+                </MudStack>
+            </MudRadioGroup>
+        </MudForm>
     </ChildContent>
 </MudExpansionPanel>
+
 @code {
-    
+    public string SelectedOption { get; set; }
+
+    private void Reset()
+    {
+        SelectedOption = null;
+    }
 }

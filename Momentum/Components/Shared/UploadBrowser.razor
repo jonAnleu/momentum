@@ -4,13 +4,16 @@
   
         <UploadFileCard File="@File"
                         IsSelected="@IsSelected"
-                        OnToggleSelected="ToggleSelection"/>
+                        OnToggleSelected="ToggleSelection"
+                        />
     
   
 
 @code {
     [Parameter] public UploadedFile? File { get; set; }
     [Parameter] public bool IsSelected { get; set; }
+    [Parameter] public bool IsVisible { get; set; }
+    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     [Parameter] public EventCallback<bool> OnSelectionChanged { get; set; }
     
     private async Task ToggleSelection()

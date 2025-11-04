@@ -43,19 +43,23 @@
 
     </div>
     <MudCardContent Class="pa-2">
-        <MudText Typo="Typo.subtitle2"><b>Required fields</b></MudText>
-        <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="@_fileName" Margin="Margin.Dense" />
-        <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Asset Type" Margin="Margin.Dense"/>
-        <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Usage Rights" Margin="Margin.Dense"/>
-        <MudTextField T="string" Class="mt-1" Variant="Variant.Outlined" Placeholder="Add Goal" Margin="Margin.Dense"/>
-        <MudText Typo="Typo.subtitle2"><b>Optional fields</b></MudText>
-        <TargetPersonaSelectField/>
+        <MudStack Spacing="1">
+            <MudText Typo="Typo.caption"><b>Required fields</b></MudText>
+            <TitleField/>
+            <AssetTypeField/>
+            <UsageRightsField/>
+            <GoalField/>
+            
+            <MudText Typo="Typo.caption"><b>Optional fields</b></MudText>
+            <TargetPersonaSelectField/>
+        </MudStack>
     </MudCardContent>
 </MudCard>
 
 @code {
     [Parameter] public UploadedFile? File { get; set; } 
     [Parameter] public bool IsSelected { get; set; }
+    [Parameter] public bool IsVisible { get; set; }
     [Parameter] public EventCallback<UploadedFile> OnToggleSelected { get; set; }
     
     private bool Hovered { get; set; }

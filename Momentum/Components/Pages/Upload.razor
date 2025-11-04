@@ -4,25 +4,35 @@
 
 
 <MudStack Class="mx-10 my-14" Row="true" StretchItems="StretchItems.End" Spacing="9">
-    <FileUploadPanel SelectedCount="@(IsSelected ? 1 : 0)" />
+    <FileUploadPanel SelectedCount="@(IsSelected ? 1 : 0)" 
+                    />
     <MudStack Spacing="4">
         <UploadBrowserToolbar TotalCount="1"
                               SelectedCount="@(IsSelected ? 1 : 0)"
                               OnSelectAllChanged="HandleSelectAllChanged"/>
         <UploadBrowser File="@_currentFile"
                        IsSelected="@IsSelected"
-                       OnSelectionChanged="HandleSelectionChanged"/>
+                       OnSelectionChanged="HandleSelectionChanged"
+                       IsVisible="@IsVisible"
+                       OnVisibilityChanged="HandleVisibilityChanged"/>
     </MudStack>
 </MudStack>
 
 @code {
     private UploadedFile? _currentFile;
+    private bool IsVisible = false;
 
     private bool IsSelected = false;
 
     private void HandleSelectionChanged(bool selected)
     {
         IsSelected = selected;
+        StateHasChanged();
+    }
+
+    private void HandleVisibilityChanged(bool visible)
+    {
+        IsVisible = visible;
         StateHasChanged();
     }
 

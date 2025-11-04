@@ -5,29 +5,29 @@
                 <MudIcon Size="Size.Small">
                     <i class="fa-solid fa-sitemap fa-2xs"></i>
                 </MudIcon>
-                <MudText Typo="Typo.subtitle2">Target Persona</MudText>
+                <MudText Typo="Typo.subtitle2">Theme</MudText>
             </MudStack>
             <VisibilityToggleButton />
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedTargetPersona))
+        @if (!string.IsNullOrEmpty(SelectedTheme))
         {
             <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTargetPersona</MudText> 
+                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTheme</MudText> 
             </MudChip>
         }
         <MudSelect T="string"
-                   @bind-Value="SelectedTargetPersona"
+                   @bind-Value="SelectedTheme"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   CloseIcon="false"
                    OpenIcon=""
-                   Placeholder="Enter target persona"
+                   CloseIcon="false"
+                   Placeholder="Enter theme"
                    Underline="false">
-            @foreach (var targetPersona in _targetPersonas)
+            @foreach (var theme in _themes)
             {
-                <MudSelectItem Value="targetPersona">@targetPersona</MudSelectItem>
+                <MudSelectItem Value="theme">@theme</MudSelectItem>
             }
         </MudSelect>
        
@@ -43,14 +43,14 @@
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
 
-        private string? SelectedTargetPersona { get; set; }
+    private string? SelectedTheme { get; set; }
 
-        void Closed(MudChip<string> chip) {
-            SelectedTargetPersona = null; 
-        }
+    void Closed(MudChip<string> chip) {
+        SelectedTheme = null; 
+    }
 
-        private readonly string[] _targetPersonas =
-        {
-            "Adults", "Kids", "Teenagers", "Young Adults"
-        };
+    private readonly string[] _themes =
+    {
+        "Endorsement", "Enjoyment", "Holiday", "Lifestyle", "Sustainability"
+    };
 }

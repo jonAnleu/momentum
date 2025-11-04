@@ -2,32 +2,30 @@
     <TitleContent>
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
             <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
-                <MudIcon Size="Size.Small">
-                    <i class="fa-solid fa-sitemap fa-2xs"></i>
-                </MudIcon>
-                <MudText Typo="Typo.subtitle2">Target Persona</MudText>
+                <MudIcon Icon="@Icons.Material.Sharp.Discount"  Style="font-size: 16px"/>
+                <MudText Typo="Typo.subtitle2">Tags</MudText>
             </MudStack>
             <VisibilityToggleButton />
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedTargetPersona))
+        @if (!string.IsNullOrEmpty(SelectedTag))
         {
             <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTargetPersona</MudText> 
+                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTag</MudText> 
             </MudChip>
         }
         <MudSelect T="string"
-                   @bind-Value="SelectedTargetPersona"
+                   @bind-Value="SelectedTag"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
                    CloseIcon="false"
                    OpenIcon=""
-                   Placeholder="Enter target persona"
+                   Placeholder="Enter tags"
                    Underline="false">
-            @foreach (var targetPersona in _targetPersonas)
+            @foreach (var tag in _tags)
             {
-                <MudSelectItem Value="targetPersona">@targetPersona</MudSelectItem>
+                <MudSelectItem Value="tag">@tag</MudSelectItem>
             }
         </MudSelect>
        
@@ -43,13 +41,13 @@
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
 
-        private string? SelectedTargetPersona { get; set; }
+        private string? SelectedTag { get; set; }
 
         void Closed(MudChip<string> chip) {
-            SelectedTargetPersona = null; 
+            SelectedTag = null; 
         }
 
-        private readonly string[] _targetPersonas =
+        private readonly string[] _tags =
         {
             "Adults", "Kids", "Teenagers", "Young Adults"
         };

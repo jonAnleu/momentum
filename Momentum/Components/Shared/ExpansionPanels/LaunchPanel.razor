@@ -1,0 +1,38 @@
+<MudExpansionPanel HeaderClass="pa-0" Gutters="false" Dense="true" HideIcon="true">
+    <TitleContent>
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                <MudIcon Size="Size.Small">
+                    <i class="fa-solid fa-sitemap fa-2xs"></i>
+                </MudIcon>
+                <MudText Typo="Typo.subtitle2">Launch</MudText>
+            </MudStack>
+            <VisibilityToggleButton />
+        </MudStack>
+    </TitleContent>
+    <ChildContent>
+        <MudForm>
+            <MudStack Class="mb-6" Row="true" AlignItems="AlignItems.Center" Spacing="0" >
+                <MudIconButton Icon="@Icons.Material.Filled.RadioButtonUnchecked" Size="Size.Small" OnClick="Reset"/>
+                <MudText Typo="Typo.body2">Select All</MudText>
+            </MudStack>
+            <MudRadioGroup @bind-Value="SelectedOption">
+                <MudStack Spacing="0">
+                    <MudRadio Value="@("Autumn")" Size="Size.Small" Dense="true">Autumn</MudRadio>
+                    <MudRadio Value="@("Spring")" Size="Size.Small" Dense="true">Spring</MudRadio>
+                    <MudRadio Value="@("Summer")" Size="Size.Small" Dense="true">Summer</MudRadio>
+                    <MudRadio Value="@("Winter")" Size="Size.Small" Dense="true">Winter</MudRadio>
+                </MudStack>
+            </MudRadioGroup>
+        </MudForm>
+    </ChildContent>
+</MudExpansionPanel>
+
+@code {
+    public string SelectedOption { get; set; }
+
+    private void Reset()
+    {
+        SelectedOption = null;
+    }
+}
