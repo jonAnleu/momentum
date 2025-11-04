@@ -1,9 +1,9 @@
 <MudPaper Class="d-flex flex-column" Outlined="true" Width="320px" style="height: 640px;">
-    <FileUploadHeader/>
+    <FileUploadHeader ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
     <MudStack Class="overflow-auto px-4" Spacing="4">
-        <FileUploadBasicFields/>
+        <FileUploadBasicFields ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
         <FileUploadPresetSelector/>
-        <FileUploadExpansionPanels/>
+        <FileUploadExpansionPanels ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
     </MudStack>
     @if (SelectedCount > 0)
     {
@@ -14,4 +14,13 @@
 
 @code {
     [Parameter] public int SelectedCount { get; set; }
+    [Parameter] public bool ShowOptional { get; set; }
+    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
+    
+    
+    private void ToggleVisibility()
+    {
+        OnVisibilityChanged.InvokeAsync(!ShowOptional);
+    }
+    
 }

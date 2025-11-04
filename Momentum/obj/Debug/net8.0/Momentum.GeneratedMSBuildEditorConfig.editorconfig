@@ -189,8 +189,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0dvYWxGaWVsZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/TargetPersonaSelectField.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1RhcmdldFBlcnNvbmFTZWxlY3RGaWVsZC5yYXpvcg==
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/TargetPersonaField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1RhcmdldFBlcnNvbmFGaWVsZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/TitleField.razor]

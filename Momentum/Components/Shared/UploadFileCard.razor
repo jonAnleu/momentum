@@ -1,4 +1,3 @@
-
 <style>
     .border-red {
         outline: solid 2px #A6192e;
@@ -49,7 +48,11 @@
             <AssetTypeField/>
             <UsageRightsField/>
             <GoalField/>
-          
+            @if (ShowOptionalFields)
+            {
+                <MudText Class="mt-2" Typo="Typo.subtitle2"><b>Optional fields</b></MudText>
+                <TargetPersonaField/>
+            }
         </MudStack>
     </MudCardContent>
 </MudCard>
@@ -57,7 +60,7 @@
 @code {
     [Parameter] public UploadedFile? File { get; set; } 
     [Parameter] public bool IsSelected { get; set; }
-    [Parameter] public bool IsVisible { get; set; }
+    [Parameter] public bool ShowOptionalFields { get; set; }
     [Parameter] public EventCallback<UploadedFile> OnToggleSelected { get; set; }
     
     private bool Hovered { get; set; }

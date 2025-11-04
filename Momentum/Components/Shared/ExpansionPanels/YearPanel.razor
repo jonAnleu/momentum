@@ -11,24 +11,13 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedTag))
-        {
-            <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTag</MudText> 
-            </MudChip>
-        }
         <MudTextField T="string"
-                   @bind-Value="SelectedTag"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   Placeholder="Enter Year"
+                   Placeholder="Add Year"
                    Underline="false">
-            @foreach (var tag in _tags)
-            {
-                <MudSelectItem Value="tag">@tag</MudSelectItem>
-            }
+        
         </MudTextField>
-       
     </ChildContent>
 </MudExpansionPanel>
 
@@ -41,14 +30,6 @@
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
 
-    private string? SelectedTag { get; set; }
-
-    void Closed(MudChip<string> chip) {
-        SelectedTag = null; 
-    }
-
-    private readonly string[] _tags =
-    {
-        "Adults", "Kids", "Teenagers", "Young Adults"
-    };
+    
+   
 }

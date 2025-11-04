@@ -1,46 +1,52 @@
 @page "/Upload"
-@inject FileUploadStateService FileState 
+@inject FileUploadStateService FileState
 @inject NavigationManager NavManager
 
 
 <MudStack Class="mx-10 my-14" Row="true" StretchItems="StretchItems.End" Spacing="9">
     <FileUploadPanel SelectedCount="@(IsSelected ? 1 : 0)"
-                     />
+                     ShowOptional="@ShowAllOptionalFields"
+                     OnVisibilityChanged="HandleVisibilityChanged"/>
     <MudStack Spacing="4">
         <UploadBrowserToolbar TotalCount="1"
                               SelectedCount="@(IsSelected ? 1 : 0)"
-                              OnSelectAllChanged="HandleSelectAllChanged"/>
+                              OnSelectAllChanged="HandleSelectAllChanged"
+        />
         <UploadBrowser File="@_currentFile"
                        IsSelected="@IsSelected"
-                       OnSelectionChanged="HandleSelectionChanged"
-                       IsVisible="@IsVisible"/>
+                       ShowOptionalFields="@ShowAllOptionalFields"
+                       OnSelectionChanged="HandleSelectionChanged"/>
     </MudStack>
 </MudStack>
 
 @code {
     private UploadedFile? _currentFile;
-    private bool IsVisible = true;
+    private Asset _currentMetadata = new();
 
-    private bool IsSelected = false;
+    private bool IsSelected = true;
+    private bool ShowAllOptionalFields = false; 
 
+    
+    
     private void HandleSelectionChanged(bool selected)
     {
         IsSelected = selected;
         StateHasChanged();
     }
 
-    private void ToggleFieldsVisibility()
-    {
-        IsVisible = !IsVisible;
-        StateHasChanged();
-    }
-
-   
     private void HandleSelectAllChanged(bool selectAll)
     {
         IsSelected = selectAll;
         StateHasChanged();
     }
+
+    private void HandleVisibilityChanged(bool visible)
+    {
+        ShowAllOptionalFields = visible;   
+        StateHasChanged();
+    }
+    
+    
     
     protected override void OnInitialized()
     {
@@ -49,6 +55,5 @@
         else
             NavManager.NavigateTo("/Upload");
     }
-    
     
 }

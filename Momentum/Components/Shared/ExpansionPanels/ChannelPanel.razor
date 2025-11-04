@@ -7,7 +7,7 @@
                 </MudIcon>
                 <MudText Typo="Typo.subtitle2">Channel</MudText>
             </MudStack>
-            <VisibilityToggleButton />
+            <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
         </MudStack>
     </TitleContent>
     <ChildContent>
@@ -23,7 +23,7 @@
                    Margin="Margin.Dense"
                    OpenIcon=""
                    CloseIcon="false"
-                   Placeholder="Enter target persona"
+                   Placeholder="Enter channel"
                    Underline="false">
             @foreach (var channel in _channels)
             {

@@ -7,7 +7,7 @@
                 </MudIcon>
                 <MudText Typo="Typo.subtitle2">Launch</MudText>
             </MudStack>
-            <VisibilityToggleButton />
+            <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
         </MudStack>
     </TitleContent>
     <ChildContent>
@@ -29,6 +29,13 @@
 </MudExpansionPanel>
 
 @code {
+    [Parameter] public bool ShowOptional { get; set; }
+    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
+    
+    private void ToggleVisibility()
+    {
+        OnVisibilityChanged.InvokeAsync(!ShowOptional);
+    }
     public string SelectedOption { get; set; }
 
     private void Reset()

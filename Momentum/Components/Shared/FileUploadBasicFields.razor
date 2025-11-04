@@ -1,8 +1,12 @@
 @* Update Title*@
-<MudTextField T="string" Margin="Margin.Dense"
-              Variant="Variant.Outlined"
-              Underline="false" Placeholder="Update title"/>
-<MudSwitch T="bool" Color="Color.Error" Size="Size.Small" Label="Use filenames as title"/>
+<MudStack Spacing="2">
+    <MudTextField T="string" Margin="Margin.Dense"
+                  Variant="Variant.Outlined"
+                  Underline="false" Placeholder="Update title"
+                  Immediate="true"/>
+    <MudSwitch T="bool" Color="Color.Error" Size="Size.Small" Label="Use filenames as title"/>
+</MudStack>
+
 
 @*Description*@
 <MudStack Spacing="2">
@@ -11,11 +15,17 @@
             <MudIcon Icon="@Icons.Custom.FileFormats.FileDocument" Size="Size.Small"/>
             <MudText Typo="Typo.subtitle2">Description</MudText>
         </MudStack>
-        <VisibilityToggleButton/>
+        <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
     </MudStack>
     <MudTextField T="string" Placeholder="Replace description(s)" Variant="Variant.Outlined"/>
 </MudStack>
 
 @code {
+    [Parameter] public bool ShowOptional { get; set; }
+    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     
+    private void ToggleVisibility()
+    {
+        OnVisibilityChanged.InvokeAsync(!ShowOptional);
+    }
 }
