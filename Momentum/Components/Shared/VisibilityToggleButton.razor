@@ -1,10 +1,16 @@
-<MudToggleIconButton Class="rounded" @bind-Toggled="VisibilityOn"
+<MudToggleIconButton Class="rounded"
+                     Toggled="@ShowOptional"
+                     ToggledChanged="VisibilityChanged"
                      Variant="Variant.Filled"
                      Icon="@Icons.Material.Filled.VisibilityOff"
-                     Size="Size.Small"
                      ToggledIcon="@Icons.Material.Filled.Visibility"
-                     ToggledColor="Color.Error"/>
+                     ToggledColor="Color.Error"
+                     Size="Size.Small"/>
 
 @code {
-    public bool VisibilityOn { get; set; }
+    [Parameter] public bool ShowOptional { get; set; }
+    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
+
+    private Task VisibilityChanged(bool value)
+        => OnVisibilityChanged.InvokeAsync(value);
 }

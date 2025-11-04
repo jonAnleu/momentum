@@ -1,0 +1,28 @@
+<MudExpansionPanel HeaderClass="pa-0" Gutters="false" Dense="true" HideIcon="true">
+    <TitleContent>
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                <MudIcon Size="Size.Small">
+                    <i class="fa-regular fa-copyright fa-2xs"></i>                
+                </MudIcon>
+                <MudText Typo="Typo.subtitle2">Copyright</MudText>
+            </MudStack>
+            <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+        </MudStack>
+    </TitleContent>
+    <ChildContent>
+        <MudTextField T="string" Placeholder="Add copyright" Variant="Variant.Outlined"/>
+
+    </ChildContent>
+</MudExpansionPanel>
+
+@code {
+    [Parameter] public bool ShowOptional { get; set; }
+    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
+    
+    private void ToggleVisibility()
+    {
+        OnVisibilityChanged.InvokeAsync(!ShowOptional);
+    }
+
+}

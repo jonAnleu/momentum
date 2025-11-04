@@ -1,0 +1,27 @@
+<MudExpansionPanel HeaderClass="pa-0" Gutters="false" Dense="true" HideIcon="true">
+    <TitleContent>
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                <MudIcon Size="Size.Small">
+                    <i class="fa-regular fa-paste fa-2xs"></i>
+                </MudIcon>
+                <MudText Typo="Typo.subtitle2">Related Assets</MudText>
+            </MudStack>
+            <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+        </MudStack>
+    </TitleContent>
+    <ChildContent>
+        
+    </ChildContent>
+</MudExpansionPanel>
+
+@code {
+    [Parameter] public bool ShowOptional { get; set; }
+    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
+    
+    private void ToggleVisibility()
+    {
+        OnVisibilityChanged.InvokeAsync(!ShowOptional);
+    }
+
+}

@@ -1,0 +1,14 @@
+@inject IDialogService DialogService
+
+<MudButton Class="py-3"
+           Variant="Variant.Outlined"
+           OnClick="OpenDialogAsync">
+    <MudIcon Icon="@Icons.Material.Filled.Settings" Style="font-size: 16px"/>
+</MudButton>
+
+@code {
+    private Task OpenDialogAsync()
+    {
+        return DialogService.ShowAsync<ManagePresetsDialog>("Manage Presets Dialog");
+    }
+}

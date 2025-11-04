@@ -2,14 +2,18 @@
     <TitleContent>
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
             <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
-                <MudIcon Icon="@Icons.Material.Sharp.Discount"  Style="font-size: 14px"/>
-                <MudText Typo="Typo.subtitle2">Tags</MudText>
+                <MudIcon Size="Size.Small">
+                    <i class="fa-solid fa-inbox fa-2xs"></i>
+                </MudIcon>
+                <MudText Typo="Typo.subtitle2">Collections</MudText>
             </MudStack>
-            <VisibilityToggleButton />
         </MudStack>
     </TitleContent>
     <ChildContent>
+        <MudText>Please select a collection or create a new one by typing a name</MudText>
         <MudSelect T="string"
+                   PopoverClass="pa-2"
+                    
                    @bind-Value="SelectedCollection"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
@@ -17,30 +21,23 @@
                    OpenIcon=""
                    Placeholder="Select or add collection"
                    Underline="false">
+            <MudTextField T="string" Variant="Variant.Outlined" Margin="Margin.Dense"/>
             @foreach (var collection in _collections)
             {
                 <MudSelectItem Value="collection">@collection</MudSelectItem>
             }
         </MudSelect>
-       
     </ChildContent>
 </MudExpansionPanel>
 
+
 @code {
-    [Parameter] public bool ShowOptional { get; set; }
-    [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
-    
-    private void ToggleVisibility()
+    private string? SelectedCollection { get; set; }
+
+
+
+    private readonly string[] _collections =
     {
-        OnVisibilityChanged.InvokeAsync(!ShowOptional);
-    }
-
-        private string? SelectedCollection { get; set; }
-
-       
-
-        private readonly string[] _collections =
-        {
-            "Adults", "Kids", "Teenagers", "Young Adults"
-        };
+        "Audio", "Document", "Graphic/Visual", "Photography", "Video"
+    };
 }

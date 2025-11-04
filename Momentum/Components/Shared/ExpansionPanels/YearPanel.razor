@@ -3,33 +3,32 @@
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
             <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
                 <MudIcon Size="Size.Small">
-                    <i class="fa-solid fa-sitemap fa-2xs"></i>
+                    <i class="fa-solid fa-tags fa-2xs"></i>
                 </MudIcon>
-                <MudText Typo="Typo.subtitle2">Campaign</MudText>
+                <MudText Typo="Typo.subtitle2">Year</MudText>
             </MudStack>
-            <VisibilityToggleButton />
+            <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="OnVisibilityChanged" />
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedCampaign))
+        @if (!string.IsNullOrEmpty(SelectedTag))
         {
             <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedCampaign</MudText> 
+                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTag</MudText> 
             </MudChip>
         }
-        <MudSelect T="string"
-                   @bind-Value="SelectedCampaign"
+        <MudTextField T="string"
+                   @bind-Value="SelectedTag"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   OpenIcon=""
-                   CloseIcon="false"
-                   Placeholder="Enter campaign"
+                   Placeholder="Enter Year"
                    Underline="false">
-            @foreach (var campaign in _campaigns)
+            @foreach (var tag in _tags)
             {
-                <MudSelectItem Value="campaign">@campaign</MudSelectItem>
+                <MudSelectItem Value="tag">@tag</MudSelectItem>
             }
-        </MudSelect>
+        </MudTextField>
+       
     </ChildContent>
 </MudExpansionPanel>
 
@@ -42,17 +41,14 @@
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
 
-    private string? SelectedCampaign{ get; set; }
+    private string? SelectedTag { get; set; }
 
     void Closed(MudChip<string> chip) {
-        SelectedCampaign = null; 
+        SelectedTag = null; 
     }
 
-    private readonly string[] _campaigns =
+    private readonly string[] _tags =
     {
-        "ConferenceCon 2025",
-        "Feel the beat",
-        "City Festival",
-        "Snow Season"
+        "Adults", "Kids", "Teenagers", "Young Adults"
     };
 }
