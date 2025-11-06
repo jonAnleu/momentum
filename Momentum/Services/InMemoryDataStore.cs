@@ -17,10 +17,9 @@ public class InMemoryDataStore
 {
     new Asset
     {
-        Id = 1, Title = "Chuck the Duck", FilePath = "images/chuck.jpg", FileType = "jpg", IsSelected = false,
+        Id = 1, Filename = "Chuck the Duck", FilePath = "images/chuck.jpg", FileType = "jpg", IsSelected = false,
         CreatedDate = DateTime.Now.AddDays(-10), PublishedDate = DateTime.Now.AddDays(-8), ModifiedDate = null,
         AssetType = "Photography", UsageRights = "Available", Goal = "Brand Awareness", TargetPersona = "Adults",
-        Tags = new() { "Product Launch", "Photography", "Summer", "Lifestyle", "Social", "Vendors" }
     },
   
    

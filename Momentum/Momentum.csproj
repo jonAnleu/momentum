@@ -15,4 +15,8 @@
     <_ContentIncludedByDefault Remove="Shared\CollectionsNavigationSideBar.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\thumbnails\" />
+  </ItemGroup>
+
 </Project>

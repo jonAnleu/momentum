@@ -157,6 +157,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZEJhc2ljRmllbGRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/FileUploadCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZENhcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/FileUploadExpansionPanels.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRmlsZVVwbG9hZEV4cGFuc2lvblBhbmVscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -223,10 +227,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UploadButton.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVXBsb2FkQnV0dG9uLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/UploadFileCard.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvVXBsb2FkRmlsZUNhcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/VisibilityToggleButton.razor]

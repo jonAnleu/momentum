@@ -19,11 +19,7 @@
     
     private async Task StoreFiles()
     {
-        if (FileState.PendingFiles.Count == 0)
-        {
-            Snackbar.Add("No files selected.", Severity.Warning);
-            return;
-        }
+      
 
         foreach (var uploaded in FileState.PendingFiles)
         {

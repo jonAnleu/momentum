@@ -25,9 +25,8 @@ public class AssetService
             return _dataStore.Assets;
 
         return _dataStore.Assets.Where(a =>
-            (a.Title?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) ||
-            (a.AssetType?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) ||
-            a.Tags.Any(t => t.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+            (a.Filename?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (a.AssetType?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) 
         ).ToList();
     }
 
@@ -42,7 +41,7 @@ public class AssetService
             Id = _dataStore.Assets.Count > 0 
                 ? _dataStore.Assets.Max(a => a.Id) + 1 
                 : 1,
-            Title = title,
+            Filename = title,
             FilePath = filePath,
             FileType = fileType,
             CreatedDate = DateTime.UtcNow

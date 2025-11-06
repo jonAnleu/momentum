@@ -1,3 +1,4 @@
+@inject FileUploadStateService FileState
 <style>
     .border-red {
         outline: solid 2px #A6192e;
@@ -16,7 +17,8 @@
                        Variant="Variant.Filled"
                        Size="Size.Small"
                        Style="bottom: 130px; left: 10px; background-color: white; color: black;"
-                       @onclick:stopPropagation="true">
+                       OnClick="RemoveFile"
+                      >
         </MudIconButton>
 
         <MudChip Class="position-absolute" T="string" 
@@ -37,7 +39,7 @@
                                  Ripple="false" 
                                  Size="Size.Large"
                                  ToggledSize="Size.Large"
-                                 @onclick:stopPropagation="true"/>
+                                 />
         }
 
     </div>
@@ -73,6 +75,18 @@
         await OnToggleSelected.InvokeAsync(File);
     }
     
+    private void RemoveFile()
+    {
+        if (File != null)
+        {
+            FileState.ClearFiles(); 
+            _imageDataUrl = string.Empty;
+            _fileName = string.Empty;
+            _fileExtension = string.Empty;
+
+        }
+    }
+
     protected override void OnParametersSet()
     {
         if (File == null)
