@@ -2,7 +2,9 @@
     @* Panel Header *@
     <MudStack Class="pa-4" Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
         <MudText><b>Upload files</b></MudText>
-        <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+        <VisibilityToggleButton ShowOptional="ShowOptional" 
+                                OnVisibilityChanged="ToggleVisibility"
+                                IsGroupMode="true"/>
     </MudStack>
     <MudStack Class="overflow-auto px-4" Spacing="4">
         @* Update Title*@

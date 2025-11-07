@@ -1,4 +1,18 @@
-<MudTooltip Text="Show all optional fields">
+@if (IsGroupMode)
+{
+    <MudTooltip Text="@GetTooltipText()">
+        <MudToggleIconButton Class="rounded"
+                             Toggled="@ShowOptional"
+                             ToggledChanged="VisibilityChanged"
+                             Variant="Variant.Filled"
+                             Icon="@Icons.Material.Filled.VisibilityOff"
+                             ToggledIcon="@Icons.Material.Filled.Visibility"
+                             ToggledColor="Color.Error"
+                             Size="Size.Small"/>
+    </MudTooltip>
+}
+else
+{
     <MudToggleIconButton Class="rounded"
                          Toggled="@ShowOptional"
                          ToggledChanged="VisibilityChanged"
@@ -7,13 +21,16 @@
                          ToggledIcon="@Icons.Material.Filled.Visibility"
                          ToggledColor="Color.Error"
                          Size="Size.Small"/>
-</MudTooltip>
-
+}
 
 @code {
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
+    [Parameter] public bool IsGroupMode { get; set; } = false;
 
     private Task VisibilityChanged(bool value)
         => OnVisibilityChanged.InvokeAsync(value);
+
+    private string GetTooltipText()
+        => ShowOptional ? "Hide all optional fields" : "Show all optional fields";
 }
