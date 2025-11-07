@@ -12,32 +12,11 @@
 
 @code {
     private List<Asset> _cards = new();
-    private List<Asset> _selectedAssets = new();
 
     protected override void OnInitialized()
     {
         _cards = AssetService.GetAssets();
     }
         
-    private void HandleCardSelected(Asset card)
-    {
-        if (card.IsSelected)
-        {
-            if (!_selectedAssets.Contains(card))
-                _selectedAssets.Add(card);
-        }
-        else
-        {
-            _selectedAssets.Remove(card);
-        }
-    }
-
-    private void HandleClearSelection()
-    {
-        foreach (var asset in _selectedAssets)
-            asset.IsSelected = false;
-        
-        _selectedAssets.Clear();
-    }
   
 }

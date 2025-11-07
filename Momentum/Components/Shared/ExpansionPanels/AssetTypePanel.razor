@@ -10,38 +10,43 @@
             <MudText Color="Color.Error" Typo="Typo.body2">*</MudText>
         </MudStack>
     </TitleContent>
+
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedAssetType))
+
+        @if (!string.IsNullOrEmpty(File?.AssetType))
         {
-            <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-               <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedAssetType</MudText> 
+            <MudChip T="string" OnClose="ClearAssetType" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close">
+                <MudText Typo="Typo.caption" Color="Color.Primary">@File.AssetType</MudText>
             </MudChip>
         }
+
         <MudSelect T="string"
-                   @bind-Value="SelectedAssetType"
+                   @bind-Value="File.AssetType"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense" 
-                   CloseIcon="false"
-                   OpenIcon=""
                    Placeholder="Enter Asset Type"
-                   Underline="false">
+                   Underline="false"
+                   Immediate="true">
             @foreach (var assetType in _assetTypes)
             {
-                <MudSelectItem Value="assetType">@assetType</MudSelectItem>
+                <MudSelectItem Value="@assetType">@assetType</MudSelectItem>
             }
         </MudSelect>
+
     </ChildContent>
 </MudExpansionPanel>
 
 @code {
-    private string? SelectedAssetType { get; set; }
-
-    void Closed(MudChip<string> chip) {
-        SelectedAssetType = null; 
-    }
+    [Parameter] public UploadedFile? File { get; set; }
 
     private readonly string[] _assetTypes =
     {
         "Audio", "Document", "Graphic/Visual", "Photography", "Video"
     };
+
+    private void ClearAssetType()
+    {
+        if (File is not null)
+            File.AssetType = string.Empty;
+    }
 }

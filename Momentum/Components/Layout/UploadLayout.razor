@@ -1,0 +1,45 @@
+@inherits LayoutComponentBase
+
+<MudThemeProvider IsDarkMode Theme="DamCustomTheme"  />
+<MudDialogProvider FullWidth="true" 
+                   MaxWidth="MaxWidth.Small"
+                   CloseButton="true"
+                   BackdropClick="false"
+                   Position="DialogPosition.Center"
+                   CloseOnEscapeKey="true"/>
+<MudPopoverProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+
+    MudTheme DamCustomTheme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = Colors.Shades.Black,
+            Secondary = Colors.Gray.Darken1,
+            Error = Colors.Red.Darken4,
+        },
+        PaletteDark = new PaletteDark()
+        {
+            Primary = Colors.Shades.White,
+            Secondary = Colors.Gray.Darken1,
+            Error = Colors.Red.Darken4,
+        },
+
+        LayoutProperties = new LayoutProperties()
+        {
+            DrawerWidthLeft = "260px",
+            DrawerWidthRight = "300px"
+        }
+    };
+
+}

@@ -1,58 +1,59 @@
 @page "/Upload"
+@layout UploadLayout
 @inject FileUploadStateService FileState
 @inject NavigationManager NavManager
 
-
 <MudStack Class="mx-10 my-14" Row="true" StretchItems="StretchItems.End" Spacing="9">
-    <FileUploadPanel SelectedCount="@(IsSelected ? 1 : 0)"
-                     ShowOptional="@ShowAllOptionalFields"
-                     OnVisibilityChanged="HandleVisibilityChanged"/>
-    <MudStack Spacing="4">
-        <UploadBrowserToolbar TotalCount="1"
-                              SelectedCount="@(IsSelected ? 1 : 0)"
-                              OnSelectAllChanged="HandleSelectAllChanged"
-        />
-        <UploadBrowser File="@_currentFile"
-                       IsSelected="@IsSelected"
-                       ShowOptionalFields="@ShowAllOptionalFields"
-                       OnSelectionChanged="HandleSelectionChanged"/>
-    </MudStack>
+    <UploadPanel File="_currentFile"
+                 IsSelected="_currentFile.IsSelected"
+                 ShowOptional="ShowAllOptionalFields"
+                 OnVisibilityChanged="HandleVisibilityChanged" />
+
+    @if (_currentFile != null)
+    {
+        <UploadCard File="_currentFile"
+                    IsSelected="_currentFile.IsSelected"
+                    ShowOptionalFields="ShowAllOptionalFields"
+                    OnToggleSelected="HandleCardSelection"
+                    OnRemoveFile="HandleRemoveFile"/>
+    }
 </MudStack>
 
 @code {
     private UploadedFile? _currentFile;
+    private bool ShowAllOptionalFields = false;
 
-    private bool IsSelected = true;
-    private bool ShowAllOptionalFields = false; 
-
-    
-    
-    private void HandleSelectionChanged(bool selected)
+    protected override void OnInitialized()
     {
-        IsSelected = selected;
-        StateHasChanged();
+        if (FileState.PendingFiles.Any())
+        {
+            _currentFile = FileState.PendingFiles.First();
+        }
+        else
+        {
+            NavManager.NavigateTo("/");
+        }
     }
 
-    private void HandleSelectAllChanged(bool selectAll)
+    private void HandleCardSelection(UploadedFile file)
     {
-        IsSelected = selectAll;
+        // Toggle selection state
+        _currentFile.IsSelected = !_currentFile.IsSelected;
         StateHasChanged();
     }
 
     private void HandleVisibilityChanged(bool visible)
     {
-        ShowAllOptionalFields = visible;   
+        ShowAllOptionalFields = visible;
         StateHasChanged();
     }
     
-    
-    
-    protected override void OnInitialized()
+    private void HandleRemoveFile(UploadedFile file)
     {
-        if (FileState.PendingFiles.Any())
-            _currentFile = FileState.PendingFiles.First();
-        else
-            NavManager.NavigateTo("/Upload");
-    }
+        if (_currentFile == file)
+            _currentFile = null;
     
+        _currentFile.IsSelected = false;
+        StateHasChanged();
+    }
 }

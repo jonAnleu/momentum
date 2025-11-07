@@ -1,6 +1,6 @@
 <MudTooltip Text="Add title" Color="Color.Dark">
     <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
-        <MudText Typo="Typo.caption">Add Title</MudText>
+        <MudText Typo="Typo.caption">@File.Title</MudText>
         <MudSpacer/>
         <MudDivider  Vertical="true" FlexItem="true" />
         <MudIconButton Ripple="false" 
@@ -15,7 +15,12 @@
             <MudText Class="justify-start" Typo="Typo.caption">Add Title</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
+        <MudTextField @bind-Value="File.Title"
+                      T="string" 
+                      Placeholder="Description" 
+                      Variant="Variant.Outlined" 
+                      Immediate="true"
+                      Lines="5"/>
         <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
             <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
@@ -23,6 +28,8 @@
 </MudPopover>
 
 @code{
+    [Parameter] public UploadedFile File { get; set; } = default!;
+
     private bool _open;
     private bool _isVisible;
 

@@ -10,12 +10,11 @@
            Size="Size.Large"
            OnClick="StoreFiles">
     <MudText Typo="Typo.subtitle2">
-        <b>Store selected files (@SelectedCount)</b>
+        <b>Store selected files (1)</b>
     </MudText>
 </MudButton>
 
 @code {
-    [Parameter] public int SelectedCount { get; set; }
     
     private async Task StoreFiles()
     {
