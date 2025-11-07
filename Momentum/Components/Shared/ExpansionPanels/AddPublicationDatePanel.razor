@@ -11,19 +11,18 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        <MudSelect T="string"
-                   CloseIcon="false"
-                   Variant="Variant.Filled"
-                   Placeholder="Enter Asset Type"
-                   Underline="false">
-        </MudSelect>
+        <MudDatePicker Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense"
+                       Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" ShowToolbar="false" Editable="true"
+                       Placeholder="Add Publication Date"/>
+        <MudTimePicker Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" 
+                       Placeholder="Add Publication Time" AmPm="true" />
     </ChildContent>
 </MudExpansionPanel>
 
 @code {
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
-    
+
     private void ToggleVisibility()
     {
         OnVisibilityChanged.InvokeAsync(!ShowOptional);

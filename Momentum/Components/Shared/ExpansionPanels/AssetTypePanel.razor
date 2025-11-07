@@ -1,5 +1,7 @@
-<MudExpansionPanel HeaderClass="pa-0" Class="pa-0" 
-                   Gutters="false" Dense="true" 
+<MudExpansionPanel HeaderClass="pa-0" 
+                   Class="pa-0" 
+                   Gutters="false" 
+                   Dense="true" 
                    HideIcon="true">
     <TitleContent>
         <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
@@ -15,7 +17,10 @@
 
         @if (!string.IsNullOrEmpty(File?.AssetType))
         {
-            <MudChip T="string" OnClose="ClearAssetType" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close">
+            <MudChip T="string" 
+                     OnClose="ClearAssetType" 
+                     Size="Size.Small" 
+                     CloseIcon="@Icons.Material.Filled.Close">
                 <MudText Typo="Typo.caption" Color="Color.Primary">@File.AssetType</MudText>
             </MudChip>
         }
@@ -24,7 +29,7 @@
                    @bind-Value="File.AssetType"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense" 
-                   Placeholder="Enter Asset Type"
+                   Placeholder="Select Asset Type"
                    Underline="false"
                    Immediate="true">
             @foreach (var assetType in _assetTypes)

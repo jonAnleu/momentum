@@ -13,8 +13,12 @@
             <MudText Class="justify-start" Typo="Typo.caption">Add Related Assets</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
-        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
+        <MudButton>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+                <MudIcon Icon="@Icons.Material.Filled.AddCircle" Style="font-size: 16px;"/>
+                <MudText Typo="Typo.subtitle2">Add related assets</MudText>
+            </MudStack>
+        </MudButton>        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
             <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
     </MudStack>

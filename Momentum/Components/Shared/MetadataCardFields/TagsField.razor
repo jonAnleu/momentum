@@ -3,7 +3,8 @@
         <MudText Typo="Typo.caption">Add Tags</MudText>
         <MudSpacer/>
         <MudDivider Vertical="true" FlexItem="true" />
-        <MudIconButton Ripple="false" Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
+        <MudIconButton Ripple="false" 
+                       Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
     </MudPaper>
 </MudTooltip>
 
@@ -11,18 +12,32 @@
     <MudStack Spacing="2">
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
             <MudText Class="justify-start" Typo="Typo.caption">Add Tags</MudText>
-            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
+            <MudIconButton Variant="Variant.Filled"
+                           Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
+
+        <MudSelect T="string"
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense" 
+                   Placeholder="Add Tags"
+                   Underline="false"
+                   Immediate="true">
+            <MudSelectItem T="string">Tag</MudSelectItem>
+        </MudSelect>       
         <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
-            <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Error" 
+                       Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
     </MudStack>
 </MudPopover>
 
 @code{
+    [Parameter] public UploadedFile? File { get; set; } 
+
     private bool _open;
     private bool _isVisible;
 
     private void ToggleOpen() => _open = !_open;
+      
+
 }

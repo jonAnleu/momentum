@@ -35,6 +35,7 @@
 </MudExpansionPanel>
 
 @code {
+    [Parameter] public UploadedFile? File { get; set; }
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     

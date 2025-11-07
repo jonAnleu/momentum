@@ -13,8 +13,25 @@
             <MudText Class="justify-start" Typo="Typo.caption">Add Theme</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
-        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
+        @if (!string.IsNullOrEmpty(SelectedTheme))
+        {
+            <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
+                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTheme</MudText> 
+            </MudChip>
+        }
+        <MudSelect T="string"
+                   @bind-Value="SelectedTheme"
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense"
+                   OpenIcon=""
+                   CloseIcon="false"
+                   Placeholder="Enter theme"
+                   Underline="false">
+            @foreach (var theme in _themes)
+            {
+                <MudSelectItem Value="theme">@theme</MudSelectItem>
+            }
+        </MudSelect>        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
             <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
     </MudStack>
@@ -25,4 +42,16 @@
     private bool _isVisible;
 
     private void ToggleOpen() => _open = !_open;
+    
+    
+    private string? SelectedTheme { get; set; }
+
+    void Closed(MudChip<string> chip) {
+        SelectedTheme = null; 
+    }
+
+    private readonly string[] _themes =
+    {
+        "Endorsement", "Enjoyment", "Holiday", "Lifestyle", "Sustainability"
+    };
 }

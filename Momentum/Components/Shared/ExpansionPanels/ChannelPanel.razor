@@ -11,23 +11,33 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedChannel))
+        @if (File?.Channels != null)
         {
-            <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedChannel</MudText> 
-            </MudChip>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
+                @foreach (var channel in File.Channels)
+                {
+                    <MudChip T="string"
+                             OnClose="@(() => RemoveChannel(channel))"
+                             Size="Size.Small"
+                             CloseIcon="@Icons.Material.Filled.Close">
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@channel</MudText>
+                    </MudChip>
+                }
+            </MudStack>
         }
         <MudSelect T="string"
-                   @bind-Value="SelectedChannel"
+                   MultiSelection="true"
+                   CloseIcon="false"
+                   OpenIcon=""
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   OpenIcon=""
-                   CloseIcon="false"
-                   Placeholder="Enter channel"
-                   Underline="false">
+                   Placeholder="Select Channel"
+                   Underline="false"
+                   SelectedValues="File.Channels"
+                   SelectedValuesChanged="@(vals => File.Channels = vals.ToList())">
             @foreach (var channel in _channels)
             {
-                <MudSelectItem Value="channel">@channel</MudSelectItem>
+                <MudSelectItem Value="@channel">@channel</MudSelectItem>
             }
         </MudSelect>
        
@@ -35,18 +45,13 @@
 </MudExpansionPanel>
 
 @code {
+    [Parameter] public UploadedFile? File { get; set; }
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     
     private void ToggleVisibility()
     {
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
-    }
-
-    private string? SelectedChannel { get; set; }
-
-    void Closed(MudChip<string> chip) {
-        SelectedChannel = null; 
     }
 
     private readonly string[] _channels =
@@ -58,4 +63,10 @@
         "Press/Media", 
         "Social"
     };
+    
+    private void RemoveChannel(string channelToRemove)
+    {
+        if (File?.Channels == null) return;
+        File.Channels.Remove(channelToRemove);
+    }
 }

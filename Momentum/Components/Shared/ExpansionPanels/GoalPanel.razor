@@ -9,26 +9,50 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        <MudSelect T="string"
-                   CloseIcon="false"
-                   OpenIcon=""
-                   Variant="Variant.Outlined"
-                   Margin="Margin.Dense"
-                   Placeholder="Enter Goal"
-                   Underline="false">
-            @foreach (var goal in _goals)
+            @if (File?.Goals != null)
             {
-                <MudSelectItem Value="goal">@goal</MudSelectItem>
+                <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
+                    @foreach (var goal in File.Goals)
+                    {
+                        <MudChip T="string"
+                                 OnClose="@(() => RemoveGoal(goal))"
+                                 Size="Size.Small"
+                                 CloseIcon="@Icons.Material.Filled.Close">
+                            <MudText Typo="Typo.caption" Color="Color.Primary">@goal</MudText>
+                        </MudChip>
+                    }
+                </MudStack>
             }
-
-        </MudSelect>
+            <MudSelect T="string"
+                       MultiSelection="true"
+                       CloseIcon="false"
+                       OpenIcon=""
+                       Variant="Variant.Outlined"
+                       Margin="Margin.Dense"
+                       Placeholder="Select Goal"
+                       Underline="false"
+                       SelectedValues="File.Goals"
+                       SelectedValuesChanged="@(vals => File.Goals = vals.ToList())">
+                @foreach (var goal in _goals)
+                {
+                    <MudSelectItem Value="@goal">@goal</MudSelectItem>
+                }
+            </MudSelect>
     </ChildContent>
 </MudExpansionPanel>
 
 @code
 {
+    [Parameter] public UploadedFile? File { get; set; }
+    
     private readonly string[] _goals =
     {
         "Brand Awareness", "Customer Loyalty", "New Customers", "Product Launch"
     };
+    
+    private void RemoveGoal(string goalToRemove)
+    {
+        if (File?.Goals == null) return;
+        File.Goals.Remove(goalToRemove);
+    }
 }

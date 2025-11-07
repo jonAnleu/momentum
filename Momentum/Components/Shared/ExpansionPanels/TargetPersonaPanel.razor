@@ -11,30 +11,40 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedTargetPersona))
+        @if (File?.TargetPersonas != null)
         {
-            <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTargetPersona</MudText> 
-            </MudChip>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
+                @foreach (var targetPersona in File.TargetPersonas)
+                {
+                    <MudChip T="string"
+                             OnClose="@(() => RemoveTargetPersona(targetPersona))"
+                             Size="Size.Small"
+                             CloseIcon="@Icons.Material.Filled.Close">
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@targetPersona</MudText>
+                    </MudChip>
+                }
+            </MudStack>
         }
         <MudSelect T="string"
-                   @bind-Value="SelectedTargetPersona"
-                   Variant="Variant.Outlined"
-                   Margin="Margin.Dense"
+                   MultiSelection="true"
                    CloseIcon="false"
                    OpenIcon=""
-                   Placeholder="Enter target persona"
-                   Underline="false">
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense"
+                   Placeholder="Select Target Persona"
+                   Underline="false"
+                   SelectedValues="File.TargetPersonas"
+                   SelectedValuesChanged="@(vals => File.TargetPersonas = vals.ToList())">
             @foreach (var targetPersona in _targetPersonas)
             {
-                <MudSelectItem Value="targetPersona">@targetPersona</MudSelectItem>
+                <MudSelectItem Value="@targetPersona">@targetPersona</MudSelectItem>
             }
         </MudSelect>
-       
     </ChildContent>
 </MudExpansionPanel>
 
 @code {
+    [Parameter] public UploadedFile? File { get; set; }
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     
@@ -42,15 +52,15 @@
     {
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
-
-        private string? SelectedTargetPersona { get; set; }
-
-        void Closed(MudChip<string> chip) {
-            SelectedTargetPersona = null; 
-        }
+    
 
         private readonly string[] _targetPersonas =
         {
             "Adults", "Kids", "Teenagers", "Young Adults"
         };
+        private void RemoveTargetPersona(string targetPersona)
+        {
+            if (File?.TargetPersonas == null) return;
+            File.TargetPersonas.Remove(targetPersona);
+        }
 }

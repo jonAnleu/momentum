@@ -13,7 +13,9 @@
             <MudText Class="justify-start" Typo="Typo.caption">Add Publication Date</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
+            <MudDatePicker Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" ShowToolbar="false" Editable="true" Placeholder="Add Publication Date"/>
+            <MudTimePicker Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" 
+                           Placeholder="Add Publication Time" AmPm="true" />
         <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
             <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
@@ -23,6 +25,7 @@
 @code{
     private bool _open;
     private bool _isVisible;
+
 
     private void ToggleOpen() => _open = !_open;
 }
