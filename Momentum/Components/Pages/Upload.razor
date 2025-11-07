@@ -3,20 +3,19 @@
 @inject FileUploadStateService FileState
 @inject NavigationManager NavManager
 
-<MudStack Class="mx-10 my-14" Row="true" StretchItems="StretchItems.End" Spacing="9">
+<MudStack Class="mx-5 my-3" Row="true" StretchItems="StretchItems.End" Spacing="9">
     <UploadPanel File="_currentFile"
                  IsSelected="_currentFile.IsSelected"
                  ShowOptional="ShowAllOptionalFields"
                  OnVisibilityChanged="HandleVisibilityChanged" />
-
-    @if (_currentFile != null)
-    {
+    <MudStack Spacing="4">
+        <UploadBrowserToolbar/>
         <UploadCard File="_currentFile"
                     IsSelected="_currentFile.IsSelected"
                     ShowOptionalFields="ShowAllOptionalFields"
                     OnToggleSelected="HandleCardSelection"
                     OnRemoveFile="HandleRemoveFile"/>
-    }
+        </MudStack>
 </MudStack>
 
 @code {

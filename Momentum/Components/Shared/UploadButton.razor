@@ -13,7 +13,6 @@
 
 @code {
     
-    
     private async Task UploadFiles(IBrowserFile file)
     {
         using var stream = file.OpenReadStream(maxAllowedSize: 20_000_000);
