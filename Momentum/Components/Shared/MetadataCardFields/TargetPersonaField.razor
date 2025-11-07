@@ -1,4 +1,4 @@
-<MudTooltip Text="Add description" Color="Color.Dark">
+<MudTooltip Text="Add Target Persona" Color="Color.Dark">
     <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
         <MudText Typo="Typo.caption">Add Target Persona</MudText>
         <MudSpacer/>
@@ -10,7 +10,7 @@
 <MudPopover Open="@_open" Fixed="true" Class="pa-2">
     <MudStack Spacing="2">
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
-            <MudText Class="justify-start" Typo="Typo.caption">Add target persona</MudText>
+            <MudText Class="justify-start" Typo="Typo.caption">Add Target Persona</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
         <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>

@@ -21,7 +21,6 @@
                    OpenIcon=""
                    Placeholder="Select or add collection"
                    Underline="false">
-            <MudTextField T="string" Variant="Variant.Outlined" Margin="Margin.Dense"/>
             @foreach (var collection in _collections)
             {
                 <MudSelectItem Value="collection">@collection</MudSelectItem>

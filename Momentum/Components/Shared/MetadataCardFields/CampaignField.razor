@@ -1,6 +1,6 @@
-<MudTooltip Text="Add Tags" Color="Color.Dark">
+<MudTooltip Text="Add Campaign" Color="Color.Dark">
     <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
-        <MudText Typo="Typo.caption">Add Tags</MudText>
+        <MudText Typo="Typo.caption">Add Campaign</MudText>
         <MudSpacer/>
         <MudDivider Vertical="true" FlexItem="true" />
         <MudIconButton Ripple="false" Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
@@ -10,7 +10,7 @@
 <MudPopover Open="@_open" Fixed="true" Class="pa-2">
     <MudStack Spacing="2">
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
-            <MudText Class="justify-start" Typo="Typo.caption">Add Tags</MudText>
+            <MudText Class="justify-start" Typo="Typo.caption">Add Campaign</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
         <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>

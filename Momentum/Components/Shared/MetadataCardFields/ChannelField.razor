@@ -1,5 +1,28 @@
-<h3>ChannelField</h3>
+<MudTooltip Text="Add Channel" Color="Color.Dark">
+    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
+        <MudText Typo="Typo.caption">Add Channel</MudText>
+        <MudSpacer/>
+        <MudDivider Vertical="true" FlexItem="true" />
+        <MudIconButton Ripple="false" Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
+    </MudPaper>
+</MudTooltip>
 
-@code {
-    
+<MudPopover Open="@_open" Fixed="true" Class="pa-2">
+    <MudStack Spacing="2">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
+            <MudText Class="justify-start" Typo="Typo.caption">Add Channel</MudText>
+            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
+        </MudStack>
+        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
+        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
+            <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
+        </MudStack>
+    </MudStack>
+</MudPopover>
+
+@code{
+    private bool _open;
+    private bool _isVisible;
+
+    private void ToggleOpen() => _open = !_open;
 }

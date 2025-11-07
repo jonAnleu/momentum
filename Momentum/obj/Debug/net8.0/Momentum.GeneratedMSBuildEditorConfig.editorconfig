@@ -169,12 +169,52 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0Fzc2V0VHlwZUZpZWxkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/CampaignField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0NhbXBhaWduRmllbGQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/ChannelField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0NoYW5uZWxGaWVsZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/CopyrightField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0NvcHlyaWdodEZpZWxkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/DescriptionField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0Rlc2NyaXB0aW9uRmllbGQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/GoalField.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0dvYWxGaWVsZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/LaunchField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0xhdW5jaEZpZWxkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/ProducedByField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1Byb2R1Y2VkQnlGaWVsZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/PublicationDateField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1B1YmxpY2F0aW9uRGF0ZUZpZWxkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/RelatedAssetsFields.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1JlbGF0ZWRBc3NldHNGaWVsZHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/TagsField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1RhZ3NGaWVsZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/TargetPersonaField.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1RhcmdldFBlcnNvbmFGaWVsZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/ThemeField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1RoZW1lRmllbGQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/TitleField.razor]
@@ -183,6 +223,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/UsageRightsField.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1VzYWdlUmlnaHRzRmllbGQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/YearField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1llYXJGaWVsZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/PresetPopoverDropdown.razor]
