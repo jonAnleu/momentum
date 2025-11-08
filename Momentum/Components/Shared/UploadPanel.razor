@@ -44,7 +44,7 @@
 
             @if (!string.IsNullOrWhiteSpace(File?.AssetType))
             {
-                <AssetSubTypePanel File="File" AssetType="File.AssetType" />
+                <AssetSubTypePanel File="File" AssetType="@File.AssetType" />
             }
             <UsageRightsPanel File="File"/>
             <GoalPanel File="File"/>
