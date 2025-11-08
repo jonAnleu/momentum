@@ -22,16 +22,20 @@
         </MudStack>
         @if (!string.IsNullOrEmpty(File?.AssetType))
         {
-            <MudChip T="string" OnClose="ClearAssetType" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close">
+            <MudChip T="string" 
+                     OnClose="ClearAssetType" 
+                     Size="Size.Small" 
+                     CloseIcon="@Icons.Material.Filled.Close">
                 <MudText Typo="Typo.caption" Color="Color.Primary">@File.AssetType</MudText>
             </MudChip>
         }
 
         <MudSelect T="string"
-                   @bind-Value="File.AssetType"
+                   Value="File.AssetType"
+                   ValueChanged="OnAssetTypeChanged"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense" 
-                   Placeholder="Enter Asset Type"
+                   Placeholder="Select Asset Type"
                    Underline="false"
                    Immediate="true">
             @foreach (var assetType in _assetTypes)
@@ -40,13 +44,17 @@
             }
         </MudSelect>        
         <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
-            <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
+            <MudButton Variant="Variant.Filled" 
+                       Color="Color.Error" 
+                       Size="Size.Small" 
+                       OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
     </MudStack>
 </MudPopover>
 
 @code{
     [Parameter] public UploadedFile? File { get; set; } 
+    [Parameter] public EventCallback<string> AssetTypeChanged { get; set; }
 
     private bool _open;
 
@@ -56,10 +64,20 @@
     {
         "Audio", "Document", "Graphic/Visual", "Photography", "Video"
     };
+    
+    private async Task OnAssetTypeChanged(string newValue)
+    {
+        if (File is not null)
+            File.AssetType = newValue;
 
-    private void ClearAssetType()
+        await AssetTypeChanged.InvokeAsync(newValue);
+    }
+
+    private async Task ClearAssetType()
     {
         if (File is not null)
             File.AssetType = string.Empty;
+
+        await AssetTypeChanged.InvokeAsync(string.Empty);
     }
 }

@@ -13,7 +13,8 @@
             <MudTextField @bind-Value="File.Title"
                           T="string" Margin="Margin.Dense"
                           Variant="Variant.Outlined"
-                          Underline="false" Placeholder="Update title"
+                          Underline="false" 
+                          Placeholder="Update title"
                           Immediate="true"/>
             <MudSwitch T="bool" Color="Color.Error" Size="Size.Small" Label="Use filenames as title"/>
         </MudStack>
@@ -27,7 +28,7 @@
                 </MudStack>
                 <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             </MudStack>
-            <MudTextField @bind-Value="File.Description" T="string" Placeholder="Replace description(s)" Variant="Variant.Outlined"/>
+            <MudTextField T="string" @bind-Value="File.Description"  Placeholder="Replace description(s)" Variant="Variant.Outlined"/>
         </MudStack>
         @* Preset Selector *@
         <MudStack Spacing="2">
@@ -41,7 +42,6 @@
         <MudExpansionPanels Elevation="0" Gutters="false" Dense="true">
             <MudDivider/>
             <AssetTypePanel File="File" AssetTypeChanged="OnAssetTypeChanged" />
-
             @if (!string.IsNullOrWhiteSpace(File?.AssetType))
             {
                 <AssetSubTypePanel File="File" AssetType="@File.AssetType" />
@@ -82,9 +82,9 @@
     {
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
+    
     private void OnAssetTypeChanged(string assetType)
     {
-        // optional: handle side effects here
         StateHasChanged();
     }
 

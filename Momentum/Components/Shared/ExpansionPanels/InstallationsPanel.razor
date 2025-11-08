@@ -31,7 +31,7 @@
                    Margin="Margin.Dense"
                    Placeholder="Select Installation"
                    Underline="false"
-                   SelectedValues="File.Campaigns"
+                   SelectedValues="File.Installations"
                    SelectedValuesChanged="@(vals => File.Installations = vals.ToList())">
             @foreach (var installation in _installations)
             {

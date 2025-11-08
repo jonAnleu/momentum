@@ -1,8 +1,19 @@
 <MudTooltip Text="Add description" Color="Color.Dark">
-    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
+    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen">
+        @if (File.Goals.Count == 0)
+        {
         <MudText Typo="Typo.caption">Add Goal</MudText>
+        }
+        else
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                <MudText Typo="Typo.caption">
+                    @string.Join(", ", File.Goals)
+                </MudText>
+            </MudStack>
+        }
         <MudSpacer/>
-        <MudDivider Vertical="true" FlexItem="true" />
+        <MudDivider Vertical="true" FlexItem="true"/>
         <MudIconButton Ripple="false" Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
     </MudPaper>
 </MudTooltip>
@@ -13,16 +24,52 @@
             <MudText Class="justify-start" Typo="Typo.caption">Add Goal</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
-        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
+        @if (File?.Goals != null)
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
+                @foreach (var goal in File.Goals)
+                {
+                    <MudChip T="string"
+                             OnClose="@(() => RemoveGoal(goal))"
+                             Size="Size.Small"
+                             CloseIcon="@Icons.Material.Filled.Close">
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@goal</MudText>
+                    </MudChip>
+                }
+            </MudStack>
+        }
+        <MudSelect T="string"
+                   MultiSelection="true"
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense"
+                   Placeholder="Select Goal"
+                   Underline="false"
+                   SelectedValues="File.Goals"
+                   SelectedValuesChanged="@(vals => File.Goals = vals.ToList())">
+            @foreach (var goal in _goals)
+            {
+                <MudSelectItem Value="@goal">@goal</MudSelectItem>
+            }
+        </MudSelect>        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
             <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
     </MudStack>
 </MudPopover>
 
 @code{
+    [Parameter] public UploadedFile? File { get; set; }
+
     private bool _open;
-    private bool _isVisible;
 
     private void ToggleOpen() => _open = !_open;
+    private readonly string[] _goals =
+    {
+        "Brand Awareness", "Customer Loyalty", "New Customers", "Product Launch"
+    };
+    
+    private void RemoveGoal(string goal)
+    {
+        if (File?.Goals == null) return;
+        File.Goals.Remove(goal);
+    }
 }

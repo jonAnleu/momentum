@@ -1,14 +1,14 @@
-<MudTooltip Text="Add Launch" Color="Color.Dark">
+<MudTooltip Text="Add Produced By" Color="Color.Dark">
     <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen">
-        @if (File.Launches.Count == 0)
+        @if (File.Installations.Count == 0)
         {
-        <MudText Typo="Typo.caption">Add Launch</MudText>
+        <MudText Typo="Typo.caption">Add Installation</MudText>
         }
         else
         {
             <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
                 <MudText Typo="Typo.caption">
-                    @string.Join(", ", File.Launches)
+                    @string.Join(", ", File.Installations)
                 </MudText>
             </MudStack>
         }
@@ -21,19 +21,20 @@
 <MudPopover Open="@_open" Fixed="true" Class="pa-2">
     <MudStack Spacing="2">
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
-            <MudText Class="justify-start" Typo="Typo.caption">Add Launch</MudText>
+            <MudText Class="justify-start" Typo="Typo.caption">Add Installation</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        @if (File?.Launches != null)
+        
+        @if (File?.Installations != null)
         {
             <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
-                @foreach (var launch in File.Launches)
+                @foreach (var installation in File.Installations)
                 {
                     <MudChip T="string"
-                             OnClose="@(() => RemoveLaunch(launch))"
+                             OnClose="@(() => RemoveInstallation(installation))"
                              Size="Size.Small"
                              CloseIcon="@Icons.Material.Filled.Close">
-                        <MudText Typo="Typo.caption" Color="Color.Primary">@launch</MudText>
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@installation</MudText>
                     </MudChip>
                 }
             </MudStack>
@@ -42,15 +43,16 @@
                    MultiSelection="true"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   Placeholder="Select Launch"
+                   Placeholder="Select Installation"
                    Underline="false"
-                   SelectedValues="File.Launches"
-                   SelectedValuesChanged="@(vals => File.Launches = vals.ToList())">
-            @foreach (var launch in _launches)
-            {
-                <MudSelectItem Value="@launch">@launch</MudSelectItem>
-            }
-        </MudSelect>        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
+                   SelectedValues="File.Installations"
+                   SelectedValuesChanged="@(vals => File.Installations = vals.ToList())">
+        @foreach (var installation in _installations)
+        {
+            <MudSelectItem Value="@installation">@installation</MudSelectItem>
+        }
+        </MudSelect>
+        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
             <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
     </MudStack>
@@ -60,16 +62,14 @@
     [Parameter] public UploadedFile? File { get; set; }
     private bool _open;
     private void ToggleOpen() => _open = !_open;
-
-    private readonly string[] _launches =
+      
+    private readonly string[] _installations =
     {
-        "Autumn", "Spring", "Summer", "Winter"
+        "Albany", "Beaufort", "Cherry Point", "Vendors"
     };
-
-    private void RemoveLaunch(string launch)
+    private void RemoveInstallation(string installation)
     {
-        if (File?.Launches == null) return;
-        File.Launches.Remove(launch);
+        if (File?.Installations == null) return;
+        File.Installations.Remove(installation);
     }
-
 }

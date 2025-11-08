@@ -1,14 +1,30 @@
-<MudExpansionPanel HeaderClass="pa-0" Gutters="false" Dense="true" HideIcon="true">
-    <TitleContent>
-        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
-            <MudIcon Size="Size.Small">
-                <i class="fa-solid fa-sitemap fa-2xs"></i>
-            </MudIcon>
-            <MudText Typo="Typo.subtitle2">Asset Sub-Type</MudText>
-            <MudText Color="Color.Error" Typo="Typo.body2">*</MudText>
+<MudTooltip Text="Add Asset Sub-Type" Color="Color.Dark">
+    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen">
+        @if (File.AssetSubtypes.Count == 0)
+        {
+        <MudText Typo="Typo.caption">Add Asset Sub-Type</MudText>
+            
+        }
+        else
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
+                    <MudText Typo="Typo.caption">
+                        @string.Join(", ", File.AssetSubtypes)
+                    </MudText>
+            </MudStack>
+        }
+        <MudSpacer/>
+        <MudDivider Vertical="true" FlexItem="true"/>
+        <MudIconButton Ripple="false" Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
+    </MudPaper>
+</MudTooltip>
+
+<MudPopover Open="@_open" Fixed="true" Class="pa-2">
+    <MudStack Spacing="2">
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
+            <MudText Class="justify-start" Typo="Typo.caption">Add Asset Sub-Type</MudText>
+            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-    </TitleContent>
-    <ChildContent>
         @if (File?.AssetSubtypes != null)
         {
             <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
@@ -36,12 +52,20 @@
                 <MudSelectItem Value="@assetSubType">@assetSubType</MudSelectItem>
             }
         </MudSelect>
-    </ChildContent>
-</MudExpansionPanel>
+        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
+            <MudButton Variant="Variant.Filled" 
+                       Color="Color.Error" 
+                       Size="Size.Small" 
+                       OnClick="ToggleOpen">OK</MudButton>
+        </MudStack>
+    </MudStack>
+</MudPopover>
 
 @code {
     [Parameter] public UploadedFile? File { get; set; }
     [Parameter] public string? AssetType { get; set; }
+    private bool _open;
+    private void ToggleOpen() => _open = !_open;
     
     protected override void OnParametersSet()
     {
@@ -63,9 +87,9 @@
         _ => Array.Empty<string>()
     };
     
-  private void RemoveAssetSubType(string sub)
+    private void RemoveAssetSubType(string sub)
     {
-    if (File?.AssetSubtypes == null) return;
+        if (File?.AssetSubtypes == null) return;
         File?.AssetSubtypes?.Remove(sub);
     }
 }

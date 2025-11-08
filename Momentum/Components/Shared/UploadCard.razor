@@ -1,3 +1,4 @@
+@using System.Net
 @inject FileUploadStateService FileState
 <style>
     .border-red {
@@ -46,23 +47,28 @@
         <MudStack Spacing="1">
             <MudText Typo="Typo.caption"><b>Required fields</b></MudText>
             <TitleField File="File"/>
-            <AssetTypeField File="File"/>
+            <AssetTypeField File="File" AssetTypeChanged="OnAssetTypeChanged"/>
+            @if (!string.IsNullOrWhiteSpace(File?.AssetType))
+            {
+            <AssetSubTypeField File="File" AssetType="@File.AssetType"/>
+                
+            }
             <UsageRightsField/>
-            <GoalField/>
+            <GoalField File="File"/>
             @if (ShowOptionalFields)
             {
                 <MudText Class="mt-2" Typo="Typo.caption"><b>Optional fields</b></MudText>
-                <DescriptionField/>
+                <DescriptionField File="File" />
                 <PublicationDateField/>
                 <TagsField/>
                 <CopyrightField/>
-                <TargetPersonaField/>
-                <ChannelField/>
-                <LaunchField/>
+                <TargetPersonaField File="File"/>
+                <ChannelField File="File"/>
+                <LaunchField File="File"/>
                 <YearField/>
-                <ThemeField/>
-                <CampaignField/>
-                <ProducedByField/>
+                <ThemeField File="File"/>
+                <CampaignField File="File"/>
+                <InstallationsField File="File"/>
                 <RelatedAssetsFields/>
             }
         </MudStack>
@@ -99,6 +105,10 @@
             _fileName = string.Empty;
             _fileExtension = string.Empty;
         }
+    }
+    private void OnAssetTypeChanged(string assetType)
+    {
+        StateHasChanged();
     }
 
     protected override void OnParametersSet()

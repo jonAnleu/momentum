@@ -1,6 +1,11 @@
 <MudTooltip Text="Add title" Color="Color.Dark">
-    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
-        <MudText Typo="Typo.caption">@File.Title</MudText>
+    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true">
+        <MudTextField @bind-Value="File.Title"
+                      T="string" 
+                      Placeholder="@File.Name" 
+                      Typo="Typo.caption"
+                      Immediate="true"
+                      Underline="false"/>        
         <MudSpacer/>
         <MudDivider  Vertical="true" FlexItem="true" />
         <MudIconButton Ripple="false" 
@@ -9,29 +14,7 @@
     </MudPaper>
 </MudTooltip>
 
-<MudPopover Open="@_open" Fixed="true" Class="pa-2">
-    <MudStack Spacing="2">
-        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
-            <MudText Class="justify-start" Typo="Typo.caption">Add Title</MudText>
-            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
-        </MudStack>
-        <MudTextField @bind-Value="File.Title"
-                      T="string" 
-                      Placeholder="Description" 
-                      Variant="Variant.Outlined" 
-                      Immediate="true"
-                      Lines="5"/>
-        <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
-            <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
-        </MudStack>
-    </MudStack>
-</MudPopover>
-
 @code{
     [Parameter] public UploadedFile File { get; set; } = default!;
 
-    private bool _open;
-    private bool _isVisible;
-
-    private void ToggleOpen() => _open = !_open;
 }

@@ -165,6 +165,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWFuYWdlUHJlc2V0c0ljb25CdXR0b24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/AssetSubTypeField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0Fzc2V0U3ViVHlwZUZpZWxkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/AssetTypeField.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0Fzc2V0VHlwZUZpZWxkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -189,12 +193,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0dvYWxGaWVsZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/LaunchField.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0xhdW5jaEZpZWxkLnJhem9y
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/InstallationsField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0luc3RhbGxhdGlvbnNGaWVsZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/ProducedByField.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1Byb2R1Y2VkQnlGaWVsZC5yYXpvcg==
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/LaunchField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0xhdW5jaEZpZWxkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/PublicationDateField.razor]
