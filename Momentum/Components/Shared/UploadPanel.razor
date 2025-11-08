@@ -40,7 +40,12 @@
         @* Expansion Panels *@
         <MudExpansionPanels Elevation="0" Gutters="false" Dense="true">
             <MudDivider/>
-            <AssetTypePanel File="File"/>
+            <AssetTypePanel File="File" AssetTypeChanged="OnAssetTypeChanged" />
+
+            @if (!string.IsNullOrWhiteSpace(File?.AssetType))
+            {
+                <AssetSubTypePanel File="File" AssetType="File.AssetType" />
+            }
             <UsageRightsPanel File="File"/>
             <GoalPanel File="File"/>
             <TargetPersonaPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
@@ -76,6 +81,11 @@
     private void ToggleVisibility()
     {
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
+    }
+    private void OnAssetTypeChanged(string assetType)
+    {
+        // optional: handle side effects here
+        StateHasChanged();
     }
 
 }

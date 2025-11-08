@@ -25,7 +25,8 @@
         }
 
         <MudSelect T="string"
-                   @bind-Value="File.AssetType"
+                   Value="File.AssetType"
+                   ValueChanged="OnAssetTypeChanged"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense" 
                    Placeholder="Select Asset Type"
@@ -42,15 +43,27 @@
 
 @code {
     [Parameter] public UploadedFile? File { get; set; }
+    [Parameter] public EventCallback<string> AssetTypeChanged { get; set; }
 
     private readonly string[] _assetTypes =
     {
         "Audio", "Document", "Graphic/Visual", "Photography", "Video"
     };
 
-    private void ClearAssetType()
+    private async Task OnAssetTypeChanged(string newValue)
+    {
+        if (File is not null)
+            File.AssetType = newValue;
+
+        await AssetTypeChanged.InvokeAsync(newValue);
+    }
+
+    private async Task ClearAssetType()
     {
         if (File is not null)
             File.AssetType = string.Empty;
+
+        await AssetTypeChanged.InvokeAsync(string.Empty);
     }
+
 }

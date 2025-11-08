@@ -9,15 +9,64 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
+        @if (File?.AssetSubtypes != null)
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
+                @foreach (var assetSubType in File.AssetSubtypes)
+                {
+                    <MudChip T="string"
+                             OnClose="@(() => RemoveAssetSubType(assetSubType))"
+                             Size="Size.Small"
+                             CloseIcon="@Icons.Material.Filled.Close">
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@assetSubType</MudText>
+                    </MudChip>
+                }
+            </MudStack>
+        }
         <MudSelect T="string"
-                   CloseIcon="false"
-                   Variant="Variant.Filled"
-                   Placeholder="Enter Asset Type"
-                   Underline="false">
+                   MultiSelection="true"
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense"
+                   Placeholder="Select Asset Sub-Type"
+                   Underline="false"
+                   SelectedValues="File.AssetSubtypes"
+                   SelectedValuesChanged="@(vals => File.AssetSubtypes = vals.ToList())">
+            @foreach (var assetSubType in AssetSubTypes)
+            {
+                <MudSelectItem Value="@assetSubType">@assetSubType</MudSelectItem>
+            }
         </MudSelect>
     </ChildContent>
 </MudExpansionPanel>
 
 @code {
+    [Parameter] public UploadedFile? File { get; set; }
+    [Parameter] public string? AssetType { get; set; }
     
+    protected override void OnParametersSet()
+    {
+        if (File?.AssetSubtypes != null && File.AssetSubtypes.Any())
+        {
+            var validValues = AssetSubTypes;
+            File.AssetSubtypes = File.AssetSubtypes
+                .Where(x => validValues.Contains(x))
+                .ToList();
+        }
+    }
+   
+    private IEnumerable<string> AssetSubTypes => AssetType switch
+    {
+        "Audio" => new[] { "Brand element", "Sound Clips", "Stock Music" },
+        "Document" => new[] { "Brand Element", "Brief", "Presentation" },
+        "Graphic/Visual" => new[] { "Artwork", "Banner", "Brand Element", "Logo", "Poster" },
+        "Photography" => new []{ "Brand Element", "Event Photography", "Stock Photography"},
+        "Video" => new []{ "Brand Element", "Campaign Video", "Event Video"},
+        _ => Array.Empty<string>()
+    };
+    
+  private void RemoveAssetSubType(string sub)
+    {
+    if (File?.AssetSubtypes == null) return;
+        File?.AssetSubtypes?.Remove(sub);
+    }
 }
