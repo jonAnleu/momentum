@@ -1,4 +1,7 @@
-<MudExpansionPanel HeaderClass="pa-0" Gutters="false" Dense="true" HideIcon="true">
+<MudExpansionPanel HeaderClass="pa-0" 
+                   Gutters="false" 
+                   Dense="true" 
+                   HideIcon="true">
     <TitleContent>
         <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="1">
             <MudIcon Size="Size.Small">
@@ -8,29 +11,44 @@
             <MudText Color="Color.Error" Typo="Typo.body2">*</MudText>
         </MudStack>
     </TitleContent>
+    
     <ChildContent>
-        <MudForm>
-            <MudStack Class="mb-4" Row="true" AlignItems="AlignItems.Center" Spacing="0" >
-                <MudIconButton Icon="@Icons.Material.Filled.RadioButtonUnchecked" Size="Size.Small" OnClick="Reset"/>
-                <MudText Typo="Typo.body2">Clear Selection</MudText>
-            </MudStack>
-            <MudRadioGroup @bind-Value="SelectedOption">
-                <MudStack Spacing="0">
-                    <MudRadio Value="@("Available")" Size="Size.Small" Dense="true">Available</MudRadio>
-                    <MudRadio Value="@("Confidential")" Size="Size.Small" Dense="true">Confidential</MudRadio>
-                    <MudRadio Value="@("On request")" Size="Size.Small" Dense="true">On request</MudRadio>
-                    <MudRadio Value="@("Special usage rights")" Size="Size.Small" Dense="true">Special usage rights</MudRadio>
-                </MudStack>
-            </MudRadioGroup>
-        </MudForm>
+        @if (!string.IsNullOrEmpty(File?.UsageRights))
+        {
+            <MudChip T="string" 
+                     OnClose="ClearUsageRights" 
+                     Size="Size.Small" 
+                     CloseIcon="@Icons.Material.Filled.Close">
+                <MudText Typo="Typo.caption" Color="Color.Primary">@File.UsageRights</MudText>
+            </MudChip>
+        }
+
+        <MudSelect T="string"
+                   @bind-Value="File.UsageRights"
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense" 
+                   Placeholder="Select Usage Rights"
+                   Underline="false"
+                   Immediate="true">
+            @foreach (var usageRight in _usageRights)
+            {
+                <MudSelectItem Value="@usageRight">@usageRight</MudSelectItem>
+            }
+        </MudSelect>
     </ChildContent>
 </MudExpansionPanel>
 
 @code {
-    public string SelectedOption { get; set; }
+    [Parameter] public UploadedFile? File { get; set; }
 
-    private void Reset()
+    private readonly string[] _usageRights =
     {
-        SelectedOption = null;
+       "Available", "Confidential", "On request", "Special usage rights"
+    };
+
+    private void ClearUsageRights()
+    {
+        if (File is not null)
+            File.UsageRights = string.Empty;
     }
 }

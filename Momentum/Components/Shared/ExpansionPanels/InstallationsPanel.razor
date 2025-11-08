@@ -5,22 +5,22 @@
                 <MudIcon Size="Size.Small">
                     <i class="fa-solid fa-sitemap fa-2xs"></i>
                 </MudIcon>
-                <MudText Typo="Typo.subtitle2">Target Persona</MudText>
+                <MudText Typo="Typo.subtitle2">Installations</MudText>
             </MudStack>
             <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (File?.TargetPersonas != null)
+        @if (File?.Installations != null)
         {
             <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
-                @foreach (var targetPersona in File.TargetPersonas)
+                @foreach (var installation in File.Installations)
                 {
                     <MudChip T="string"
-                             OnClose="@(() => RemoveTargetPersona(targetPersona))"
+                             OnClose="@(() => RemoveInstallation(installation))"
                              Size="Size.Small"
                              CloseIcon="@Icons.Material.Filled.Close">
-                        <MudText Typo="Typo.caption" Color="Color.Primary">@targetPersona</MudText>
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@installation</MudText>
                     </MudChip>
                 }
             </MudStack>
@@ -29,13 +29,13 @@
                    MultiSelection="true"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   Placeholder="Select Target Persona"
+                   Placeholder="Select Installation"
                    Underline="false"
-                   SelectedValues="File.TargetPersonas"
-                   SelectedValuesChanged="@(vals => File.TargetPersonas = vals.ToList())">
-            @foreach (var targetPersona in _targetPersonas)
+                   SelectedValues="File.Campaigns"
+                   SelectedValuesChanged="@(vals => File.Installations = vals.ToList())">
+            @foreach (var installation in _installations)
             {
-                <MudSelectItem Value="@targetPersona">@targetPersona</MudSelectItem>
+                <MudSelectItem Value="@installation">@installation</MudSelectItem>
             }
         </MudSelect>
     </ChildContent>
@@ -51,14 +51,14 @@
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
     
-
-        private readonly string[] _targetPersonas =
-        {
-            "Adults", "Kids", "Teenagers", "Young Adults"
-        };
-        private void RemoveTargetPersona(string targetPersona)
-        {
-            if (File?.TargetPersonas == null) return;
-            File.TargetPersonas.Remove(targetPersona);
-        }
+    private readonly string[] _installations =
+    {
+        "Albany", "Beaufort", "Cherry Point", "Vendors"
+    };
+    private void RemoveInstallation(string installation)
+    {
+        if (File?.Installations == null) return;
+        File.Installations.Remove(installation);
+    }
+ 
 }

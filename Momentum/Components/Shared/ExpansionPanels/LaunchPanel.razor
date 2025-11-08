@@ -11,24 +11,38 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        <MudForm>
-            <MudStack Class="mb-4" Row="true" AlignItems="AlignItems.Center" Spacing="0" >
-                <MudIconButton Icon="@Icons.Material.Filled.RadioButtonUnchecked" Size="Size.Small" OnClick="Reset"/>
-                <MudText Typo="Typo.body2">Select All</MudText>
+        @if (File?.Launches != null)
+        {
+            <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
+                @foreach (var launch in File.Launches)
+                {
+                    <MudChip T="string"
+                             OnClose="@(() => RemoveLaunch(launch))"
+                             Size="Size.Small"
+                             CloseIcon="@Icons.Material.Filled.Close">
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@launch</MudText>
+                    </MudChip>
+                }
             </MudStack>
-            <MudRadioGroup @bind-Value="SelectedOption">
-                <MudStack Spacing="0">
-                    <MudRadio Value="@("Autumn")" Size="Size.Small" Dense="true">Autumn</MudRadio>
-                    <MudRadio Value="@("Spring")" Size="Size.Small" Dense="true">Spring</MudRadio>
-                    <MudRadio Value="@("Summer")" Size="Size.Small" Dense="true">Summer</MudRadio>
-                    <MudRadio Value="@("Winter")" Size="Size.Small" Dense="true">Winter</MudRadio>
-                </MudStack>
-            </MudRadioGroup>
-        </MudForm>
+        }
+        <MudSelect T="string"
+                   MultiSelection="true"
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense"
+                   Placeholder="Select Launch"
+                   Underline="false"
+                   SelectedValues="File.Launches"
+                   SelectedValuesChanged="@(vals => File.Launches = vals.ToList())">
+            @foreach (var launch in _launches)
+            {
+                <MudSelectItem Value="@launch">@launch</MudSelectItem>
+            }
+        </MudSelect>
     </ChildContent>
 </MudExpansionPanel>
 
 @code {
+    [Parameter] public UploadedFile? File { get; set; }
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     
@@ -36,10 +50,14 @@
     {
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
-    public string SelectedOption { get; set; }
-
-    private void Reset()
+    private readonly string[] _launches =
     {
-        SelectedOption = null;
+       "Autumn", "Spring", "Summer", "Winter"
+    };
+    private void RemoveLaunch(string launch)
+    {
+        if (File?.Launches == null) return;
+        File.Launches.Remove(launch);
     }
+ 
 }

@@ -7,10 +7,11 @@
                                 IsGroupMode="true"/>
     </MudStack>
     <MudStack Class="overflow-auto px-4" Spacing="4">
+        
         @* Update Title*@
         <MudStack Spacing="2">
             <MudTextField @bind-Value="File.Title"
-                T="string" Margin="Margin.Dense"
+                          T="string" Margin="Margin.Dense"
                           Variant="Variant.Outlined"
                           Underline="false" Placeholder="Update title"
                           Immediate="true"/>
@@ -40,15 +41,15 @@
         <MudExpansionPanels Elevation="0" Gutters="false" Dense="true">
             <MudDivider/>
             <AssetTypePanel File="File"/>
-            <UsageRightsPanel/>
+            <UsageRightsPanel File="File"/>
             <GoalPanel File="File"/>
             <TargetPersonaPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <ChannelPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
-            <LaunchPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+            <LaunchPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <YearPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <ThemePanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <CampaignPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
-            <ProducedByPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+            <InstallationsPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <RelatedAssetsPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <AddPublicationDatePanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <TagsPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>

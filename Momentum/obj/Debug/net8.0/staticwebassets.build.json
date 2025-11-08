@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rl/9CN4itoa8Rqjnn8BL1aBHDczGno+2KvgocQZaglY=",
+  "Hash": "ysfm7GcSK6gQEVZCw2hkSeFtrgoXgp2qEz6LGhMqn6k=",
   "Source": "Momentum",
   "BasePath": "_content/Momentum",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/1d631aea-0960-4a11-9bb1-684e75dd92f8.jpeg"
+    },
+    {
+      "Identity": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/uploads/2cf786fe-270d-46cb-a98e-985ad955c7d4.jpeg",
+      "SourceId": "Momentum",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/",
+      "BasePath": "_content/Momentum",
+      "RelativePath": "uploads/2cf786fe-270d-46cb-a98e-985ad955c7d4.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/2cf786fe-270d-46cb-a98e-985ad955c7d4.jpeg"
     },
     {
       "Identity": "/Users/jonanleu/repos/momentum/Momentum/wwwroot/uploads/71a8765e-11e1-4997-82ee-2de9cbaf1008.jpeg",

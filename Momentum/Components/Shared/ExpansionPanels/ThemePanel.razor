@@ -11,23 +11,31 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedTheme))
+        @if (File?.Themes != null)
         {
-            <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedTheme</MudText> 
-            </MudChip>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
+                @foreach (var theme in File.Themes)
+                {
+                    <MudChip T="string"
+                             OnClose="@(() => RemoveTheme(theme))"
+                             Size="Size.Small"
+                             CloseIcon="@Icons.Material.Filled.Close">
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@theme</MudText>
+                    </MudChip>
+                }
+            </MudStack>
         }
         <MudSelect T="string"
-                   @bind-Value="SelectedTheme"
+                   MultiSelection="true"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   OpenIcon=""
-                   CloseIcon="false"
-                   Placeholder="Enter theme"
-                   Underline="false">
+                   Placeholder="Select Theme"
+                   Underline="false"
+                   SelectedValues="File.Themes"
+                   SelectedValuesChanged="@(vals => File.Themes = vals.ToList())">
             @foreach (var theme in _themes)
             {
-                <MudSelectItem Value="theme">@theme</MudSelectItem>
+                <MudSelectItem Value="@theme">@theme</MudSelectItem>
             }
         </MudSelect>
        
@@ -44,14 +52,13 @@
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
 
-    private string? SelectedTheme { get; set; }
-
-    void Closed(MudChip<string> chip) {
-        SelectedTheme = null; 
-    }
-
     private readonly string[] _themes =
     {
         "Endorsement", "Enjoyment", "Holiday", "Lifestyle", "Sustainability"
     };
+    private void RemoveTheme(string launch)
+    {
+        if (File?.Themes == null) return;
+        File.Themes.Remove(launch);
+    }
 }

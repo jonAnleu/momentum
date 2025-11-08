@@ -48,7 +48,7 @@ namespace Momentum.Services
         public List<string> Launches { get; set; } = new List<string>();
         public List<string> Themes { get; set; } = new List<string>();
         public List<string> Campaigns { get; set; } = new List<string>();
-        public List<string> ProducedBy { get; set; } = new List<string>();
+        public List<string> Installations { get; set; } = new List<string>();
         public List<string> Tags { get; set; } = new List<string>();
         public List<string> Collections { get; set; } = new List<string>();
 

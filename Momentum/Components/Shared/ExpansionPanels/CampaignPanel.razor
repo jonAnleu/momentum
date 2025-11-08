@@ -11,23 +11,31 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        @if (!string.IsNullOrEmpty(SelectedCampaign))
+        @if (File?.Campaigns != null)
         {
-            <MudChip T="string" OnClose="Closed" Size="Size.Small" CloseIcon="@Icons.Material.Filled.Close" >
-                <MudText Typo="Typo.caption" Color="Color.Primary">@SelectedCampaign</MudText> 
-            </MudChip>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="0">
+                @foreach (var campaign in File.Campaigns)
+                {
+                    <MudChip T="string"
+                             OnClose="@(() => RemoveCampaign(campaign))"
+                             Size="Size.Small"
+                             CloseIcon="@Icons.Material.Filled.Close">
+                        <MudText Typo="Typo.caption" Color="Color.Primary">@campaign</MudText>
+                    </MudChip>
+                }
+            </MudStack>
         }
         <MudSelect T="string"
-                   @bind-Value="SelectedCampaign"
+                   MultiSelection="true"
                    Variant="Variant.Outlined"
                    Margin="Margin.Dense"
-                   OpenIcon=""
-                   CloseIcon="false"
-                   Placeholder="Enter campaign"
-                   Underline="false">
+                   Placeholder="Select Campaign"
+                   Underline="false"
+                   SelectedValues="File.Campaigns"
+                   SelectedValuesChanged="@(vals => File.Campaigns = vals.ToList())">
             @foreach (var campaign in _campaigns)
             {
-                <MudSelectItem Value="campaign">@campaign</MudSelectItem>
+                <MudSelectItem Value="@campaign">@campaign</MudSelectItem>
             }
         </MudSelect>
     </ChildContent>
@@ -43,12 +51,6 @@
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
 
-    private string? SelectedCampaign{ get; set; }
-
-    void Closed(MudChip<string> chip) {
-        SelectedCampaign = null; 
-    }
-
     private readonly string[] _campaigns =
     {
         "ConferenceCon 2025",
@@ -56,4 +58,9 @@
         "City Festival",
         "Snow Season"
     };
+    private void RemoveCampaign(string campaign)
+    {
+        if (File?.Campaigns == null) return;
+        File.Campaigns.Remove(campaign);
+    }
 }

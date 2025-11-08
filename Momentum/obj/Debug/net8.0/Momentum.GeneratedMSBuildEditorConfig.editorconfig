@@ -125,12 +125,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRXhwYW5zaW9uUGFuZWxzL0dvYWxQYW5lbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/ExpansionPanels/LaunchPanel.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRXhwYW5zaW9uUGFuZWxzL0xhdW5jaFBhbmVsLnJhem9y
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/ExpansionPanels/InstallationsPanel.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRXhwYW5zaW9uUGFuZWxzL0luc3RhbGxhdGlvbnNQYW5lbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/ExpansionPanels/ProducedByPanel.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRXhwYW5zaW9uUGFuZWxzL1Byb2R1Y2VkQnlQYW5lbC5yYXpvcg==
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/ExpansionPanels/LaunchPanel.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRXhwYW5zaW9uUGFuZWxzL0xhdW5jaFBhbmVsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/ExpansionPanels/RelatedAssetsPanel.razor]
