@@ -11,12 +11,13 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        <MudTextField T="string" Placeholder="Add copyright" Variant="Variant.Outlined"/>
+        <MudTextField T="string" @bind-Value="File.Copyright" Placeholder="Add copyright" Variant="Variant.Outlined"/>
 
     </ChildContent>
 </MudExpansionPanel>
 
 @code {
+    [Parameter] public UploadedFile? File { get; set; }
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     

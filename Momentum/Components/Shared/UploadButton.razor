@@ -23,7 +23,9 @@
         {
             Name = file.Name,
             ContentType = file.ContentType,
-            Data = ms.ToArray()
+            Data = ms.ToArray(),
+            Title = Path.GetFileNameWithoutExtension(file.Name)
+
         };
 
         FileState.SetFiles(new List<UploadedFile> { uploaded });

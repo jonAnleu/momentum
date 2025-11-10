@@ -47,18 +47,22 @@
                 <AssetSubTypePanel File="File" AssetType="@File.AssetType" />
             }
             <UsageRightsPanel File="File"/>
+            @if (File.UsageRights == "Special usage rights")
+            {
+            <PleaseSpecifyPanel File="File"/>
+            }
             <GoalPanel File="File"/>
             <TargetPersonaPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <ChannelPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <LaunchPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
-            <YearPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+            <YearPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <ThemePanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <CampaignPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <InstallationsPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <RelatedAssetsPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
-            <AddPublicationDatePanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+            <AddPublicationDatePanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <TagsPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
-            <CopyrightPanel ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+            <CopyrightPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <AdvancedRightsPanel/>
             <CustomFieldsPanel/>
             <CollectionsPanel/>

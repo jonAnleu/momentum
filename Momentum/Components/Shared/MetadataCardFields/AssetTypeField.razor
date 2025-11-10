@@ -1,4 +1,4 @@
-<MudTooltip Text="Add description" Color="Color.Dark">
+<MudTooltip Text="Add Asset Type" Color="Color.Dark">
     <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
         @if (!string.IsNullOrEmpty(File?.AssetType))
         {
@@ -18,7 +18,11 @@
     <MudStack Spacing="2">
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
             <MudText Class="justify-start" Typo="Typo.caption">Add Asset Type</MudText>
-            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
+            <MudIconButton 
+                Variant="Variant.Filled" 
+                Icon="@Icons.Material.Filled.Refresh" 
+                Size="Size.Small"
+                OnClick="ClearAssetType"/>
         </MudStack>
         @if (!string.IsNullOrEmpty(File?.AssetType))
         {

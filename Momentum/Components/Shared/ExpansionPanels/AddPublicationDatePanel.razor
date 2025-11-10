@@ -11,15 +11,16 @@
         </MudStack>
     </TitleContent>
     <ChildContent>
-        <MudDatePicker Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense"
+        <MudDatePicker @bind-Date="File.PublicationDate" Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense"
                        Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" ShowToolbar="false" Editable="true"
                        Placeholder="Add Publication Date"/>
-        <MudTimePicker Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" 
+        <MudTimePicker @bind-Time="File.PublicationTime" Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" 
                        Placeholder="Add Publication Time" AmPm="true" />
     </ChildContent>
 </MudExpansionPanel>
 
 @code {
+    [Parameter] public UploadedFile? File { get; set; } 
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
 

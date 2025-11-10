@@ -1,8 +1,15 @@
 <MudTooltip Text="Add Year" Color="Color.Dark">
-    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
-        <MudTextField T="string"  Underline="false" Placeholder="Add Year" Typo="Typo.caption"/>
+    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen">
+        @if (File.Year > 0)
+        {
+        <MudTextField T="int?" @bind-Value="File.Year" Underline="false" Placeholder="Add Year" Typo="Typo.caption"/>
+        }
+        else
+        {
+        <MudTextField T="int?" Underline="false" Placeholder="Add Year" Typo="Typo.caption"/>
+        }
         <MudSpacer/>
-        <MudDivider Vertical="true" FlexItem="true" />
+        <MudDivider Vertical="true" FlexItem="true"/>
         <MudIconButton Ripple="false" Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
     </MudPaper>
 </MudTooltip>
@@ -13,7 +20,12 @@
             <MudText Class="justify-start" Typo="Typo.caption">Add Year</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        <MudTextField T="string" Variant="Variant.Outlined" Underline="false" Placeholder="Add Year" Typo="Typo.caption"/>
+        <MudTextField T="int?"
+                      @bind-Value="File.Year" 
+                      Variant="Variant.Outlined"
+                      Underline="false" 
+                      Placeholder="Add Year"
+                      Typo="Typo.caption"/>
         <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
             <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
         </MudStack>
@@ -21,8 +33,8 @@
 </MudPopover>
 
 @code{
+    [Parameter] public UploadedFile? File { get; set; }
     private bool _open;
-    private bool _isVisible;
 
     private void ToggleOpen() => _open = !_open;
 }

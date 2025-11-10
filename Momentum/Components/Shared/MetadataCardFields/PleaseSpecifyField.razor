@@ -1,0 +1,20 @@
+<MudTooltip Text="Please Specify" Color="Color.Dark">
+    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true">
+        <MudTextField @bind-Value="File.UsageRightsDetails"
+                      T="string" 
+                      Placeholder="Add Please Specify"
+                      Margin="Margin.Dense"
+                      Typo="Typo.caption"
+                      Immediate="true"
+                      Underline="false"/>        
+        <MudSpacer/>
+        <MudDivider  Vertical="true" FlexItem="true" />
+        <MudIconButton Ripple="false" 
+                       Icon="@Icons.Material.Filled.Refresh" 
+                       Size="Size.Small"/>
+    </MudPaper>
+</MudTooltip>
+
+@code{
+    [Parameter] public UploadedFile File { get; set; } 
+}

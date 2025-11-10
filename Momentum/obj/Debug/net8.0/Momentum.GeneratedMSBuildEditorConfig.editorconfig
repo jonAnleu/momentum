@@ -133,6 +133,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRXhwYW5zaW9uUGFuZWxzL0xhdW5jaFBhbmVsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/ExpansionPanels/PleaseSpecifyPanel.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRXhwYW5zaW9uUGFuZWxzL1BsZWFzZVNwZWNpZnlQYW5lbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/ExpansionPanels/RelatedAssetsPanel.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvRXhwYW5zaW9uUGFuZWxzL1JlbGF0ZWRBc3NldHNQYW5lbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -199,6 +203,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/LaunchField.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL0xhdW5jaEZpZWxkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/PleaseSpecifyField.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvTWV0YWRhdGFDYXJkRmllbGRzL1BsZWFzZVNwZWNpZnlGaWVsZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jonanleu/repos/momentum/Momentum/Components/Shared/MetadataCardFields/PublicationDateField.razor]

@@ -9,7 +9,7 @@
                  ShowOptional="ShowAllOptionalFields"
                  OnVisibilityChanged="HandleVisibilityChanged" />
     <MudStack Spacing="4">
-        <UploadBrowserToolbar/>
+        <UploadBrowserToolbar File="_currentFile" />
         <UploadCard File="_currentFile"
                     IsSelected="_currentFile.IsSelected"
                     ShowOptionalFields="ShowAllOptionalFields"
@@ -36,8 +36,11 @@
 
     private void HandleCardSelection(UploadedFile file)
     {
-        _currentFile.IsSelected = !_currentFile.IsSelected;
-        StateHasChanged();
+        if (_currentFile != null)  
+        {
+            _currentFile.IsSelected = !_currentFile.IsSelected;
+            StateHasChanged();
+        }
     }
 
     private void HandleVisibilityChanged(bool visible)

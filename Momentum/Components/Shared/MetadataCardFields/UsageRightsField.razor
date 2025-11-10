@@ -1,28 +1,68 @@
-<MudTooltip Text="Add description" Color="Color.Dark">
-    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
-        <MudText Typo="Typo.caption">Add Usage Rights</MudText>
+<MudTooltip Text="Add Usage Rights" Color="Color.Dark">
+    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen">
+        @if (!string.IsNullOrEmpty(File?.UsageRights))
+        {
+            <MudText Typo="Typo.caption">@File.UsageRights</MudText>
+        }
+        else
+        {
+            <MudText Typo="Typo.caption">Add Usage Rights</MudText>
+        }
         <MudSpacer/>
-        <MudDivider Vertical="true" FlexItem="true" />
+        <MudDivider Vertical="true" FlexItem="true"/>
         <MudIconButton Ripple="false" Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
     </MudPaper>
 </MudTooltip>
 
 <MudPopover Open="@_open" Fixed="true" Class="pa-2">
     <MudStack Spacing="2">
-        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" >
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
             <MudText Class="justify-start" Typo="Typo.caption">Add Usage Rights</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-        <MudTextField T="string" Placeholder="Description" Variant="Variant.Outlined" Lines="5"/>
+        @if (!string.IsNullOrEmpty(File?.UsageRights))
+        {
+            <MudChip T="string"
+                     OnClose="ClearUsageRights"
+                     Size="Size.Small"
+                     CloseIcon="@Icons.Material.Filled.Close">
+                <MudText Typo="Typo.caption" Color="Color.Primary">@File.UsageRights</MudText>
+            </MudChip>
+        }
+
+        <MudSelect T="string"
+                   @bind-Value="File.UsageRights"
+                   Variant="Variant.Outlined"
+                   Margin="Margin.Dense"
+                   Placeholder="Select Usage Rights"
+                   Underline="false"
+                   Immediate="true">
+            @foreach (var usageRight in _usageRights)
+            {
+                <MudSelectItem Value="@usageRight">@usageRight</MudSelectItem>
+            }
+        </MudSelect>
         <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
-            <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK
+            </MudButton>
         </MudStack>
     </MudStack>
 </MudPopover>
 
 @code{
+    [Parameter] public UploadedFile? File { get; set; }
     private bool _open;
-    private bool _isVisible;
-
     private void ToggleOpen() => _open = !_open;
+
+    private readonly string[] _usageRights =
+    {
+        "Available", "Confidential", "On request", "Special usage rights"
+    };
+
+    private void ClearUsageRights()
+    {
+        if (File is not null)
+            File.UsageRights = string.Empty;
+    }
+
 }

@@ -2,19 +2,31 @@
     <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true">
         <MudTextField @bind-Value="File.Title"
                       T="string" 
-                      Placeholder="@File.Name" 
+                      Placeholder="Add Title" 
                       Typo="Typo.caption"
                       Immediate="true"
-                      Underline="false"/>        
-        <MudSpacer/>
-        <MudDivider  Vertical="true" FlexItem="true" />
-        <MudIconButton Ripple="false" 
-                       Icon="@Icons.Material.Filled.Refresh" 
-                       Size="Size.Small"/>
+                      Underline="false"/> 
+        @if (IsTitleModified)
+        {
+            <MudSpacer/>
+            <MudDivider  Vertical="true" FlexItem="true" />
+            <MudIconButton Ripple="false" 
+                           Icon="@Icons.Material.Filled.Refresh" 
+                           Size="Size.Small"
+                           OnClick="ResetTitle"/>
+        }
+        
     </MudPaper>
 </MudTooltip>
 
 @code{
     [Parameter] public UploadedFile File { get; set; } = default!;
+    
+    private string OriginalTitle => Path.GetFileNameWithoutExtension(File.Name);
+    private bool IsTitleModified => !string.IsNullOrEmpty(File.Title) && File.Title != OriginalTitle;
 
+    private void ResetTitle()
+    {
+        File.Title = OriginalTitle;
+    }
 }

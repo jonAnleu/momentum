@@ -7,22 +7,22 @@
 </style>
 
 <MudCard Class="@($"cursor-pointer  {(IsSelected ? "border-red" : "")} {(Hovered ? "border-red" : "")}")"
-         Outlined="true"  
-         Style="max-width: 232px; height: fit-content;" 
+         Outlined="true"
+         Style="max-width: 232px; height: fit-content;"
          @onmouseenter="() => Hovered = true"
          @onmouseleave="() => Hovered = false">
-    <div style="position: relative; height: 140px;" @onclick="Toggle" >
-        <MudCardMedia Class="rounded-t-sm" Image="@_imageDataUrl" Height="140" Style="width: 100%; object-fit: cover;" />
+    <div style="position: relative; height: 140px;" @onclick="Toggle">
+        <MudCardMedia Class="rounded-t-sm" Image="@_imageDataUrl" Height="140" Style="width: 100%; object-fit: cover;"/>
         <MudIconButton Href="/" Class="position-absolute"
                        Icon="@Icons.Material.Rounded.Close"
                        Variant="Variant.Filled"
                        Size="Size.Small"
                        Style="bottom: 130px; left: 10px; background-color: white; color: black;"
                        OnClick="RemoveFile"
-                      >
+        >
         </MudIconButton>
 
-        <MudChip Class="position-absolute" T="string" 
+        <MudChip Class="position-absolute" T="string"
                  Label="true" Size="Size.Small"
                  Style="color: white; background: rgba(0, 0, 0, .5); bottom: 50px; left: 120px;">
             <b>@_fileExtension</b>
@@ -37,7 +37,7 @@
                                  Style="color: white; bottom: 130px; left: 95px;"
                                  ToggledIcon=@Icons.Material.Filled.CheckCircle
                                  ToggledColor="@Color.Error"
-                                 Ripple="false" 
+                                 Ripple="false"
                                  Size="Size.Large"
                                  ToggledSize="Size.Large"/>
         }
@@ -50,22 +50,25 @@
             <AssetTypeField File="File" AssetTypeChanged="OnAssetTypeChanged"/>
             @if (!string.IsNullOrWhiteSpace(File?.AssetType))
             {
-            <AssetSubTypeField File="File" AssetType="@File.AssetType"/>
-                
+                <AssetSubTypeField File="File" AssetType="@File.AssetType"/>
             }
-            <UsageRightsField/>
+            <UsageRightsField File="File"/>
+            @if (File.UsageRights == "Special usage rights")
+            {
+                <PleaseSpecifyField File="File"/>
+            }
             <GoalField File="File"/>
             @if (ShowOptionalFields)
             {
                 <MudText Class="mt-2" Typo="Typo.caption"><b>Optional fields</b></MudText>
-                <DescriptionField File="File" />
-                <PublicationDateField/>
+                <DescriptionField File="File"/>
+                <PublicationDateField File="File"/>
                 <TagsField/>
-                <CopyrightField/>
+                <CopyrightField File="File"/>
                 <TargetPersonaField File="File"/>
                 <ChannelField File="File"/>
                 <LaunchField File="File"/>
-                <YearField/>
+                <YearField File="File"/>
                 <ThemeField File="File"/>
                 <CampaignField File="File"/>
                 <InstallationsField File="File"/>
@@ -76,13 +79,13 @@
 </MudCard>
 
 @code {
-    [Parameter] public UploadedFile? File { get; set; } 
+    [Parameter] public UploadedFile? File { get; set; }
     [Parameter] public bool IsSelected { get; set; }
     [Parameter] public bool ShowOptionalFields { get; set; }
     [Parameter] public EventCallback<UploadedFile> OnToggleSelected { get; set; }
     [Parameter] public EventCallback<UploadedFile> OnRemoveFile { get; set; }
 
-    
+
     private bool Hovered { get; set; }
     private string _imageDataUrl = string.Empty;
     private string _fileName = string.Empty;
@@ -92,20 +95,16 @@
     {
         await OnToggleSelected.InvokeAsync(File);
     }
-    
-    private async Task RemoveFile()
+
+    private async Task RemoveFile(MouseEventArgs e)
     {
         if (File != null)
         {
-            FileState.ClearFiles(); // clears service state
             await OnRemoveFile.InvokeAsync(File);
-
-            // reset local card state
-            _imageDataUrl = string.Empty;
-            _fileName = string.Empty;
-            _fileExtension = string.Empty;
+            // Let parent handle the actual removal from FileState
         }
     }
+
     private void OnAssetTypeChanged(string assetType)
     {
         StateHasChanged();
@@ -125,7 +124,7 @@
         }
         else
         {
-            _imageDataUrl = "images/file-icon.png"; 
+            _imageDataUrl = "images/file-icon.png";
         }
     }
 

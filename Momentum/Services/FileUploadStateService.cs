@@ -24,25 +24,24 @@ namespace Momentum.Services
         public byte[] Data { get; set; } = Array.Empty<byte>();
         public bool IsSelected { get; set; } = true;
         public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
 
 
 
         // ----- Metadata Fields -----
 
-        // Single-select
         public string AssetType { get; set; } = string.Empty;
+        public List<string> AssetSubtypes { get; set; } = new List<string>();
         public string UsageRights { get; set; } = string.Empty;
-        public string Year { get; set; } = string.Empty;
-        public string PublicationDate { get; set; } = string.Empty; // Or DateOnly if you prefer
-        public string Copyright { get; set; } = string.Empty;
-
         // Special field for “Please specify”
         public string? UsageRightsDetails { get; set; }
-
-        // Multi-select
-        public List<string> AssetSubtypes { get; set; } = new List<string>();
         public List<string> Goals { get; set; } = new List<string>();
+        
+        // Optional-Fields
+        public string Description { get; set; } = string.Empty;
+        public int? Year { get; set; } 
+        public DateTime? PublicationDate { get; set; } 
+        public TimeSpan? PublicationTime { get; set; }
+        public string Copyright { get; set; } = string.Empty;
         public List<string> TargetPersonas { get; set; } = new List<string>();
         public List<string> Channels { get; set; } = new List<string>();
         public List<string> Launches { get; set; } = new List<string>();
@@ -51,7 +50,6 @@ namespace Momentum.Services
         public List<string> Installations { get; set; } = new List<string>();
         public List<string> Tags { get; set; } = new List<string>();
         public List<string> Collections { get; set; } = new List<string>();
-
         
     }
 }

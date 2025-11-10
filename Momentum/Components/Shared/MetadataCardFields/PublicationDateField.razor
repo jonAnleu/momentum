@@ -1,8 +1,15 @@
 <MudTooltip Text="Add Publication Date" Color="Color.Dark">
-    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen" >
+    <MudPaper Class="d-flex flex-grow-1 align-center pl-2" Outlined="true" @onclick="ToggleOpen">
+        @if (File?.PublicationDate != null || File?.PublicationTime != null)
+        {
+            <MudText Typo="Typo.caption"> @File.PublicationDate?.ToString("MM/dd/yyyy") @File.PublicationTime?.ToString("hh\\:mm")</MudText>
+        }
+        else
+        {
         <MudText Typo="Typo.caption">Add Publication Date</MudText>
+        }
         <MudSpacer/>
-        <MudDivider Vertical="true" FlexItem="true" />
+        <MudDivider Vertical="true" FlexItem="true"/>
         <MudIconButton Ripple="false" Icon="@Icons.Material.Sharp.KeyboardArrowRight" Size="Size.Small"/>
     </MudPaper>
 </MudTooltip>
@@ -13,8 +20,8 @@
             <MudText Class="justify-start" Typo="Typo.caption">Add Publication Date</MudText>
             <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Refresh" Size="Size.Small"/>
         </MudStack>
-            <MudDatePicker Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" ShowToolbar="false" Editable="true" Placeholder="Add Publication Date"/>
-            <MudTimePicker Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" 
+            <MudDatePicker @bind-Date="File.PublicationDate" Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" ShowToolbar="false" Editable="true" Placeholder="Add Publication Date"/>
+            <MudTimePicker @bind-Time="File.PublicationTime" Variant="Variant.Outlined" Color="Color.Error" Margin="Margin.Dense" 
                            Placeholder="Add Publication Time" AmPm="true" />
         <MudStack Class="mt-3" Row="true" Justify="Justify.FlexEnd">
             <MudButton Variant="Variant.Filled" Color="Color.Error" Size="Size.Small" OnClick="ToggleOpen">OK</MudButton>
@@ -23,9 +30,8 @@
 </MudPopover>
 
 @code{
+    [Parameter] public UploadedFile? File { get; set; }
     private bool _open;
-    private bool _isVisible;
-
 
     private void ToggleOpen() => _open = !_open;
 }
