@@ -5,6 +5,7 @@
 
 <MudStack Class="mx-5 my-2" Row="true" StretchItems="StretchItems.End" Spacing="9">
     <UploadPanel File="_currentFile"
+                 OnFileChanged="StateHasChanged" 
                  IsSelected="_currentFile.IsSelected"
                  ShowOptional="ShowAllOptionalFields"
                  OnVisibilityChanged="HandleVisibilityChanged" />
@@ -51,10 +52,7 @@
     
     private void HandleRemoveFile(UploadedFile file)
     {
-        if (_currentFile == file)
-            _currentFile = null;
-    
-        _currentFile.IsSelected = false;
-        StateHasChanged();
+        FileState.PendingFiles.Remove(file);
+        NavManager.NavigateTo("/");
     }
 }

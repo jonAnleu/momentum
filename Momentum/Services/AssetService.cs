@@ -25,7 +25,7 @@ public class AssetService
             return _dataStore.Assets;
 
         return _dataStore.Assets.Where(a =>
-            (a.Filename?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (a.FileName?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) ||
             (a.AssetType?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) 
         ).ToList();
     }
@@ -34,21 +34,17 @@ public class AssetService
     {
         return _dataStore.Assets.Where(a => ids.Contains(a.Id)).ToList();
     }
-    public Asset AddAsset(string title, string filePath, string fileType)
+    public Asset AddAsset(Asset asset)
     {
-        var newAsset = new Asset
-        {
-            Id = _dataStore.Assets.Count > 0 
-                ? _dataStore.Assets.Max(a => a.Id) + 1 
-                : 1,
-            Filename = title,
-            FilePath = filePath,
-            FileType = fileType,
-            CreatedDate = DateTime.UtcNow
-        };
+        asset.Id = _dataStore.Assets.Count > 0
+            ? _dataStore.Assets.Max(a => a.Id) + 1
+            : 1;
 
-        _dataStore.Assets.Add(newAsset);
-        return newAsset;
+        asset.CreatedDate = DateTime.UtcNow;
+
+        _dataStore.Assets.Add(asset);
+        return asset;
     }
+
 
 }

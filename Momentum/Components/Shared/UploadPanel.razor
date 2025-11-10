@@ -2,18 +2,20 @@
     @* Panel Header *@
     <MudStack Class="pa-4" Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
         <MudText><b>Upload files</b></MudText>
-        <VisibilityToggleButton ShowOptional="ShowOptional" 
+        <VisibilityToggleButton ShowOptional="ShowOptional"
                                 OnVisibilityChanged="ToggleVisibility"
                                 IsGroupMode="true"/>
     </MudStack>
     <MudStack Class="overflow-auto px-4" Spacing="4">
-        
+
         @* Update Title*@
         <MudStack Spacing="2">
-            <MudTextField @bind-Value="File.Title"
-                          T="string" Margin="Margin.Dense"
+            <MudTextField T="string"
+                          @bind-Value="File.Title"
+                          @bind-Value:after="NotifyParent"
+                          Margin="Margin.Dense"
                           Variant="Variant.Outlined"
-                          Underline="false" 
+                          Underline="false"
                           Placeholder="Update title"
                           Immediate="true"/>
             <MudSwitch T="bool" Color="Color.Error" Size="Size.Small" Label="Use filenames as title"/>
@@ -28,7 +30,11 @@
                 </MudStack>
                 <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             </MudStack>
-            <MudTextField T="string" @bind-Value="File.Description"  Placeholder="Replace description(s)" Variant="Variant.Outlined"/>
+            <MudTextField T="string" 
+                          @bind-Value="File.Description"
+                          @bind-Value:after="NotifyParent"
+                          Placeholder="Replace description(s)"
+                          Variant="Variant.Outlined"/>
         </MudStack>
         @* Preset Selector *@
         <MudStack Spacing="2">
@@ -41,17 +47,17 @@
         @* Expansion Panels *@
         <MudExpansionPanels Elevation="0" Gutters="false" Dense="true">
             <MudDivider/>
-            <AssetTypePanel File="File" AssetTypeChanged="OnAssetTypeChanged" />
+            <AssetTypePanel File="File" AssetTypeChanged="OnAssetTypeChanged"/>
             @if (!string.IsNullOrWhiteSpace(File?.AssetType))
             {
-                <AssetSubTypePanel File="File" AssetType="@File.AssetType" />
+                <AssetSubTypePanel File="File" AssetType="@File.AssetType"/>
             }
             <UsageRightsPanel File="File"/>
             @if (File.UsageRights == "Special usage rights")
             {
-            <PleaseSpecifyPanel File="File"/>
+                <PleaseSpecifyPanel File="File"/>
             }
-            <GoalPanel File="File"/>
+            <GoalPanel File="File" OnFileChanged="NotifyParent"/>
             <TargetPersonaPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <ChannelPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             <LaunchPanel File="File" ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
@@ -70,7 +76,7 @@
     </MudStack>
     @if (IsSelected)
     {
-        <StoreSelectedFilesButton />
+        <StoreSelectedFilesButton/>
     }
 </MudPaper>
 
@@ -80,16 +86,22 @@
     [Parameter] public bool IsSelected { get; set; }
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
-
+    [Parameter] public EventCallback OnFileChanged { get; set; }
 
     private void ToggleVisibility()
     {
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
-    
-    private void OnAssetTypeChanged(string assetType)
+
+    private async Task OnAssetTypeChanged(string assetType)
     {
-        StateHasChanged();
+        await NotifyParent();
+    }
+
+
+    private async Task NotifyParent()
+    {
+        await OnFileChanged.InvokeAsync();
     }
 
 }

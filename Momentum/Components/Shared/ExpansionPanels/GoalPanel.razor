@@ -30,7 +30,7 @@
                        Placeholder="Select Goal"
                        Underline="false"
                        SelectedValues="File.Goals"
-                       SelectedValuesChanged="@(vals => File.Goals = vals.ToList())">
+                       SelectedValuesChanged="OnGoalsChanged">
                 @foreach (var goal in _goals)
                 {
                     <MudSelectItem Value="@goal">@goal</MudSelectItem>
@@ -42,15 +42,26 @@
 @code
 {
     [Parameter] public UploadedFile? File { get; set; }
+    [Parameter] public EventCallback OnFileChanged { get; set; }
     
     private readonly string[] _goals =
     {
         "Brand Awareness", "Customer Loyalty", "New Customers", "Product Launch"
     };
     
-    private void RemoveGoal(string goal)
+    private async Task RemoveGoal(string goal)
     {
         if (File?.Goals == null) return;
         File.Goals.Remove(goal);
+        await OnFileChanged.InvokeAsync();
+    }
+    
+    private async Task OnGoalsChanged(IEnumerable<string> vals)
+    {
+        if (File != null)
+        {
+            File.Goals = vals.ToList();
+            await OnFileChanged.InvokeAsync();
+        }
     }
 }

@@ -16,12 +16,19 @@
 
 @code {
     
-    private async Task StoreFiles()
+   private async Task StoreFiles()
+{
+    try
     {
-      
-
         foreach (var uploaded in FileState.PendingFiles)
         {
+            // Validate uploaded file has data
+            if (uploaded.Data == null || uploaded.Data.Length == 0)
+            {
+                Snackbar.Add($"Skipping {uploaded.Name} - no data", Severity.Warning);
+                continue;
+            }
+
             var ext = Path.GetExtension(uploaded.Name).TrimStart('.').ToLower();
             var uniqueName = $"{Guid.NewGuid()}.{ext}";
 
@@ -30,18 +37,57 @@
 
             var filePath = Path.Combine(uploadsDir, uniqueName);
 
+            // Write file to disk
             await File.WriteAllBytesAsync(filePath, uploaded.Data);
 
-            var asset = AssetService.AddAsset(
-                title: Path.GetFileNameWithoutExtension(uploaded.Name),
-                filePath: $"/uploads/{uniqueName}",
-                fileType: ext
-            );
+            // Create Asset with ALL metadata from UploadedFile
+            var asset = new Asset
+            {
+                // Basic file info
+                FileName = uploaded.Title ?? Path.GetFileNameWithoutExtension(uploaded.Name),
+                FilePath = $"/uploads/{uniqueName}",
+                FileType = ext,
+                IsSelected = uploaded.IsSelected,
+                
+                // Metadata fields
+                AssetType = uploaded.AssetType,
+                AssetSubTypes = new List<string>(uploaded.AssetSubtypes), // Keep as List
+                UsageRights = uploaded.UsageRights,
+                UsageRightsDetails = uploaded.UsageRightsDetails,
+                Goals = new List<string>(uploaded.Goals), // Create new list to avoid reference issues
+                
+                // Optional fields
+                Description = uploaded.Description,
+                Year = uploaded.Year,
+                PublicationDate = uploaded.PublicationDate,
+                PublicationTime = uploaded.PublicationTime,
+                Copyright = uploaded.Copyright,
+                TargetPersonas = new List<string>(uploaded.TargetPersonas),
+                Channels = new List<string>(uploaded.Channels),
+                Launches = new List<string>(uploaded.Launches),
+                Themes = new List<string>(uploaded.Themes),
+                Campaigns = new List<string>(uploaded.Campaigns),
+                Installations = new List<string>(uploaded.Installations),
+                Tags = new List<string>(uploaded.Tags),
+                Collections = new List<string>(uploaded.Collections),
+                
+                // Timestamps
+                CreatedDate = DateTime.Now
+            };
 
+            // Pass complete asset to service
+            AssetService.AddAsset(asset);
+
+            Snackbar.Add($"Stored {uploaded.Name} successfully", Severity.Success);
         }
 
         FileState.ClearFiles();
-
-        Nav.NavigateTo("/"); 
+        Snackbar.Add("All files stored successfully", Severity.Success);
+        Nav.NavigateTo("/");
     }
+    catch (Exception ex)
+    {
+        Snackbar.Add($"Error storing files: {ex.Message}", Severity.Error);
+    }
+}
 }

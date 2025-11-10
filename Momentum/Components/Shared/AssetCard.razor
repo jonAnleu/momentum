@@ -6,7 +6,7 @@
 
 <MudCard Class="@($"cursor-pointer  {(Card.IsSelected ? "border-red" : "")}")"
          Outlined="true"
-         Style="width: 160px; height: 144px;"
+         Style="width: 160px;"
          @onmouseenter="() => Hovered = true"
          @onmouseleave="() => Hovered = false">
 
@@ -30,8 +30,13 @@
 
     </div>
     
-    <MudCardContent Class="pa-2">
-        <MudText Class="mt-n7" Typo="Typo.body1">@Card.Filename</MudText>
+    <MudCardContent Class="pa-0 mt-n7">
+            <MudText Class="pa-2">@Card.FileName</MudText>
+            <MudDivider DividerType="DividerType.FullWidth"/>
+            <MudStack Class="pa-2" Spacing="0">
+                <MudText>Usage Rights</MudText>
+                <MudText><b>@Card.UsageRights</b></MudText>
+            </MudStack>
     </MudCardContent>
 </MudCard>
 

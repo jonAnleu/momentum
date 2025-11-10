@@ -46,7 +46,7 @@
     <MudCardContent Class="pa-2">
         <MudStack Spacing="1">
             <MudText Typo="Typo.caption"><b>Required fields</b></MudText>
-            <TitleField File="File"/>
+            <TitleField File="File" />
             <AssetTypeField File="File" AssetTypeChanged="OnAssetTypeChanged"/>
             @if (!string.IsNullOrWhiteSpace(File?.AssetType))
             {
@@ -84,6 +84,8 @@
     [Parameter] public bool ShowOptionalFields { get; set; }
     [Parameter] public EventCallback<UploadedFile> OnToggleSelected { get; set; }
     [Parameter] public EventCallback<UploadedFile> OnRemoveFile { get; set; }
+    [Parameter] public EventCallback OnFileChanged { get; set; }
+
 
 
     private bool Hovered { get; set; }
