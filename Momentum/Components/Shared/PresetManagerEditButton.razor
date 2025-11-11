@@ -1,0 +1,27 @@
+<MudStack Spacing="0">
+    <MudIconButton Variant="Variant.Outlined" Icon="@Icons.Material.Outlined.MoreHoriz" OnClick="ToggleOpen"/>
+    <MudPopover Open="@_open"
+                AnchorOrigin="Origin.BottomRight"
+                TransformOrigin="Origin.TopRight">
+        <MudList T="string">
+            <MudListItem>
+                <MudStack Row="true" AlignItems="AlignItems.Center">
+                    <MudIcon Icon="@Icons.Material.Filled.Edit"/>
+                    <MudText>Edit preset name</MudText>
+                </MudStack>
+            </MudListItem>
+            <MudDivider/>
+            <MudListItem>
+                <MudStack Row="true" AlignItems="AlignItems.Center">
+                    <MudIcon Icon="@Icons.Material.Filled.Delete"/>
+                    <MudText>Delete preset</MudText>
+                </MudStack>   
+            </MudListItem>
+        </MudList>
+    </MudPopover>
+</MudStack>
+
+@code {
+    private bool _open;
+    private void ToggleOpen() => _open = !_open;
+}
