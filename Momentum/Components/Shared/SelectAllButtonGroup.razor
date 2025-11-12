@@ -2,8 +2,8 @@
     <MudToggleIconButton Icon="@Icons.Material.Filled.CheckBoxOutlineBlank"
                          ToggledIcon="@Icons.Material.Outlined.CheckBox"
                          Size="Size.Small"
-                         Toggled="_allSelected"
-                         @onclick="ToggleAll"/>
+                         Toggled="FileIsSelected"
+                         @onclick="ToggleSelection"/>
     <MudMenu ActivationEvent="MouseEvent.MouseOver"
              ListClass="pa-0"
              PopoverClass="mt-1"
@@ -15,10 +15,10 @@
                            Size="Size.Small"/>
         </ActivatorContent>
         <ChildContent>
-            <MudMenuItem Class="justify-center" OnClick="SelectAll" Style="width: 200px;">
+            <MudMenuItem Class="justify-center pa-1" OnClick="SelectAll" Style="width: 200px;">
                 <MudText Align="Align.Center" Typo="Typo.body2">Select All</MudText>
             </MudMenuItem>
-            <MudMenuItem Class="justify-center" OnClick="SelectNone" Style="width: 200px;">
+            <MudMenuItem Class="justify-center pa-1" OnClick="SelectNone" Style="width: 200px;">
                 <MudText Align="Align.Center" Typo="Typo.body2">Select None</MudText>
             </MudMenuItem>
         </ChildContent>
@@ -26,16 +26,17 @@
 </MudButtonGroup>
 
 @code {
-    [Parameter] public EventCallback<bool> OnSelectAllChanged { get; set; }
+    [Parameter] public UploadedFile? File { get; set; }
+    [Parameter] public EventCallback<bool> OnSelectionChanged { get; set; }
 
-    private bool _allSelected;
+    private bool FileIsSelected => File?.IsSelected ?? false;
 
-    private async Task ToggleAll()
+    private async Task ToggleSelection()
     {
-        _allSelected = !_allSelected;
-        await OnSelectAllChanged.InvokeAsync(_allSelected);
+        if (File == null) return; 
+        
+        await OnSelectionChanged.InvokeAsync(!FileIsSelected);
     }
-
-    private async Task SelectAll() => await OnSelectAllChanged.InvokeAsync(true);
-    private async Task SelectNone() => await OnSelectAllChanged.InvokeAsync(false);
+    private async Task SelectAll() => await OnSelectionChanged.InvokeAsync(true);
+    private async Task SelectNone() => await OnSelectionChanged.InvokeAsync(false);
 }

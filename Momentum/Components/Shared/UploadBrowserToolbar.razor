@@ -1,12 +1,14 @@
 <MudStack Row="true"  Justify="Justify.SpaceBetween">
     <CardSelectedResultChip IsSelected="@File.IsSelected" />
     <MudStack Row="true" AlignItems="AlignItems.Center">
-        <SelectAllButtonGroup OnSelectAllChanged="OnSelectAllChanged" />
+        <SelectAllButtonGroup File="File" OnSelectionChanged="OnSelectionChanged" />
         <CancelUploadButton/>
     </MudStack>
 </MudStack>
 
 @code {
     [Parameter] public UploadedFile? File { get; set; } 
-    [Parameter] public EventCallback<bool> OnSelectAllChanged { get; set; }
+    
+    [Parameter] public EventCallback<bool> OnSelectionChanged { get; set; }
+    
 }

@@ -9,12 +9,13 @@
                  ShowOptional="ShowAllOptionalFields"
                  OnVisibilityChanged="HandleVisibilityChanged" />
     <MudStack Spacing="4">
-        <UploadBrowserToolbar File="_currentFile" />
+        <UploadBrowserToolbar File="_currentFile" 
+                              OnSelectionChanged="HandleSelectionChanged" />
         <UploadCard File="_currentFile"
                     ShowOptionalFields="ShowAllOptionalFields"
-                    OnToggleSelected="HandleCardSelection"
+                    OnToggleSelected="HandleToggleSelection"
                     OnRemoveFile="HandleRemoveFile"/>
-        </MudStack>
+    </MudStack>
 </MudStack>
 
 @code {
@@ -33,13 +34,19 @@
         }
     }
 
-    private void HandleCardSelection(UploadedFile file)
+    private async Task HandleSelectionChanged(bool isSelected)
     {
-        if (_currentFile != null)  
+        if (_currentFile != null)
         {
-            _currentFile.IsSelected = !_currentFile.IsSelected;
+            _currentFile.IsSelected = isSelected;
             StateHasChanged();
+            
         }
+    }
+
+    private async Task HandleToggleSelection(UploadedFile file)
+    {
+        await HandleSelectionChanged(!file.IsSelected);
     }
 
     private void HandleVisibilityChanged(bool visible)
