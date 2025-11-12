@@ -73,7 +73,7 @@
             <CollectionsPanel/>
         </MudExpansionPanels>
     </MudStack>
-    @if (IsSelected)
+    @if (File.IsSelected)
     {
         <StoreSelectedFilesButton/>
     }
@@ -82,7 +82,6 @@
 
 @code {
     [Parameter] public UploadedFile? File { get; set; }
-    [Parameter] public bool IsSelected { get; set; }
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     [Parameter] public EventCallback OnFileChanged { get; set; }

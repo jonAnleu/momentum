@@ -1,12 +1,12 @@
 @using System.Net
-@inject FileUploadStateService FileState
+@inject FileUploadService FileState
 <style>
     .border-red {
         outline: solid 2px #A6192e;
     }
 </style>
 
-<MudCard Class="@($"cursor-pointer  {(IsSelected ? "border-red" : "")} {(Hovered ? "border-red" : "")}")"
+<MudCard Class="@($"cursor-pointer  {(File.IsSelected ? "border-red" : "")} {(Hovered ? "border-red" : "")}")"
          Outlined="true"
          Style="max-width: 232px; height: fit-content;"
          @onmouseenter="() => Hovered = true"
@@ -25,14 +25,14 @@
         <MudChip Class="position-absolute" T="string"
                  Label="true" Size="Size.Small"
                  Style="color: white; background: rgba(0, 0, 0, .5); bottom: 50px; left: 120px;">
-            <b>@_fileExtension</b>
+            <b>@File.FileExtension</b>
         </MudChip>
 
-        @if (Hovered || IsSelected)
+        @if (Hovered || File.IsSelected)
         {
             <MudToggleIconButton Class="pa-0 position-absolute z-10 "
                                  Icon="@Icons.Material.Filled.RadioButtonUnchecked"
-                                 Toggled="IsSelected"
+                                 Toggled="File.IsSelected"
                                  ToggledChanged="Toggle"
                                  Style="color: white; bottom: 130px; left: 95px;"
                                  ToggledIcon=@Icons.Material.Filled.CheckCircle
@@ -80,7 +80,6 @@
 
 @code {
     [Parameter] public UploadedFile? File { get; set; }
-    [Parameter] public bool IsSelected { get; set; }
     [Parameter] public bool ShowOptionalFields { get; set; }
     [Parameter] public EventCallback<UploadedFile> OnToggleSelected { get; set; }
     [Parameter] public EventCallback<UploadedFile> OnRemoveFile { get; set; }
@@ -90,8 +89,6 @@
 
     private bool Hovered { get; set; }
     private string _imageDataUrl = string.Empty;
-    private string _fileName = string.Empty;
-    private string _fileExtension = string.Empty;
 
     private async Task Toggle()
     {
@@ -103,7 +100,6 @@
         if (File != null)
         {
             await OnRemoveFile.InvokeAsync(File);
-            // Let parent handle the actual removal from FileState
         }
     }
 
@@ -116,9 +112,6 @@
     {
         if (File == null)
             return;
-
-        _fileName = File.Name;
-        _fileExtension = Path.GetExtension(File.Name).ToUpper().TrimStart('.');
 
         if (File.ContentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
         {

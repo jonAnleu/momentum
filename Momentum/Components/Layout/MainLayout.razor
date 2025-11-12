@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider IsDarkMode  Theme="DamCustomTheme" />
+<MudThemeProvider IsDarkMode Theme="DamCustomTheme" />
 <MudDialogProvider FullWidth="true" 
                    MaxWidth="MaxWidth.Small"
                    CloseButton="true"
@@ -23,18 +23,14 @@
 
     MudTheme DamCustomTheme = new MudTheme()
     {
-        PaletteLight = new PaletteLight()
-        {
-            Primary = Colors.Shades.Black,
-            Secondary = Colors.Gray.Darken1,
-            Error = Colors.Red.Darken4,
-        },
+     
         PaletteDark = new PaletteDark()
         {
             Primary = Colors.Shades.White,
             Secondary = Colors.Gray.Darken1,
             Error = Colors.Red.Darken4,
         },
+      
 
         LayoutProperties = new LayoutProperties()
         {

@@ -1,18 +1,16 @@
 @page "/Upload"
 @layout UploadLayout
-@inject FileUploadStateService FileState
+@inject FileUploadService FileState
 @inject NavigationManager NavManager
 
 <MudStack Class="mx-5 my-2" Row="true" StretchItems="StretchItems.End" Spacing="9">
     <UploadPanel File="_currentFile"
                  OnFileChanged="StateHasChanged" 
-                 IsSelected="_currentFile.IsSelected"
                  ShowOptional="ShowAllOptionalFields"
                  OnVisibilityChanged="HandleVisibilityChanged" />
     <MudStack Spacing="4">
         <UploadBrowserToolbar File="_currentFile" />
         <UploadCard File="_currentFile"
-                    IsSelected="_currentFile.IsSelected"
                     ShowOptionalFields="ShowAllOptionalFields"
                     OnToggleSelected="HandleCardSelection"
                     OnRemoveFile="HandleRemoveFile"/>

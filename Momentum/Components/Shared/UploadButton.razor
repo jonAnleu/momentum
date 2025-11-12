@@ -1,4 +1,4 @@
-@inject FileUploadStateService FileState
+@inject FileUploadService FileState
 @inject NavigationManager NavManager
 
 <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
@@ -15,20 +15,9 @@
     
     private async Task UploadFiles(IBrowserFile file)
     {
-        using var stream = file.OpenReadStream(maxAllowedSize: 20_000_000);
-        using var ms = new MemoryStream();
-        await stream.CopyToAsync(ms);
-
-        var uploaded = new UploadedFile
-        {
-            Name = file.Name,
-            ContentType = file.ContentType,
-            Data = ms.ToArray(),
-            Title = Path.GetFileNameWithoutExtension(file.Name)
-
-        };
-
-        FileState.SetFiles(new List<UploadedFile> { uploaded });
+        var uploadedFile = await FileState.ProcessUpload(file);
+    
+        FileState.SetFiles(new List<UploadedFile> { uploadedFile });
         NavManager.NavigateTo("/Upload");
     }
 }
