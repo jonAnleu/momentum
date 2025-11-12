@@ -1,5 +1,5 @@
 <MudStack Row="true"  Justify="Justify.SpaceBetween">
-    <CardSelectedResultChip IsSelected="@File.IsSelected" />
+    <CardSelectedResultChip SelectedCount="@SelectedCount" TotalCount="@TotalCount"  />
     <MudStack Row="true" AlignItems="AlignItems.Center">
         <SelectAllButtonGroup File="File" OnSelectionChanged="OnSelectionChanged" />
         <CancelUploadButton/>
@@ -10,5 +10,7 @@
     [Parameter] public UploadedFile? File { get; set; } 
     
     [Parameter] public EventCallback<bool> OnSelectionChanged { get; set; }
+    private int SelectedCount => File?.IsSelected == true ? 1 : 0;
+    private int TotalCount => 1; 
     
 }

@@ -52,7 +52,7 @@
                 <AssetSubTypePanel File="File" AssetType="@File.AssetType"/>
             }
             <UsageRightsPanel File="File"/>
-            @if (File.UsageRights == "Special usage rights")
+            @if (File?.UsageRights == "Special usage rights")
             {
                 <PleaseSpecifyPanel File="File"/>
             }
@@ -73,7 +73,7 @@
             <CollectionsPanel/>
         </MudExpansionPanels>
     </MudStack>
-    @if (File.IsSelected)
+    @if (File?.IsSelected == true)
     {
         <StoreSelectedFilesButton/>
     }

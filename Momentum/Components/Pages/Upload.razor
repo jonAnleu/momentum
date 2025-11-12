@@ -6,13 +6,13 @@
 <MudStack Class="mx-5 my-2" Row="true" StretchItems="StretchItems.End" Spacing="9">
     <UploadPanel File="_currentFile"
                  OnFileChanged="StateHasChanged" 
-                 ShowOptional="ShowAllOptionalFields"
-                 OnVisibilityChanged="HandleVisibilityChanged" />
+                 ShowOptional="_showAllOptionalFields"
+                 OnVisibilityChanged="HandleGlobalVisibilityChanged" />
     <MudStack Spacing="4">
         <UploadBrowserToolbar File="_currentFile" 
                               OnSelectionChanged="HandleSelectionChanged" />
         <UploadCard File="_currentFile"
-                    ShowOptionalFields="ShowAllOptionalFields"
+                    ShowOptionalFields="_showAllOptionalFields"
                     OnToggleSelected="HandleToggleSelection"
                     OnRemoveFile="HandleRemoveFile"/>
     </MudStack>
@@ -20,7 +20,7 @@
 
 @code {
     private UploadedFile? _currentFile;
-    private bool ShowAllOptionalFields = false;
+    private bool _showAllOptionalFields = false;
 
     protected override void OnInitialized()
     {
@@ -38,7 +38,7 @@
     {
         if (_currentFile != null)
         {
-            _currentFile.IsSelected = isSelected;
+           _currentFile.IsSelected = isSelected;
             StateHasChanged();
             
         }
@@ -49,9 +49,9 @@
         await HandleSelectionChanged(!file.IsSelected);
     }
 
-    private void HandleVisibilityChanged(bool visible)
+    private void HandleGlobalVisibilityChanged(bool isVisible)
     {
-        ShowAllOptionalFields = visible;
+        _showAllOptionalFields = isVisible;
         StateHasChanged();
     }
     

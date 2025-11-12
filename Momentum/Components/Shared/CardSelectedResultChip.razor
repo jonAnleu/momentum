@@ -1,19 +1,23 @@
-        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="0">
-            <MudChip T="string" Class=" ma-0 border border-solid mud-border-secondary rounded-l rounded-r-0"
-                     Variant="Variant.Filled"
-                     Color="Color.Secondary">
-                <MudText Color="Color.Primary" Typo="Typo.body2"><b>@(IsSelected ? "1": "0")</b></MudText>
-            </MudChip>
-            <MudChip T="string" Class=" ma-0 rounded-l-0 rounded-r"
-                     Variant="Variant.Outlined"
-                     Color="Color.Secondary"
-                     Style="background-color: white;">
-                <MudText Color="Color.Dark" Typo="Typo.body2">1 Result</MudText>
-            </MudChip>
-        </MudStack>
- 
+<MudStack Row="true" AlignItems="AlignItems.Center" Spacing="0">
+    <MudChip T="string" Class=" ma-0 border border-solid mud-border-secondary rounded-l rounded-r-0"
+             Variant="Variant.Filled"
+             Color="Color.Secondary">
+        <MudText Color="Color.Primary" Typo="Typo.body2"><b>@SelectedCount</b></MudText>
+    </MudChip>
+    <MudChip T="string" Class=" ma-0 rounded-l-0 rounded-r"
+             Variant="Variant.Outlined"
+             Color="Color.Secondary"
+             Style="background-color: white;">
+        <MudText Color="Color.Dark" Typo="Typo.body2">
+            @TotalCount @(TotalCount == 1 ? "Result" : "Results")
+        </MudText>
+    </MudChip>
+</MudStack>
+
 
 
 @code {
-    [Parameter] public bool IsSelected { get; set; }
+    [Parameter] public int SelectedCount { get; set; }
+    [Parameter] public int TotalCount { get; set; }
+
 }
