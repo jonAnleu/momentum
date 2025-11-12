@@ -11,6 +11,7 @@ public class UploadedFile
     public string Title { get; set; } = string.Empty;
     public long FileSize { get; set; }  
     public DateTime UploadDate { get; set; } = DateTime.Now; 
+    public string ThumbnailDataUrl { get; set; } = string.Empty; 
 
 
 
