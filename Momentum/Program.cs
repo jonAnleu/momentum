@@ -11,6 +11,7 @@ builder.Services.AddMudServices();
 builder.Services.AddScoped<FileUploadService>();
 builder.Services.AddScoped<InMemoryDataStore>();
 builder.Services.AddScoped<AssetService>();
+builder.Services.AddScoped<FieldVisibilityService>();
 
 
 

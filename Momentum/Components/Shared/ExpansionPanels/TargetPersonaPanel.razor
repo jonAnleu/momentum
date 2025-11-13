@@ -1,3 +1,5 @@
+@inject FieldVisibilityService VisibilityService
+
 <MudExpansionPanel HeaderClass="pa-0" Gutters="false" Dense="true" HideIcon="true">
     <TitleContent>
         <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
@@ -7,7 +9,9 @@
                 </MudIcon>
                 <MudText Typo="Typo.subtitle2">Target Persona</MudText>
             </MudStack>
-            <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+            <VisibilityToggleButton 
+                ShowOptional="@ShouldShowField" 
+                OnVisibilityChanged="ToggleFieldVisibility"/>
         </MudStack>
     </TitleContent>
     <ChildContent>
@@ -46,11 +50,35 @@
     [Parameter] public bool ShowOptional { get; set; }
     [Parameter] public EventCallback<bool> OnVisibilityChanged { get; set; }
     
+    private const string FieldName = "TargetPersona";
+    
+    private bool ShouldShowField => VisibilityService.GetFieldVisibility(FieldName);
+    
+    protected override void OnInitialized()
+    {
+        
+        VisibilityService.OnVisibilityChanged += OnVisibilityChangedHandler;
+    }
+    
+    private async void OnVisibilityChangedHandler()
+    {
+        await InvokeAsync(StateHasChanged);
+    }
+    
+    private async Task ToggleFieldVisibility(bool isVisible)
+    {
+        VisibilityService.SetFieldVisibility(FieldName, isVisible);
+    }
+    
     private void ToggleVisibility()
     {
         OnVisibilityChanged.InvokeAsync(!ShowOptional);
     }
     
+    public void Dispose()
+    {
+        VisibilityService.OnVisibilityChanged -= OnVisibilityChangedHandler;
+    }
 
         private readonly string[] _targetPersonas =
         {

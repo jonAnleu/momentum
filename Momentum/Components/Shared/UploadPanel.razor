@@ -27,7 +27,8 @@
                     <MudIcon Icon="@Icons.Custom.FileFormats.FileDocument" Size="Size.Small"/>
                     <MudText Typo="Typo.subtitle2">Description</MudText>
                 </MudStack>
-                <VisibilityToggleButton ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
+                <VisibilityToggleButton 
+                    ShowOptional="ShowOptional" OnVisibilityChanged="ToggleVisibility"/>
             </MudStack>
             <MudTextField T="string" 
                           @bind-Value="File.Description"

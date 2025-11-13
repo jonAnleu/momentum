@@ -1,18 +1,19 @@
 @page "/Upload"
 @layout UploadLayout
+@inject FieldVisibilityService VisibilityService
 @inject FileUploadService FileState
 @inject NavigationManager NavManager
 
 <MudStack Class="mx-5 my-2" Row="true" StretchItems="StretchItems.End" Spacing="9">
     <UploadPanel File="_currentFile"
                  OnFileChanged="StateHasChanged" 
-                 ShowOptional="_showAllOptionalFields"
+                 ShowOptional="ShowAllOptionalFields"
                  OnVisibilityChanged="HandleGlobalVisibilityChanged" />
     <MudStack Spacing="4">
         <UploadBrowserToolbar File="_currentFile" 
                               OnSelectionChanged="HandleSelectionChanged" />
         <UploadCard File="_currentFile"
-                    ShowOptionalFields="_showAllOptionalFields"
+                    ShowOptionalFields="ShowAllOptionalFields"
                     OnToggleSelected="HandleToggleSelection"
                     OnRemoveFile="HandleRemoveFile"/>
     </MudStack>
@@ -20,7 +21,7 @@
 
 @code {
     private UploadedFile? _currentFile;
-    private bool _showAllOptionalFields = false;
+    private bool ShowAllOptionalFields = false;
 
     protected override void OnInitialized()
     {
@@ -49,9 +50,10 @@
         await HandleSelectionChanged(!file.IsSelected);
     }
 
-    private void HandleGlobalVisibilityChanged(bool isVisible)
+    private async Task HandleGlobalVisibilityChanged(bool isVisible)
     {
-        _showAllOptionalFields = isVisible;
+        ShowAllOptionalFields = isVisible;
+        VisibilityService.GlobalVisibility = isVisible;
         StateHasChanged();
     }
     
